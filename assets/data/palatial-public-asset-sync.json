@@ -1,0 +1,576 @@
+{
+  "schema_version": "2026-05-public-asset-sync",
+  "generated_at": "2026-05-18T14:17:45+00:00",
+  "site_url": "https://palatialpools.com.au",
+  "privacy_model": {
+    "scope": "public-safe static sync",
+    "excludes": [
+      "customer records",
+      "staff-only job notes",
+      "private route details",
+      "supplier credentials",
+      "proprietary scoring formulae"
+    ]
+  },
+  "current_season": "autumn-equipment",
+  "database_targets": {
+    "catalogue": "Products, categories, public docs and SEO URLs.",
+    "calendar": "Seasonal service prompts and job-type reminders.",
+    "intelligence": "Aggregated, public-safe signals for on-site recommendations.",
+    "fitment": "Public product compatibility records only."
+  },
+  "categories": [
+    {
+      "id": "chemicals",
+      "name": "Pool Chemicals",
+      "public_url": "/store/chemicals/",
+      "product_ids": [
+        "algaecide-concentrate-5l",
+        "ph-down-5kg",
+        "pool-pro-chlorine-granular-10kg",
+        "pool-pro-mineral-salts-10kg"
+      ],
+      "summary": "Daily-use sanitisers, pH and alkalinity balancers, algaecides, stabilisers and salts — chosen, stocked and used every day by our service team across Melbourne."
+    },
+    {
+      "id": "equipment",
+      "name": "Pool Equipment",
+      "public_url": "/store/equipment/",
+      "product_ids": [
+        "pool-cover-roller-deluxe",
+        "salt-pool-chlorinator-cell"
+      ],
+      "summary": "Australian-supported equipment — pumps, filters, salt and mineral chlorinators, heat pumps, gas heaters, LED lights and robotic cleaners. Supplied with optional licensed installation."
+    },
+    {
+      "id": "accessories",
+      "name": "Accessories",
+      "public_url": "/store/accessories/",
+      "product_ids": [
+        "pool-vacuum-head-deluxe",
+        "telescopic-pole-4-8m"
+      ],
+      "summary": "Day-to-day pool care accessories — vacuum heads, telescopic poles, brushes, leaf nets, hoses, covers and roller systems."
+    },
+    {
+      "id": "parts",
+      "name": "Spare Parts",
+      "public_url": "/store/parts/",
+      "product_ids": [
+        "cartridge-filter-c100",
+        "sand-filter-media-25kg"
+      ],
+      "summary": "Service-grade spare parts for the brands we install and maintain. Send us a model number and we'll confirm fitment before you buy."
+    },
+    {
+      "id": "water-testing",
+      "name": "Water Testing",
+      "public_url": "/store/water-testing/",
+      "product_ids": [
+        "digital-salt-meter",
+        "liquid-test-kit-6way"
+      ],
+      "summary": "DIY test kits, replacement reagents, and pocket digital meters. Or drop a 250ml sample into our Abbotsford shop for a free 7-point professional test."
+    }
+  ],
+  "products": [
+    {
+      "id": "pool-pro-chlorine-granular-10kg",
+      "sku": "PP-CHL-G10",
+      "name": "Pool Pro Granular Chlorine 10kg",
+      "category": "chemicals",
+      "brand": "Pool Pro",
+      "public_url": "/store/product/pool-pro-chlorine-granular-10kg/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": true,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "replenishment_rules"
+      ]
+    },
+    {
+      "id": "ph-down-5kg",
+      "sku": "PP-PHD-5",
+      "name": "Pool Pro pH Down 5kg",
+      "category": "chemicals",
+      "brand": "Pool Pro",
+      "public_url": "/store/product/ph-down-5kg/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": true,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "replenishment_rules"
+      ]
+    },
+    {
+      "id": "algaecide-concentrate-5l",
+      "sku": "PP-ALG-5L",
+      "name": "Algaecide Concentrate 5L",
+      "category": "chemicals",
+      "brand": "Pool Pro",
+      "public_url": "/store/product/algaecide-concentrate-5l/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": true,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "replenishment_rules"
+      ]
+    },
+    {
+      "id": "salt-pool-chlorinator-cell",
+      "sku": "PP-CELL-25",
+      "name": "Replacement Chlorinator Cell — 25amp",
+      "category": "equipment",
+      "brand": "Universal",
+      "public_url": "/store/product/salt-pool-chlorinator-cell/",
+      "image": "",
+      "documents": [],
+      "stock_status": "low",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": true,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "service_calendar"
+      ]
+    },
+    {
+      "id": "sand-filter-media-25kg",
+      "sku": "PP-SAND-25",
+      "name": "High-Grade Filter Sand 25kg",
+      "category": "parts",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/sand-filter-media-25kg/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "cartridge-filter-c100",
+      "sku": "PP-C100",
+      "name": "C100 Cartridge Filter Element",
+      "category": "parts",
+      "brand": "Universal",
+      "public_url": "/store/product/cartridge-filter-c100/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "pool-vacuum-head-deluxe",
+      "sku": "PP-VAC-HD",
+      "name": "Weighted Vacuum Head — Deluxe",
+      "category": "accessories",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/pool-vacuum-head-deluxe/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "telescopic-pole-4-8m",
+      "sku": "PP-POLE-48",
+      "name": "Telescopic Pole 2.4 – 4.8m",
+      "category": "accessories",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/telescopic-pole-4-8m/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "liquid-test-kit-6way",
+      "sku": "PP-LTK-6",
+      "name": "Liquid Test Kit — 6 Way",
+      "category": "water-testing",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/liquid-test-kit-6way/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "digital-salt-meter",
+      "sku": "PP-MTR-SLT",
+      "name": "Digital Salt & Temperature Meter",
+      "category": "water-testing",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/digital-salt-meter/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index"
+      ]
+    },
+    {
+      "id": "pool-cover-roller-deluxe",
+      "sku": "PP-ROL-56",
+      "name": "Pool Cover Roller — Deluxe 5.6m",
+      "category": "equipment",
+      "brand": "Palatial Pools",
+      "public_url": "/store/product/pool-cover-roller-deluxe/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": false,
+      "supports_install_bundle": true,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "service_calendar"
+      ]
+    },
+    {
+      "id": "pool-pro-mineral-salts-10kg",
+      "sku": "PP-MIN-10",
+      "name": "Pool Pro Mineral Salts 10kg",
+      "category": "chemicals",
+      "brand": "Pool Pro",
+      "public_url": "/store/product/pool-pro-mineral-salts-10kg/",
+      "image": "",
+      "documents": [],
+      "stock_status": "in",
+      "supports_auto_replenish": true,
+      "supports_install_bundle": false,
+      "database_targets": [
+        "catalogue",
+        "search_index",
+        "fitment_index",
+        "replenishment_rules"
+      ]
+    }
+  ],
+  "public_documents": [
+    {
+      "id": "predictive-pool-care-technical-brief",
+      "title": "Predictive Pool Care Technical Brief",
+      "html": "/documents/predictive-pool-care-technical-brief.html",
+      "pdf": "/documents/predictive-pool-care-technical-brief.pdf",
+      "audience": "public",
+      "summary": "Explains the customer-facing intelligence model without exposing proprietary methods."
+    },
+    {
+      "id": "public-release-security-notes",
+      "title": "Public Release Security Notes",
+      "html": "/documents/palatial-public-release-security-notes.html",
+      "pdf": "/documents/palatial-public-release-security-notes.pdf",
+      "audience": "public",
+      "summary": "Summarises privacy, security and publishing controls for public visitors."
+    }
+  ],
+  "public_pages": [
+    {
+      "url": "/store/about/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/accessories/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/account/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/advisor/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/cart/",
+      "kind": "transaction"
+    },
+    {
+      "url": "/store/checkout/",
+      "kind": "transaction"
+    },
+    {
+      "url": "/store/chemicals/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/equipment/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/fitment/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/order-confirmation/",
+      "kind": "transaction"
+    },
+    {
+      "url": "/store/pantry/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/parts/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/product/algaecide-concentrate-5l/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/cartridge-filter-c100/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/digital-salt-meter/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/liquid-test-kit-6way/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/ph-down-5kg/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/pool-cover-roller-deluxe/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/pool-pro-chlorine-granular-10kg/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/pool-pro-mineral-salts-10kg/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/pool-vacuum-head-deluxe/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/salt-pool-chlorinator-cell/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/sand-filter-media-25kg/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/product/telescopic-pole-4-8m/",
+      "kind": "product"
+    },
+    {
+      "url": "/store/search/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/trade/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/transparency/",
+      "kind": "storefront"
+    },
+    {
+      "url": "/store/water-testing/",
+      "kind": "storefront"
+    }
+  ],
+  "service_calendar": [
+    {
+      "id": "spring-opening",
+      "months": [
+        "September",
+        "October",
+        "November"
+      ],
+      "label": "Spring opening",
+      "public_signal": "Algae, low sanitiser and dormant equipment are most common after winter.",
+      "recommended_paths": [
+        "/store/advisor/",
+        "/tools/photo-diagnostics/",
+        "/guides/green-pool-recovery/"
+      ],
+      "job_types": [
+        "green-pool-recovery",
+        "water-test",
+        "equipment-startup"
+      ]
+    },
+    {
+      "id": "summer-stability",
+      "months": [
+        "December",
+        "January",
+        "February"
+      ],
+      "label": "Summer stability",
+      "public_signal": "Heat, UV and heavy bathing increase sanitiser demand and evaporation.",
+      "recommended_paths": [
+        "/store/chemicals/",
+        "/store/pantry/",
+        "/tools/chemical-dosage-calculator/"
+      ],
+      "job_types": [
+        "monthly-service",
+        "chemical-balance",
+        "pool-pantries"
+      ]
+    },
+    {
+      "id": "autumn-equipment",
+      "months": [
+        "March",
+        "April",
+        "May"
+      ],
+      "label": "Autumn equipment check",
+      "public_signal": "Lower use makes it a good time to review filters, cells and pumps.",
+      "recommended_paths": [
+        "/store/fitment/",
+        "/store/parts/",
+        "/guides/pool-pump-guide/"
+      ],
+      "job_types": [
+        "filter-service",
+        "chlorinator-cell-check",
+        "pump-review"
+      ]
+    },
+    {
+      "id": "winter-efficiency",
+      "months": [
+        "June",
+        "July",
+        "August"
+      ],
+      "label": "Winter efficiency",
+      "public_signal": "Reduced demand shifts attention to heating cost, leaks and circulation.",
+      "recommended_paths": [
+        "/tools/heating-cost-calculator/",
+        "/melbourne-pool-heating/",
+        "/melbourne-pool-spa-leak-detection/"
+      ],
+      "job_types": [
+        "heating-review",
+        "leak-detection",
+        "winter-balance"
+      ]
+    }
+  ],
+  "job_type_signals": [
+    {
+      "id": "monthly-service",
+      "display": "Regular pool servicing",
+      "reflected_in": [
+        "Palatial Link service history",
+        "seasonal care calendar",
+        "Pool Pantry prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "water-test",
+      "display": "Water testing and dosing",
+      "reflected_in": [
+        "Chemistry Advisor",
+        "chemical shopping lists",
+        "predictive care prompts"
+      ],
+      "privacy_level": "customer-specific values stay inside Palatial Link"
+    },
+    {
+      "id": "filter-service",
+      "display": "Filter and media servicing",
+      "reflected_in": [
+        "Fitment Checker",
+        "parts recommendations",
+        "seasonal maintenance prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "equipment-startup",
+      "display": "Equipment startup and commissioning",
+      "reflected_in": [
+        "product fitment",
+        "installation bundles",
+        "calendar prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "leak-detection",
+      "display": "Leak detection",
+      "reflected_in": [
+        "service pages",
+        "photo diagnostic triage",
+        "winter efficiency prompts"
+      ],
+      "privacy_level": "no property-specific evidence exposed"
+    }
+  ],
+  "integrity": {
+    "product_count": 12,
+    "category_count": 5,
+    "document_count": 2,
+    "calendar_count": 4
+  }
+}

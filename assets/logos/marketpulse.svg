@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="mp-bg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#2e0a52"/>
+      <stop offset="100%" style="stop-color:#0d0118"/>
+    </radialGradient>
+    <linearGradient id="mp-bar" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(197,165,90,0.55)"/>
+      <stop offset="100%" style="stop-color:rgba(197,165,90,0.10)"/>
+    </linearGradient>
+    <filter id="mp-glow">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="mp-glow-strong">
+      <feGaussianBlur stdDeviation="13" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="mp-clip">
+      <circle cx="256" cy="256" r="240"/>
+    </clipPath>
+  </defs>
+
+  <!-- Deep dark background -->
+  <circle cx="256" cy="256" r="256" fill="url(#mp-bg)"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#C5A55A" stroke-width="8"/>
+
+  <!-- Radar grid — visible but not dominant -->
+  <circle cx="256" cy="284" r="190" fill="none" stroke="#C5A55A" stroke-width="2" opacity="0.18" clip-path="url(#mp-clip)"/>
+  <circle cx="256" cy="284" r="140" fill="none" stroke="#C5A55A" stroke-width="2" opacity="0.22" clip-path="url(#mp-clip)"/>
+  <circle cx="256" cy="284" r="90"  fill="none" stroke="#C5A55A" stroke-width="2" opacity="0.26" clip-path="url(#mp-clip)"/>
+  <line x1="66"  y1="284" x2="446" y2="284" stroke="#C5A55A" stroke-width="2" opacity="0.18"/>
+  <line x1="256" y1="94"  x2="256" y2="474" stroke="#C5A55A" stroke-width="2" opacity="0.18"/>
+
+  <!-- Bar chart — bold, vivid bars -->
+  <rect x="62"  y="336" width="52" height="108" rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+  <rect x="124" y="296" width="52" height="148" rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+  <rect x="186" y="356" width="52" height="88"  rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+  <rect x="248" y="274" width="52" height="170" rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+  <rect x="310" y="316" width="52" height="128" rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+  <rect x="372" y="296" width="52" height="148" rx="6" fill="url(#mp-bar)" clip-path="url(#mp-clip)"/>
+
+  <!-- Bar top caps — bright gold line -->
+  <line x1="62"  y1="336" x2="114" y2="336" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="124" y1="296" x2="176" y2="296" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="186" y1="356" x2="238" y2="356" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="248" y1="274" x2="300" y2="274" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="310" y1="316" x2="362" y2="316" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+  <line x1="372" y1="296" x2="424" y2="296" stroke="#C5A55A" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Baseline -->
+  <line x1="50" y1="444" x2="462" y2="444" stroke="#C5A55A" stroke-width="4" opacity="0.45" clip-path="url(#mp-clip)"/>
+
+  <!-- Pulse line glow -->
+  <polyline
+    points="44,276 106,276 138,276 170,244 194,318 222,122 260,368 292,196 322,262 350,238 376,252 424,252 468,252"
+    fill="none" stroke="rgba(255,224,133,0.35)" stroke-width="16"
+    stroke-linecap="round" stroke-linejoin="round"
+    clip-path="url(#mp-clip)"/>
+  <!-- Pulse line — thick, vivid, glowing -->
+  <polyline
+    points="44,276 106,276 138,276 170,244 194,318 222,122 260,368 292,196 322,262 350,238 376,252 424,252 468,252"
+    fill="none" stroke="#ffe085" stroke-width="9"
+    stroke-linecap="round" stroke-linejoin="round"
+    filter="url(#mp-glow)"
+    clip-path="url(#mp-clip)"/>
+
+  <!-- Peak/trough data points — large, vivid -->
+  <circle cx="222" cy="122" r="12" fill="#ffe085" filter="url(#mp-glow)"/>
+  <circle cx="260" cy="368" r="12" fill="#ffe085" filter="url(#mp-glow)"/>
+  <circle cx="292" cy="196" r="12" fill="#ffe085" filter="url(#mp-glow)"/>
+  <!-- Inner dots -->
+  <circle cx="222" cy="122" r="5" fill="#0d0118"/>
+  <circle cx="260" cy="368" r="5" fill="#0d0118"/>
+  <circle cx="292" cy="196" r="5" fill="#0d0118"/>
+
+  <!-- Trend arrow — bold, vivid -->
+  <line x1="336" y1="152" x2="426" y2="82" stroke="#ffe085" stroke-width="6" stroke-linecap="round" filter="url(#mp-glow)"/>
+  <polygon points="426,82 408,90 416,106" fill="#ffe085" filter="url(#mp-glow)"/>
+</svg>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Technology | Palatial Pool Services</title>
+    <meta name="description" content="Explore the Palatial Pool Services technology ecosystem — 22 proprietary systems powering the most advanced pool service operation in Australia.">
+    <style>
+        :root {
+            --deep-purple: #1a0533;
+            --aqua-teal: #00C4CC;
+            --light-purple: #2d0a54;
+            --white: #FFFFFF;
+            --light-bg: #f8f5fc;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #333;
+            line-height: 1.7;
+            background: var(--white);
+        }
+        
+        .page-hero {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--light-purple) 100%);
+            color: var(--white);
+            padding: 100px 40px 80px;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        
+        .page-hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--aqua-teal);
+            font-weight: 400;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .page-hero .intro {
+            font-size: 1.05rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .tech-nav {
+            background: var(--deep-purple);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            overflow-x: auto;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--aqua-teal);
+        }
+        
+        .tech-nav .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        .nav-link {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .nav-link:hover {
+            background: var(--aqua-teal);
+            color: var(--white);
+        }
+        
+        .products-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .product-card {
+            margin-bottom: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(26, 5, 51, 0.08);
+            border: 1px solid #e8e0f0;
+            transition: box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 8px 35px rgba(26, 5, 51, 0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--deep-purple) 0%, var(--light-purple) 100%);
+            color: var(--white);
+            padding: 30px 35px;
+        }
+        
+        .card-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 6px;
+        }
+        
+        .card-tagline {
+            color: var(--aqua-teal);
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 35px;
+            background: var(--white);
+        }
+        
+        .card-description {
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #444;
+        }
+        
+        .card-benefits h3 {
+            font-size: 1.1rem;
+            color: var(--deep-purple);
+            margin-bottom: 12px;
+        }
+        
+        .card-benefits ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card-benefits li {
+            padding: 8px 0 8px 28px;
+            position: relative;
+            color: #555;
+        }
+        
+        .card-benefits li::before {
+            content: "\2713";
+            color: var(--aqua-teal);
+            font-weight: 700;
+            position: absolute;
+            left: 0;
+        }
+        
+        .download-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--aqua-teal);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 24px;
+            border: 2px solid var(--aqua-teal);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        
+        .download-link:hover {
+            background: var(--aqua-teal);
+            color: var(--white);
+        }
+        
+        .page-footer {
+            background: var(--deep-purple);
+            color: var(--white);
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .page-footer h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+        
+        .page-footer p {
+            opacity: 0.85;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .footer-cta {
+            display: inline-block;
+            background: var(--aqua-teal);
+            color: var(--white);
+            padding: 16px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .footer-contact {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            .page-hero { padding: 60px 20px 50px; }
+            .page-hero h1 { font-size: 2.2rem; }
+            .card-header { padding: 20px; }
+            .card-body { padding: 20px; }
+            .tech-nav { padding: 12px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <h1>How We Work</h1>
+        <p class="subtitle">22 Proprietary Systems. One Integrated Ecosystem.</p>
+        <p class="intro">Palatial Pool Services has developed a comprehensive suite of proprietary technologies that power the most advanced pool service operation in Australia. From autonomous pool control and precision diagnostics to intelligent scheduling and military-grade data security, every system is engineered in-house and hosted on Australian infrastructure.</p>
+    </section>
+    
+    <!-- Navigation -->
+    <nav class="tech-nav">
+        <div class="nav-inner">
+                <a href="#3d-scanning" class="nav-link">3D Pool Scanning</a>
+                <a href="#aquacommander" class="nav-link">AquaCommander</a>
+                <a href="#aquavision-ai" class="nav-link">AquaVision AI</a>
+                <a href="#calendar-system" class="nav-link">Calendar System</a>
+                <a href="#comms-hub" class="nav-link">Comms Hub</a>
+                <a href="#esp32-diagnostics" class="nav-link">ESP32 Diagnostic Tools</a>
+                <a href="#palatial-link" class="nav-link">Synapse Analytics Command Centre</a>
+                <a href="#hydrocommand" class="nav-link">HydroCommand</a>
+                <a href="#internal-knowledge-hub" class="nav-link">Internal Knowledge Hub</a>
+                <a href="#marketpulse" class="nav-link">MarketPulse</a>
+                <a href="#orbitalscan" class="nav-link">OrbitalScan</a>
+                <a href="#palatial-Dustin" class="nav-link">Dustin</a>
+                <a href="#pool-area-shield" class="nav-link">Pool Area Shield</a>
+                <a href="#product-knowledge-hub" class="nav-link">Product Knowledge Hub</a>
+                <a href="#psychological-insights" class="nav-link">Psychological Insights Engine</a>
+                <a href="#secure-vault" class="nav-link">Secure Vault</a>
+                <a href="#sentiment-analysis" class="nav-link">Sentiment Analysis Engine</a>
+                <a href="#technical-assistance-portal" class="nav-link">Technical Assistance Portal</a>
+                <a href="#voice-ai" class="nav-link">Voice AI</a>
+                <a href="#water-testing-ai" class="nav-link">Water Testing AI</a>
+                <a href="#weather-intelligence" class="nav-link">Weather Intelligence</a>
+                <a href="#wifi-radar" class="nav-link">Wi-Fi Radar</a>
+        </div>
+    </nav>
+    
+    <!-- Products -->
+    <div class="products-container">
+
+        <article class="product-card even" id="3d-scanning">
+            <div class="card-header">
+                <h2>3D Pool Scanning</h2>
+                <span class="card-tagline">Millimetre-Precise Digital Twins of Your Pool</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Our 3D Pool Scanning system creates exact digital replicas of your pool using high-fidelity point cloud capture technology. Moving beyond traditional tape measures, this system delivers millimetre-precise volume calculations, perfect vinyl liner templating, and long-term structural monitoring — ensuring every service decision is based on exact data, not estimates.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Exact pool volume calculations for precise chemical dosing — no more guesswork</li>
+                        <li>Perfect vinyl liner templating exported directly to manufacturers</li>
+                        <li>Long-term structural monitoring detects settling or deformation early</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/3d-scanning-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="aquacommander">
+            <div class="card-header">
+                <h2>AquaCommander</h2>
+                <span class="card-tagline">Integrated Payment and Inventory Hub</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">AquaCommander consolidates point-of-sale processing, inventory management across 2,800+ product SKUs, invoicing, and secure payment processing into one unified platform. With automatic accounting reconciliation and offline capability, it ensures seamless business operations whether you are in the office or on-site.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Unified platform for payments, invoicing, and inventory</li>
+                        <li>Real-time stock levels with automatic reorder alerts</li>
+                        <li>Works offline with automatic sync when reconnected</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/aquacommander-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="aquavision-ai">
+            <div class="card-header">
+                <h2>AquaVision AI</h2>
+                <span class="card-tagline">Intelligent Visual Pool Diagnostics</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">AquaVision AI uses advanced computer vision and machine learning to analyse pool conditions from photographs. Simply capture an image, and our system identifies water clarity issues, algae presence, equipment condition, and surface damage — providing instant diagnostic reports with recommended actions, all without a site visit.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Instant pool condition assessment from a single photograph</li>
+                        <li>Identifies water clarity, algae, equipment issues, and surface damage</li>
+                        <li>Reduces unnecessary site visits with remote pre-diagnosis</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/aquavision-ai-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="calendar-system">
+            <div class="card-header">
+                <h2>Calendar System</h2>
+                <span class="card-tagline">Intelligent Scheduling and Route Optimisation</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Our Calendar System is a comprehensive scheduling platform that links customer records, technician availability, and intelligent route optimisation into one seamless workflow. Drag-and-drop scheduling, automated customer notifications, and dynamic routing ensure your service visits are efficient, timely, and perfectly coordinated.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Drag-and-drop scheduling linked to customer records</li>
+                        <li>Intelligent route optimisation reduces travel time and fuel costs</li>
+                        <li>Automated SMS and email notifications keep clients informed</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/calendar-system-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="comms-hub">
+            <div class="card-header">
+                <h2>Comms Hub</h2>
+                <span class="card-tagline">Unified Communications Platform</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Comms Hub centralises all customer communications — SMS, email, and voice calls — into a single chronological timeline. Every interaction is recorded, searchable, and accessible, ensuring nothing falls through the cracks. Automated follow-ups, templated responses, and intelligent workflow triggers keep your service experience seamless and professional.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Complete communication history in one chronological timeline</li>
+                        <li>Powerful search across all messages and call records</li>
+                        <li>Automated follow-ups ensure no customer is forgotten</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/comms-hub-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="esp32-diagnostics">
+            <div class="card-header">
+                <h2>ESP32 Diagnostic Tools</h2>
+                <span class="card-tagline">Precision IoT Sensor Arrays for Complex Diagnostics</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Our custom-engineered IoT diagnostic arrays deploy temporarily to investigate complex pool issues that standard equipment cannot detect. These sensor suites monitor water chemistry micro-fluctuations, electrical current draw, and fluid dynamics at high frequency — identifying intermittent faults, stray voltage, and chemical imbalances with laboratory-grade precision.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Detects intermittent faults invisible to standard equipment</li>
+                        <li>Identifies dangerous stray voltage in pool water</li>
+                        <li>Laboratory-grade chemical analysis without lab delays</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/esp32-diagnostics-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="palatial-link">
+            <div class="card-header">
+                <h2>Synapse Analytics Command Centre</h2>
+                <span class="card-tagline">Real-Time Business Oversight Dashboard</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">The Synapse Analytics Command Centre is our unified operational dashboard — a single pane of glass providing real-time visibility across every aspect of our service operations. From IoT device telemetry and field technician status to billing, customer communications, and market intelligence, every data stream converges here for instant decision-making and automated workflow orchestration.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Complete real-time visibility across all business operations</li>
+                        <li>Customisable widgets for the metrics that matter most</li>
+                        <li>Automated alerts and workflow triggers for rapid response</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/palatial-link-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="hydrocommand">
+            <div class="card-header">
+                <h2>HydroCommand</h2>
+                <span class="card-tagline">Autonomous Pool Control System</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">HydroCommand provides remote monitoring and autonomous control of your pool equipment — pumps, heaters, chlorinators, lighting, and dosing systems — through a single unified interface. Our hardware abstraction layer works across all major equipment brands, with automated fault detection, intelligent scheduling, and cellular failover ensuring your pool runs perfectly around the clock.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Remote control of all pool equipment from one interface</li>
+                        <li>Works across all major pool equipment brands</li>
+                        <li>Automated fault detection alerts you before problems escalate</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/hydrocommand-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="internal-knowledge-hub">
+            <div class="card-header">
+                <h2>Internal Knowledge Hub</h2>
+                <span class="card-tagline">Centralised Operational Documentation</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">The Internal Knowledge Hub is our authoritative digital repository for all operational documentation — Safety Data Sheets, training materials, Standard Operating Procedures, equipment manuals, and compliance policies. With powerful full-text search, automated hazard extraction, and complete version control, our team always has the right information at their fingertips.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Instant access to safety data, procedures, and training materials</li>
+                        <li>Full-text search with advanced filtering finds answers in seconds</li>
+                        <li>Automated hazard extraction from Safety Data Sheets</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/internal-knowledge-hub-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="marketpulse">
+            <div class="card-header">
+                <h2>MarketPulse</h2>
+                <span class="card-tagline">Competitive Intelligence and Market Analytics</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">MarketPulse continuously monitors the competitive landscape, tracking pricing trends, service offerings, and market movements across the pool service industry. Automated data collection and analysis provide actionable intelligence that keeps our service offerings competitive and our business strategy informed by real market data.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Real-time competitive pricing and service monitoring</li>
+                        <li>Automated market trend analysis and reporting</li>
+                        <li>Data-driven pricing strategy recommendations</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/marketpulse-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="orbitalscan">
+            <div class="card-header">
+                <h2>OrbitalScan</h2>
+                <span class="card-tagline">Satellite and Aerial Pool Detection</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">OrbitalScan uses satellite imagery and aerial data analysis to identify and catalogue swimming pools across geographic regions. Advanced image recognition algorithms detect pool locations, estimate dimensions, and assess surrounding property characteristics — enabling targeted service outreach and comprehensive market analysis at scale.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Identifies pool locations across entire suburbs and regions</li>
+                        <li>Estimates pool dimensions and type from aerial imagery</li>
+                        <li>Enables targeted, data-driven marketing campaigns</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/orbitalscan-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="palatial-Dustin">
+            <div class="card-header">
+                <h2>Dustin</h2>
+                <span class="card-tagline">AI-Powered Technical Knowledge Engine</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Dustin is our intelligent knowledge engine that answers complex pool-related questions in natural language. Powered by advanced semantic search across 2,800+ products and integrated with live operational data from the Synapse Analytics platform, it delivers precise chemical dosing calculations, equipment compatibility checks, warranty information, and service guidance — all in under two seconds.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Natural language queries answered in under 2 seconds</li>
+                        <li>Precise chemical dosing calculations based on your pool's exact data</li>
+                        <li>Equipment compatibility verification across all major brands</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/palatial-Dustin-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="pool-area-shield">
+            <div class="card-header">
+                <h2>Pool Area Shield</h2>
+                <span class="card-tagline">Intelligent Safety and Compliance Monitoring</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Pool Area Shield is our comprehensive safety monitoring system that uses advanced sensing technology to monitor pool areas for compliance, safety hazards, and environmental conditions. From fence integrity and gate compliance to water quality alerts and occupancy monitoring, it provides continuous protection and peace of mind for pool owners and operators.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Continuous safety and compliance monitoring around the clock</li>
+                        <li>Fence and gate compliance verification</li>
+                        <li>Environmental hazard detection and alerting</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/pool-area-shield-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="product-knowledge-hub">
+            <div class="card-header">
+                <h2>Product Knowledge Hub</h2>
+                <span class="card-tagline">Comprehensive Technical Product Library</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">The Product Knowledge Hub is our advanced digital library providing instant access to over 2,800 verified pool industry products. Every product entry includes detailed technical specifications, installation documentation, warranty details, compatibility matrices, and real-time pricing — enabling our technicians to identify the right part, verify compatibility, and source replacements in seconds.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Instant access to 2,800+ verified pool products</li>
+                        <li>Detailed specifications, manuals, and warranty information</li>
+                        <li>Compatibility checking across equipment configurations</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/product-knowledge-hub-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="psychological-insights">
+            <div class="card-header">
+                <h2>Psychological Insights Engine</h2>
+                <span class="card-tagline">Understanding Customer Communication Patterns</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">The Psychological Insights Engine analyses customer communication patterns to help our team deliver more empathetic, effective service. By understanding communication preferences, sentiment trends, and interaction patterns, we tailor our approach to each client — ensuring every conversation feels personal, responsive, and genuinely helpful.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Personalised communication tailored to each client's style</li>
+                        <li>Early identification of customer concerns before they escalate</li>
+                        <li>Improved service satisfaction through empathetic engagement</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/psychological-insights-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="secure-vault">
+            <div class="card-header">
+                <h2>Secure Vault</h2>
+                <span class="card-tagline">Military-Grade Encrypted Document Storage</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Secure Vault provides the highest level of document protection with military-grade encryption, role-based access control, and complete audit trails. Every sensitive document — from customer records to compliance certificates — is stored with enterprise-level security, ensuring your data is protected against unauthorised access and meets the strictest regulatory requirements.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Military-grade encryption protects every document</li>
+                        <li>Role-based access ensures only authorised personnel see sensitive data</li>
+                        <li>Complete audit trails for full regulatory compliance</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/secure-vault-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="sentiment-analysis">
+            <div class="card-header">
+                <h2>Sentiment Analysis Engine</h2>
+                <span class="card-tagline">Real-Time Customer Sentiment Intelligence</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Our Sentiment Analysis Engine processes every customer interaction — calls, emails, messages — to gauge satisfaction levels and emotional tone in real time. By detecting frustration, confusion, or delight as it happens, we can escalate issues immediately, celebrate positive experiences, and continuously refine our service approach based on genuine customer feedback.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Real-time sentiment detection across all communication channels</li>
+                        <li>Immediate escalation of negative experiences</li>
+                        <li>Trend analysis reveals service improvement opportunities</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/sentiment-analysis-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="technical-assistance-portal">
+            <div class="card-header">
+                <h2>Technical Assistance Portal</h2>
+                <span class="card-tagline">Structured IT Support and Issue Resolution</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">The Technical Assistance Portal provides a structured, professional system for reporting and resolving technical issues. With priority-based routing, file attachment support, and resolution tracking, every issue is captured, assigned to the right specialist, and resolved efficiently — with complete transparency and accountability throughout the process.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Structured issue reporting with priority classification</li>
+                        <li>Automatic routing to the right specialist</li>
+                        <li>Full resolution tracking with time-to-close metrics</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/technical-assistance-portal-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="voice-ai">
+            <div class="card-header">
+                <h2>Voice AI</h2>
+                <span class="card-tagline">Intelligent Phone System with Natural Conversation</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Voice AI is our intelligent phone system that handles inbound calls with natural, human-like conversation. With sub-300 millisecond response times, it understands your request, accesses your account details in real time, and can book appointments, answer service questions, or connect you with a team member — all through natural speech, available around the clock.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Natural, human-like phone conversations available 24/7</li>
+                        <li>Sub-300ms response time for seamless interaction</li>
+                        <li>Real-time access to your account and service history</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/voice-ai-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="water-testing-ai">
+            <div class="card-header">
+                <h2>Water Testing AI</h2>
+                <span class="card-tagline">Precision Chemical Analysis and Predictive Dosing</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Water Testing AI transforms standard water test results into precise, actionable chemical treatment plans. Using a neural network trained on over 500,000 verified chemical reactions, it analyses reagent colours with laboratory-grade accuracy, calculates exact dosing requirements, and predicts chemical interactions — ensuring your water is perfectly balanced every time.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Laboratory-grade accuracy from standard test kits</li>
+                        <li>Exact chemical dosing calculations — no over-treatment</li>
+                        <li>Predicts chemical interactions before they occur</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/water-testing-ai-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card even" id="weather-intelligence">
+            <div class="card-header">
+                <h2>Weather Intelligence</h2>
+                <span class="card-tagline">Predictive Scheduling and Weather-Adaptive Service</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Weather Intelligence integrates hyper-local weather forecasting with our service operations to proactively protect your pool. By predicting the impact of storms, heatwaves, and heavy rain on your specific pool, the system automatically adjusts service schedules, pre-positions chemical treatments, and dispatches recovery teams — keeping your water perfect regardless of what the weather delivers.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Proactive service adjustments before weather events hit</li>
+                        <li>Pre-storm chemical treatment prevents algae blooms</li>
+                        <li>Automatic post-storm recovery scheduling</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/weather-intelligence-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+        <article class="product-card odd" id="wifi-radar">
+            <div class="card-header">
+                <h2>Wi-Fi Radar</h2>
+                <span class="card-tagline">Invisible Safety Monitoring Through RF Sensing</span>
+            </div>
+            <div class="card-body">
+                <p class="card-description">Wi-Fi Radar transforms standard wireless signals into an invisible safety monitoring network around your pool. Without any cameras or optical surveillance, the system detects human presence, movement patterns, and even micro-movements like breathing — providing continuous occupancy monitoring, unauthorised access alerts, and structural integrity tracking, all while preserving complete privacy.</p>
+                <div class="card-benefits">
+                    <h3>Key Benefits</h3>
+                    <ul>
+                        <li>Continuous pool area monitoring without any cameras</li>
+                        <li>Detects presence through walls, fences, and pool covers</li>
+                        <li>Unauthorised access alerts sent instantly to your phone</li>
+                    </ul>
+                </div>
+                <a href="/assets/marketing/brochures/wifi-radar-brochure.pdf" class="download-link" download>Download Product Brochure (PDF)</a>
+            </div>
+        </article>
+
+    </div>
+    
+    <!-- Footer CTA -->
+    <section class="page-footer">
+        <h2>Ready to Experience the Difference?</h2>
+        <p>Our technology is not just impressive on paper — it delivers measurable results for every pool we service. Contact us to learn how these systems work for you.</p>
+        <a href="tel:+61452157694" class="footer-cta">Call Us: 0452 157 694</a>
+        <p class="footer-contact">
+            Palatial Pool Services Pty Ltd<br>
+            Melbourne &amp; Queensland, Australia<br>
+            service@palatialpools.com.au
+        </p>
+    </section>
+</body>
+</html>

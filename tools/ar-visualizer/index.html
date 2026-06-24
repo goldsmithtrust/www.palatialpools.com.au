@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AR Pool Equipment Visualizer | Palatial Pools Melbourne</title>
+  <meta name="description" content="Use your phone camera to visualize Neptune pool pumps, heat pumps, and equipment in your pool area before you buy. Augmented reality tool from Palatial Pools.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://palatialpools.com.au/tools/ar-visualizer">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AR Pool Equipment Visualizer | Palatial Pools Melbourne">
+  <meta property="og:description" content="Use your phone camera to visualize Neptune pool pumps, heat pumps, and equipment in your pool area before you buy. Augmented reality tool from Palatial Pools.">
+  <meta property="og:url" content="https://palatialpools.com.au/tools/ar-visualizer">
+  <meta property="og:site_name" content="Palatial Pools">
+  <meta property="og:locale" content="en_AU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AR Pool Equipment Visualizer | Palatial Pools Melbourne">
+  <meta name="twitter:description" content="Use your phone camera to visualize Neptune pool pumps, heat pumps, and equipment in your pool area before you buy. Augmented reality tool from Palatial Pools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/pp-luxury.css">
+  <link rel="stylesheet" href="/assets/palatial-animations.css">
+  <style>
+    :root { --off-white: rgba(11,23,41,0.92); --white: rgba(16,29,52,0.9); --purple: var(--pp-teal); --text-light: var(--pp-muted-soft); --text: var(--pp-muted); --gold: var(--pp-teal); --gold-dark: var(--pp-teal-dark); --gold-light: var(--pp-teal-light); --gray: rgba(255,255,255,0.05); }
+    .pp-section, .pp-cta-band, .pp-footer { opacity: 1 !important; transform: none !important; }
+
+    .ar-container { background: rgba(0,0,0,0.6); border: 1px solid var(--pp-border); border-radius: var(--pp-radius); overflow: hidden; position: relative; height: 420px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+    .ar-overlay { text-align: center; color: var(--pp-white); padding: 2rem; }
+    .ar-overlay h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--pp-teal-light); }
+
+    .product-selector { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .product-option { background: var(--pp-card-bg); border: 2px solid var(--pp-border); border-radius: var(--pp-radius-sm); padding: 1rem; text-align: center; cursor: pointer; transition: all 0.3s var(--pp-transition); backdrop-filter: blur(10px); }
+    .product-option:hover, .product-option.selected { border-color: var(--pp-teal); background: rgba(0,196,204,0.08); box-shadow: 0 0 20px rgba(0,196,204,0.12); }
+    .product-option h4 { font-family: var(--pp-font-body); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--pp-white); }
+    .product-option p { font-size: 0.75rem; color: var(--pp-muted-soft); }
+
+    .selected-product-card { background: var(--pp-card-bg); padding: 1.5rem; border-radius: var(--pp-radius-sm); margin-top: 1.5rem; border: 1px solid var(--pp-border); backdrop-filter: blur(10px); }
+    .selected-product-card h4 { color: var(--pp-white); margin-bottom: 0.5rem; font-family: var(--pp-font-body); }
+    .selected-product-card p { font-size: 0.88rem; color: var(--pp-muted-soft); }
+
+    .tips-card { background: rgba(0,196,204,0.06); border: 1px solid var(--pp-border); border-radius: var(--pp-radius-sm); padding: 1.5rem; margin-top: 2rem; }
+    .tips-card h4 { color: var(--pp-white); margin-bottom: 0.5rem; font-family: var(--pp-font-body); }
+    .tips-card ul { font-size: 0.88rem; color: var(--pp-muted); line-height: 2; margin-left: 1.25rem; }
+
+    .tools-crosslink { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; margin-top: 3rem; }
+    .tools-crosslink a { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.2rem; background: rgba(55,230,224,0.04); border: 1px solid var(--pp-border); border-radius: var(--pp-radius-sm); color: var(--pp-muted); font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: all 0.3s; }
+    .tools-crosslink a:hover { background: rgba(55,230,224,0.1); border-color: rgba(0,196,204,0.35); color: var(--pp-teal); transform: translateX(3px); }
+    .tools-crosslink .tool-icon { width: 36px; height: 36px; border-radius: 8px; background: rgba(55,230,224,0.1); border: 1px solid var(--pp-border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+  </style>
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a><a href="/melbourne-pool-services">Services</a><a href="/melbourne-pool-heating">Heating</a><a href="/naked-freshwater-pools">Naked Pools</a><a href="/pool-calculators">Calculators</a><a href="/guides/">Guides</a><a href="/blog">Blog</a><a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+  <span class="pp-trust-item">&#10003; Mon&ndash;Sat Service</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>AR Equipment Visualiser</span>
+  </div>
+</div>
+
+<section class="pp-hero">
+  <div class="pp-hero-overlay"></div>
+  <div class="pp-hero-content container">
+    <span class="label">Augmented Reality</span>
+    <h1>AR Equipment <span class="accent">Visualiser</span></h1>
+    <p class="pp-hero-sub">See exactly how Neptune pool equipment will look in your pool area &mdash; before you commit to a purchase.</p>
+    <div class="pp-hero-line"></div>
+  </div>
+</section>
+
+<section class="pp-section">
+  <div class="container-narrow">
+    <div id="arSection">
+      <div class="ar-container" id="arView">
+        <div class="ar-overlay">
+          <h3>Point Your Camera at Your Pool Area</h3>
+          <p style="color:rgba(255,255,255,0.7);margin-bottom:1.5rem">Select a product below, then tap &ldquo;Start AR&rdquo; to see it placed in your space.</p>
+          <button class="pp-btn pp-btn-primary" id="startArBtn" onclick="startAR()">Start AR Experience</button>
+          <p style="font-size:0.8rem;color:rgba(255,255,255,0.5);margin-top:1rem">Requires a modern smartphone with camera access.<br>Best on iOS 15+ or Android 10+.</p>
+        </div>
+        <canvas id="arCanvas" style="display:none;width:100%;height:100%"></canvas>
+      </div>
+
+      <h3 style="margin:2rem 0 1rem;color:var(--pp-white)">Select Equipment to Visualise</h3>
+      <div class="product-selector">
+        <div class="product-option selected" onclick="selectProduct(this,'Neptune X-Eco NPE1500','Pool Pump','0.88–2.0hp')">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">⚙️</div>
+          <h4>Neptune X-Eco</h4>
+          <p>Inverter Pump</p>
+        </div>
+        <div class="product-option" onclick="selectProduct(this,'Neptune X-Pro NPX1500','Pool Pump','1.0–2.5hp')">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">⚙️</div>
+          <h4>Neptune X-Pro</h4>
+          <p>Full Inverter + WiFi</p>
+        </div>
+        <div class="product-option" onclick="selectProduct(this,'Neptune X-Eco Heat Pump','Heat Pump','16kW')">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">🌡️</div>
+          <h4>Neptune Heat Pump</h4>
+          <p>X-Eco 16kW</p>
+        </div>
+        <div class="product-option" onclick="selectProduct(this,'Sand Filter','Filter','Side Mount')">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">🔵</div>
+          <h4>Sand Filter</h4>
+          <p>Side Mount</p>
+        </div>
+        <div class="product-option" onclick="selectProduct(this,'Chlorinator','Salt Chlorinator','Standard')">
+          <div style="font-size:1.5rem;margin-bottom:0.5rem">⚡</div>
+          <h4>Chlorinator</h4>
+          <p>Salt System</p>
+        </div>
+      </div>
+
+      <div class="selected-product-card" id="selectedProduct">
+        <h4 id="prodName">Neptune X-Eco NPE1500</h4>
+        <p id="prodDesc">Inverter Pool Pump · 0.88–2.0hp</p>
+        <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+          <a href="/tools/pool-cost-calculator" class="pp-btn pp-btn-ghost" style="font-size:0.9rem;padding:0.6rem 1.25rem">Calculate Running Costs</a>
+          <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary" style="font-size:0.9rem;padding:0.6rem 1.25rem">Get Installation Quote</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-card">
+      <h4>📱 For Best Results</h4>
+      <ul>
+        <li>Use a modern smartphone (iPhone 12+ or Android with ARCore support)</li>
+        <li>Ensure good lighting in your pool equipment area</li>
+        <li>Allow camera permissions when prompted</li>
+        <li>Move your phone slowly to let the AR system map the surface</li>
+      </ul>
+    </div>
+
+    <div class="tools-crosslink">
+      <a href="/tools/pool-cost-calculator">
+        <span class="tool-icon">&#9881;</span>
+        <span>Running Cost Calculator</span>
+      </a>
+      <a href="/tools/chemical-dosage-calculator">
+        <span class="tool-icon">&#9883;</span>
+        <span>Chemical Dosage Calculator</span>
+      </a>
+      <a href="/tools/heating-cost-calculator">
+        <span class="tool-icon">&#127777;</span>
+        <span>Heating Cost Calculator</span>
+      </a>
+      <a href="/tools/salt-chlorinator-calculator">
+        <span class="tool-icon">&#9889;</span>
+        <span>Salt Chlorinator Sizing</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Ready to Upgrade Your <span class="accent">Pool Equipment</span>?</h2>
+    <p>Palatial Pools supplies and installs Neptune pumps, heat pumps, and filters across Melbourne. Get a free quote today.</p>
+    <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Get a Free Quote</a>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div><h4>Palatial Pools</h4><p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne's premium pool and spa service.</p></div>
+      <div><h4>Services</h4><a href="/melbourne-pool-services">Pool Maintenance</a><a href="/melbourne-pool-spa-leak-detection">Leak Detection</a><a href="/melbourne-pool-heating">Pool Heating</a><a href="/naked-freshwater-pools">Freshwater Pools</a></div>
+      <div><h4>Tools</h4><a href="/tools/pool-cost-calculator">Running Cost Calc</a><a href="/tools/chemical-dosage-calculator">Chemical Dosage</a><a href="/tools/heating-cost-calculator">Heating Cost Calc</a><a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a><a href="/pool-volume-calculator">Volume Calculator</a></div>
+      <div><h4>Resources</h4><a href="/blog">Blog</a><a href="/guides/">Guides</a><a href="/faq">FAQ</a><a href="/testimonials">Reviews</a></div>
+    </div>
+    <div class="pp-footer-bottom"><span>&copy; 2026 Palatial Pool Services. All rights reserved.</span><span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span></div>
+  </div>
+</footer>
+
+<script>
+function selectProduct(el, name, type, spec) {
+  document.querySelectorAll('.product-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  document.getElementById('prodName').textContent = name;
+  document.getElementById('prodDesc').textContent = type + ' · ' + spec;
+}
+
+function startAR() {
+  if (!navigator.xr && !window.XRSession) {
+    // Fallback: camera-based simulation
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+        .then(function(stream) {
+          var view = document.getElementById('arView');
+          var video = document.createElement('video');
+          video.srcObject = stream;
+          video.autoplay = true;
+          video.playsInline = true;
+          video.style.cssText = 'width:100%;height:100%;object-fit:cover;position:absolute;top:0;left:0';
+          view.style.position = 'relative';
+          view.insertBefore(video, view.firstChild);
+          var overlay = document.querySelector('.ar-overlay');
+          overlay.style.cssText = 'position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.7);padding:1rem 1.5rem;border-radius:10px;z-index:10;text-align:center';
+          overlay.innerHTML = '<p style="color:white;font-size:0.9rem;margin:0">📍 AR overlay active — tap to place equipment</p>';
+        })
+        .catch(function() {
+          alert('Camera access denied. Please allow camera permissions to use the AR feature.');
+        });
+    } else {
+      alert('AR is not supported on this device. Please use a modern smartphone for the best experience.');
+    }
+    return;
+  }
+  // WebXR path for supported devices
+  navigator.xr.requestSession('immersive-ar', { requiredFeatures: ['hit-test'] })
+    .then(function(session) {
+      document.getElementById('arView').innerHTML = '<p style="color:white;padding:2rem">AR session started. Move your phone to map the surface, then tap to place equipment.</p>';
+    })
+    .catch(function(e) { alert('AR session failed: ' + e.message); });
+}
+</script>
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

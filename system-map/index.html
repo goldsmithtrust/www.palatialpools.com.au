@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Palatial Pools - System Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:        #07070f;
+    --bg2:       #0d0d1a;
+    --purple:    #7c3aed;
+    --purple-lt: #a855f7;
+    --cyan:      #06b6d4;
+    --cyan-lt:   #67e8f9;
+    --gold:      #c9a84c;
+    --text:      #e2e8f0;
+    --text-dim:  #94a3b8;
+    --card-bg:   rgba(13,13,26,0.92);
+    --glow-p:    rgba(124,58,237,0.55);
+    --glow-c:    rgba(6,182,212,0.55);
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    overflow: hidden;
+  }
+
+  /* ---- Header ---- */
+  #header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 32px;
+    background: linear-gradient(180deg, rgba(7,7,15,0.98) 0%, rgba(7,7,15,0) 100%);
+    pointer-events: none;
+  }
+  #header .brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 500; letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+  #header .subtitle {
+    font-size: 0.72rem; font-weight: 300; letter-spacing: 0.22em;
+    color: var(--text-dim); text-transform: uppercase;
+    margin-top: 2px;
+  }
+  #header .tag {
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.18em;
+    color: var(--cyan); text-transform: uppercase;
+    border: 1px solid rgba(6,182,212,0.3); border-radius: 20px;
+    padding: 4px 12px;
+    background: rgba(6,182,212,0.06);
+  }
+
+  /* ---- Canvas ---- */
+  #canvas {
+    position: fixed; inset: 0;
+    width: 100%; height: 100%;
+    cursor: default;
+  }
+
+  /* ---- Tooltip / Node card ---- */
+  #tooltip {
+    position: fixed; z-index: 200;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.22s ease, transform 0.22s ease;
+  }
+  #tooltip.visible {
+    opacity: 1; transform: translateY(0);
+  }
+  .tip-inner {
+    background: var(--card-bg);
+    border: 1px solid rgba(124,58,237,0.45);
+    border-radius: 12px;
+    padding: 14px 18px;
+    min-width: 190px;
+    box-shadow: 0 0 32px rgba(124,58,237,0.25), 0 8px 32px rgba(0,0,0,0.6);
+    backdrop-filter: blur(12px);
+  }
+  .tip-inner .tip-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem; font-weight: 500;
+    color: var(--cyan-lt);
+    margin-bottom: 4px;
+  }
+  .tip-inner .tip-url {
+    font-size: 0.68rem; color: var(--text-dim);
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+    word-break: break-all;
+  }
+  .tip-inner .tip-hint {
+    font-size: 0.65rem; color: var(--purple-lt);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ---- Legend ---- */
+  #legend {
+    position: fixed; bottom: 28px; left: 32px; z-index: 100;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .legend-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .legend-dot.hub   { background: var(--gold);      box-shadow: 0 0 8px var(--gold); }
+  .legend-dot.ai    { background: var(--purple-lt);  box-shadow: 0 0 8px var(--glow-p); }
+  .legend-dot.tool  { background: var(--cyan);       box-shadow: 0 0 8px var(--glow-c); }
+  .legend-dot.auto  { background: #34d399;           box-shadow: 0 0 8px rgba(52,211,153,0.6); }
+
+  /* ---- Instruction hint ---- */
+  #hint {
+    position: fixed; bottom: 28px; right: 32px; z-index: 100;
+    font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase;
+    text-align: right;
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 600px) {
+    #header { padding: 14px 18px; }
+    #header .brand { font-size: 1.1rem; }
+    #legend { bottom: 18px; left: 18px; }
+    #hint { bottom: 18px; right: 18px; }
+  }
+</style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+</head>
+<body>
+
+<div id="header">
+  <div>
+    <div class="brand">Palatial Pools</div>
+    <div class="subtitle">System Architecture</div>
+  </div>
+  <div class="tag">Live Network</div>
+</div>
+
+<canvas id="canvas"></canvas>
+
+<div id="tooltip">
+  <div class="tip-inner">
+    <div class="tip-name" id="tip-name"></div>
+    <div class="tip-url"  id="tip-url"></div>
+    <div class="tip-hint">Click to open</div>
+  </div>
+</div>
+
+<div id="legend">
+  <div class="legend-item"><div class="legend-dot hub"></div>Hub</div>
+  <div class="legend-item"><div class="legend-dot ai"></div>AI Agent</div>
+  <div class="legend-item"><div class="legend-dot tool"></div>Tool</div>
+  <div class="legend-item"><div class="legend-dot auto"></div>Automation</div>
+</div>
+
+<div id="hint">Click any node to open</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* =====================================================================
+     DATA
+  ===================================================================== */
+  const NODES_DEF = [
+    {
+      id: 'main',
+      label: 'Main Website',
+      url: 'https://palatialpools.com.au',
+      category: 'hub',
+      description: 'palatialpools.com.au',
+      size: 1.6
+    },
+    {
+      id: 'dashboard',
+      label: 'Link Dashboard',
+      url: 'https://palatialpools.com.au/admin',
+      category: 'hub',
+      description: 'palatialpools.com.au/admin',
+      size: 1.4
+    },
+    {
+      id: 'synapse',
+      label: 'Synapse Hub',
+      url: 'https://palatialpools.com.au/synapse/',
+      category: 'hub',
+      description: 'palatialpools.com.au/synapse/',
+      size: 1.35
+    },
+    {
+      id: 'openhands',
+      label: 'OpenHands',
+      url: 'https://autopilot.palatialpools.com.au',
+      category: 'ai',
+      description: 'autopilot.palatialpools.com.au',
+      size: 1.2
+    },
+    {
+      id: 'openmanus',
+      label: 'OpenManus',
+      url: 'https://openmanus.palatialpools.com.au',
+      category: 'ai',
+      description: 'openmanus.palatialpools.com.au',
+      size: 1.2
+    },
+    {
+      id: 'voice',
+      label: 'Voice AI',
+      url: 'https://voice.palatialpools.com.au',
+      category: 'ai',
+      description: 'voice.palatialpools.com.au',
+      size: 1.1
+    },
+    {
+      id: 'dustin',
+      label: 'Dustin Chat',
+      url: 'https://palatialpools.com.au/admin',
+      category: 'ai',
+      description: 'palatialpools.com.au/admin (Dustin)',
+      size: 1.15
+    },
+    {
+      id: 'diagnostics',
+      label: 'Photo Diagnostics',
+      url: 'https://palatialpools.com.au/pool-diagnostics/',
+      category: 'tool',
+      description: 'palatialpools.com.au/pool-diagnostics/',
+      size: 1.05
+    },
+    {
+      id: 'volume',
+      label: 'Volume Calculator',
+      url: 'https://palatialpools.com.au/pool-volume-calculator/',
+      category: 'tool',
+      description: 'palatialpools.com.au/pool-volume-calculator/',
+      size: 1.0
+    },
+    {
+      id: 'dct',
+      label: 'DCT Tools',
+      url: 'https://dct.palatialpools.com.au',
+      category: 'tool',
+      description: 'dct.palatialpools.com.au',
+      size: 1.05
+    },
+    {
+      id: 'n8n',
+      label: 'n8n Automation',
+      url: 'https://n8n.palatialpools.com.au',
+      category: 'auto',
+      description: 'n8n.palatialpools.com.au',
+      size: 1.15
+    },
+    {
+      id: 'portal',
+      label: 'Palatial Link Portal',
+      url: 'https://palatialpools.com.au/palatial-link/',
+      category: 'hub',
+      description: 'palatialpools.com.au/palatial-link/',
+      size: 1.1
+    }
+  ];
+
+  /* Logical connections */
+  const EDGES_DEF = [
+    ['dashboard', 'main'],
+    ['dashboard', 'synapse'],
+    ['dashboard', 'openhands'],
+    ['dashboard', 'openmanus'],
+    ['dashboard', 'voice'],
+    ['dashboard', 'dustin'],
+    ['dashboard', 'diagnostics'],
+    ['dashboard', 'volume'],
+    ['dashboard', 'dct'],
+    ['dashboard', 'n8n'],
+    ['dashboard', 'portal'],
+    ['synapse', 'openhands'],
+    ['synapse', 'openmanus'],
+    ['synapse', 'n8n'],
+    ['synapse', 'dustin'],
+    ['dustin', 'openhands'],
+    ['dustin', 'openmanus'],
+    ['dustin', 'voice'],
+    ['dustin', 'diagnostics'],
+    ['openhands', 'n8n'],
+    ['openmanus', 'n8n'],
+    ['diagnostics', 'dustin'],
+    ['diagnostics', 'main'],
+    ['volume', 'main'],
+    ['portal', 'main'],
+    ['dct', 'dashboard'],
+    ['voice', 'openhands'],
+    ['n8n', 'dct']
+  ];
+
+  /* Category colours */
+  const CAT_COLOR = {
+    hub:  { base: '#c9a84c', glow: 'rgba(201,168,76,0.7)',  edge: 'rgba(201,168,76,0.35)' },
+    ai:   { base: '#a855f7', glow: 'rgba(168,85,247,0.7)',  edge: 'rgba(168,85,247,0.35)' },
+    tool: { base: '#06b6d4', glow: 'rgba(6,182,212,0.7)',   edge: 'rgba(6,182,212,0.35)'  },
+    auto: { base: '#34d399', glow: 'rgba(52,211,153,0.7)',  edge: 'rgba(52,211,153,0.35)' }
+  };
+
+  /* =====================================================================
+     CANVAS SETUP
+  ===================================================================== */
+  const canvas  = document.getElementById('canvas');
+  const ctx     = canvas.getContext('2d');
+  const tooltip = document.getElementById('tooltip');
+  const tipName = document.getElementById('tip-name');
+  const tipUrl  = document.getElementById('tip-url');
+
+  let W, H, dpr;
+  let nodes = [];
+  let edges = [];
+  let particles = [];
+  let hoveredNode = null;
+  let animFrame;
+  let t = 0;
+
+  function resize () {
+    dpr = window.devicePixelRatio | 1;
+    W   = window.innerWidth;
+    H   = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    layoutNodes();
+  }
+
+  /* =====================================================================
+     LAYOUT - force-relaxed radial
+  ===================================================================== */
+  function layoutNodes () {
+    const cx = W / 2;
+    const cy = H / 2;
+    const baseR = Math.min(W, H) * 0.34;
+
+    /* Place hub nodes in inner ring, others in outer ring */
+    const hubs  = NODES_DEF.filter(n => n.category === 'hub');
+    const outer = NODES_DEF.filter(n => n.category !== 'hub');
+
+    nodes = NODES_DEF.map(def => {
+      const existing = nodes.find(n => n.id === def.id);
+      return existing
+        ? { ...existing }
+        : {
+            id: def.id, label: def.label, url: def.url,
+            category: def.category, description: def.description,
+            size: def.size,
+            x: cx + (Math.random() - 0.5) * W * 0.5,
+            y: cy + (Math.random() - 0.5) * H * 0.5,
+            vx: 0, vy: 0,
+            pulseOffset: Math.random() * Math.PI * 2,
+            baseRadius: 0
+          };
+    });
+
+    /* Set target positions */
+    hubs.forEach((def, i) => {
+      const angle = (i / hubs.length) * Math.PI * 2 - Math.PI / 2;
+      const r = baseR * 0.42;
+      const node = nodes.find(n => n.id === def.id);
+      node.tx = cx + Math.cos(angle) * r;
+      node.ty = cy + Math.sin(angle) * r;
+      node.baseRadius = 18 * def.size;
+    });
+
+    outer.forEach((def, i) => {
+      const angle = (i / outer.length) * Math.PI * 2 - Math.PI / 2 + 0.25;
+      const r = baseR * 0.88;
+      const node = nodes.find(n => n.id === def.id);
+      node.tx = cx + Math.cos(angle) * r;
+      node.ty = cy + Math.sin(angle) * r;
+      node.baseRadius = 14 * def.size;
+    });
+
+    /* Snap to target on first layout */
+    nodes.forEach(n => {
+      if (!n.settled) { n.x = n.tx; n.y = n.ty; n.settled = true; }
+    });
+
+    /* Build edge objects */
+    edges = EDGES_DEF.map(([a, b]) => ({
+      a: nodes.find(n => n.id === a),
+      b: nodes.find(n => n.id === b),
+      offset: Math.random()
+    })).filter(e => e.a && e.b);
+  }
+
+  /* =====================================================================
+     PARTICLES
+  ===================================================================== */
+  function spawnParticles () {
+    edges.forEach(edge => {
+      if (Math.random() < 0.06) {
+        particles.push({
+          edge,
+          t: 0,
+          speed: 0.003 + Math.random() * 0.004,
+          size: 2 + Math.random() * 2
+        });
+      }
+    });
+    /* Cull old */
+    if (particles.length > 320) particles.splice(0, particles.length - 320);
+  }
+
+  /* =====================================================================
+     DRAW HELPERS
+  ===================================================================== */
+  function drawEdge (edge) {
+    const { a, b } = edge;
+    const catA = CAT_COLOR[a.category];
+    const catB = CAT_COLOR[b.category];
+
+    const grad = ctx.createLinearGradient(a.x, a.y, b.x, b.y);
+    grad.addColorStop(0, catA.edge);
+    grad.addColorStop(1, catB.edge);
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+
+    /* Slight quadratic curve */
+    const mx = (a.x + b.x) / 2 + (b.y - a.y) * 0.12;
+    const my = (a.y + b.y) / 2 - (b.x - a.x) * 0.12;
+    ctx.quadraticCurveTo(mx, my, b.x, b.y);
+
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = 1.2;
+    ctx.globalAlpha = 0.45;
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  function drawParticle (p) {
+    const { a, b } = p.edge;
+    const mx = (a.x + b.x) / 2 + (b.y - a.y) * 0.12;
+    const my = (a.y + b.y) / 2 - (b.x - a.x) * 0.12;
+
+    /* Quadratic bezier point */
+    const tt = p.t;
+    const px = (1 - tt) * (1 - tt) * a.x + 2 * (1 - tt) * tt * mx + tt * tt * b.x;
+    const py = (1 - tt) * (1 - tt) * a.y + 2 * (1 - tt) * tt * my + tt * tt * b.y;
+
+    const col = CAT_COLOR[a.category].base;
+
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(px, py, p.size, 0, Math.PI * 2);
+    ctx.fillStyle = col;
+    ctx.shadowColor = col;
+    ctx.shadowBlur = 10;
+    ctx.globalAlpha = 0.9 * (1 - Math.abs(p.t - 0.5) * 0.6);
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawNode (node) {
+    const cat   = CAT_COLOR[node.category];
+    const pulse = Math.sin(t * 1.8 + node.pulseOffset) * 0.18 + 1;
+    const r     = node.baseRadius * pulse;
+    const isHov = node === hoveredNode;
+
+    /* Outer glow ring */
+    ctx.save();
+    const grd = ctx.createRadialGradient(node.x, node.y, r * 0.4, node.x, node.y, r * (isHov ? 2.8 : 2.0));
+    grd.addColorStop(0, cat.glow);
+    grd.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r * (isHov ? 2.8 : 2.0), 0, Math.PI * 2);
+    ctx.fillStyle = grd;
+    ctx.globalAlpha = isHov ? 0.65 : 0.35;
+    ctx.fill();
+    ctx.restore();
+
+    /* Core circle */
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    const coreGrd = ctx.createRadialGradient(node.x - r * 0.3, node.y - r * 0.3, r * 0.05, node.x, node.y, r);
+    coreGrd.addColorStop(0, lighten(cat.base, 0.55));
+    coreGrd.addColorStop(0.6, cat.base);
+    coreGrd.addColorStop(1, darken(cat.base, 0.45));
+    ctx.fillStyle = coreGrd;
+    ctx.shadowColor = cat.base;
+    ctx.shadowBlur = isHov ? 28 : 14;
+    ctx.globalAlpha = 1;
+    ctx.fill();
+    ctx.restore();
+
+    /* Ring border */
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    ctx.strokeStyle = lighten(cat.base, 0.4);
+    ctx.lineWidth = isHov ? 2.2 : 1.2;
+    ctx.globalAlpha = 0.85;
+    ctx.stroke();
+    ctx.restore();
+
+    /* Label */
+    const fontSize = Math.max(10, Math.min(13, node.baseRadius * 0.72));
+    ctx.save();
+    ctx.font = `400 ${fontSize}px 'Outfit', sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = isHov ? '#ffffff' : 'rgba(226,232,240,0.88)';
+    ctx.shadowColor = cat.base;
+    ctx.shadowBlur = isHov ? 12 : 6;
+    ctx.globalAlpha = 1;
+    ctx.fillText(node.label, node.x, node.y + r + 6);
+    ctx.restore();
+  }
+
+  /* =====================================================================
+     COLOUR UTILS
+  ===================================================================== */
+  function hexToRgb (hex) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return [r,g,b];
+  }
+  function lighten (hex, amt) {
+    const [r,g,b] = hexToRgb(hex);
+    return `rgb(${Math.min(255,r+Math.round(255*amt))},${Math.min(255,g+Math.round(255*amt))},${Math.min(255,b+Math.round(255*amt))})`;
+  }
+  function darken (hex, amt) {
+    const [r,g,b] = hexToRgb(hex);
+    return `rgb(${Math.max(0,r-Math.round(255*amt))},${Math.max(0,g-Math.round(255*amt))},${Math.max(0,b-Math.round(255*amt))})`;
+  }
+
+  /* =====================================================================
+     BACKGROUND STARS
+  ===================================================================== */
+  const STARS = Array.from({length: 140}, () => ({
+    x: Math.random(), y: Math.random(),
+    r: 0.4 + Math.random() * 1.1,
+    a: 0.2 + Math.random() * 0.5,
+    twinkle: Math.random() * Math.PI * 2,
+    speed: 0.005 + Math.random() * 0.012
+  }));
+
+  function drawBackground () {
+    ctx.fillStyle = '#07070f';
+    ctx.fillRect(0, 0, W, H);
+
+    /* Ambient gradient blobs */
+    const blobs = [
+      { x: W * 0.25, y: H * 0.3,  r: W * 0.35, col: 'rgba(124,58,237,0.07)' },
+      { x: W * 0.75, y: H * 0.65, r: W * 0.3,  col: 'rgba(6,182,212,0.06)'  },
+      { x: W * 0.5,  y: H * 0.5,  r: W * 0.22, col: 'rgba(201,168,76,0.04)' }
+    ];
+    blobs.forEach(b => {
+      const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r);
+      g.addColorStop(0, b.col);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+      ctx.fillStyle = g;
+      ctx.fill();
+      ctx.restore();
+    });
+
+    /* Stars */
+    STARS.forEach(s => {
+      const alpha = s.a * (0.6 + 0.4 * Math.sin(t * s.speed * 60 + s.twinkle));
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${alpha})`;
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* =====================================================================
+     SOFT PHYSICS - nodes gently drift toward target
+  ===================================================================== */
+  function updatePhysics () {
+    nodes.forEach(n => {
+      const dx = n.tx - n.x;
+      const dy = n.ty - n.y;
+      n.vx = n.vx * 0.88 + dx * 0.018;
+      n.vy = n.vy * 0.88 + dy * 0.018;
+      n.x += n.vx;
+      n.y += n.vy;
+    });
+  }
+
+  /* =====================================================================
+     MAIN LOOP
+  ===================================================================== */
+  function loop (ts) {
+    t = ts * 0.001;
+    updatePhysics();
+    spawnParticles();
+
+    drawBackground();
+
+    /* Edges */
+    edges.forEach(drawEdge);
+
+    /* Particles */
+    particles.forEach(p => {
+      p.t += p.speed;
+      drawParticle(p);
+    });
+    particles = particles.filter(p => p.t < 1);
+
+    /* Nodes */
+    nodes.forEach(drawNode);
+
+    animFrame = requestAnimationFrame(loop);
+  }
+
+  /* =====================================================================
+     INTERACTION
+  ===================================================================== */
+  function getNodeAt (mx, my) {
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      const n = nodes[i];
+      const dx = mx - n.x;
+      const dy = my - n.y;
+      if (Math.sqrt(dx*dx + dy*dy) < n.baseRadius * 1.6) return n;
+    }
+    return null;
+  }
+
+  function showTooltip (node, mx, my) {
+    tipName.textContent = node.label;
+    tipUrl.textContent  = node.description;
+    const pad = 16;
+    let tx = mx + 18;
+    let ty = my - 10;
+    /* Keep within viewport */
+    const tw = 210, th = 80;
+    if (tx + tw > W - pad) tx = mx - tw - 18;
+    if (ty + th > H - pad) ty = H - th - pad;
+    if (ty < pad) ty = pad;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top  = ty + 'px';
+    tooltip.classList.add('visible');
+  }
+
+  function hideTooltip () {
+    tooltip.classList.remove('visible');
+  }
+
+  function onMove (mx, my) {
+    const node = getNodeAt(mx, my);
+    if (node) {
+      canvas.style.cursor = 'pointer';
+      hoveredNode = node;
+      showTooltip(node, mx, my);
+    } else {
+      canvas.style.cursor = 'default';
+      hoveredNode = null;
+      hideTooltip();
+    }
+  }
+
+  function onClick (mx, my) {
+    const node = getNodeAt(mx, my);
+    if (node) window.open(node.url, '_blank');
+  }
+
+  /* Mouse */
+  canvas.addEventListener('mousemove', e => onMove(e.clientX, e.clientY));
+  canvas.addEventListener('click',     e => onClick(e.clientX, e.clientY));
+  canvas.addEventListener('mouseleave', () => { hoveredNode = null; hideTooltip(); canvas.style.cursor = 'default'; });
+
+  /* Touch */
+  canvas.addEventListener('touchstart', e => {
+    e.preventDefault();
+    const t0 = e.touches[0];
+    onMove(t0.clientX, t0.clientY);
+  }, { passive: false });
+  canvas.addEventListener('touchend', e => {
+    e.preventDefault();
+    const t0 = e.changedTouches[0];
+    onClick(t0.clientX, t0.clientY);
+    setTimeout(() => { hoveredNode = null; hideTooltip(); }, 600);
+  }, { passive: false });
+
+  /* =====================================================================
+     INIT
+  ===================================================================== */
+  window.addEventListener('resize', () => { cancelAnimationFrame(animFrame); resize(); });
+  resize();
+  requestAnimationFrame(loop);
+
+})();
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

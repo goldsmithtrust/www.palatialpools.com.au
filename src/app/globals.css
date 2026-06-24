@@ -1,0 +1,6 @@
+/* Minimal global styles for the Next.js legacy static fallback shell */
+html,
+body {
+  margin: 0;
+  padding: 0;
+}

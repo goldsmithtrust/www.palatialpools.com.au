@@ -1,0 +1,283 @@
+/* ============================================
+   PALATIAL POOLS — AQUA/TEAL OVERRIDE
+   Applied on top of Fly.io design system
+   All gold (#C5A55A, #C4A84D, #8B7635) replaced with aqua/teal #00C4CC
+   ============================================ */
+
+/* === ROOT THEME OVERRIDES === */
+:root, :where(*) {
+  --primary: oklch(72% .18 195) !important;
+  --primary-foreground: oklch(15% .06 290) !important;
+  --ring: oklch(72% .18 195) !important;
+  --background: oklch(10% .05 290) !important;
+  --foreground: oklch(97% 0 0) !important;
+  --card: oklch(14% .06 290) !important;
+  --card-foreground: oklch(95% 0 0) !important;
+  --border: rgba(0, 196, 204, 0.2) !important;
+  --input: rgba(0, 196, 204, 0.2) !important;
+  --accent: oklch(28% .1 290) !important;
+  --accent-foreground: oklch(97% 0 0) !important;
+  --secondary: oklch(20% .08 290) !important;
+  --muted: oklch(22% .07 290) !important;
+  --muted-foreground: oklch(70% .02 195) !important;
+}
+
+body {
+  background: #0d0118 !important;
+}
+
+/* === GRADIENT BACKGROUNDS (from-palatial-vivid to-palatial-soft) === */
+.bg-gradient-to-r.from-palatial-vivid.to-palatial-soft,
+.bg-gradient-to-br.from-palatial-vivid.to-palatial-soft,
+.bg-gradient-to-r.from-palatial-vivid,
+.bg-gradient-to-br.from-palatial-vivid,
+[class*="bg-gradient"][class*="from-palatial-vivid"][class*="to-palatial-soft"],
+[class*="bg-gradient"][class*="from-palatial-vivid"] {
+  background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+  color: #1a0533 !important;
+}
+
+/* === LOGO P CIRCLE === */
+.w-10.h-10.rounded-lg[class*="bg-gradient"][class*="from-palatial-vivid"] {
+  background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+  color: #1a0533 !important;
+  --tw-shadow-color: rgba(0, 196, 204, 0.3) !important;
+}
+
+/* === CALL NOW BUTTON === */
+a[class*="bg-gradient"][class*="from-palatial-vivid"][class*="to-palatial-soft"] {
+  background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+  color: #1a0533 !important;
+  --tw-shadow-color: rgba(0, 196, 204, 0.25) !important;
+}
+
+a[class*="bg-gradient"][class*="from-palatial-vivid"][class*="to-palatial-soft"]:hover {
+  background: linear-gradient(135deg, #33D0D4, #00C4CC) !important;
+  --tw-shadow-color: rgba(0, 196, 204, 0.4) !important;
+}
+
+/* === TEXT COLORS === */
+.text-palatial-vivid {
+  color: #00C4CC !important;
+}
+
+.text-palatial-soft {
+  color: #33D0D4 !important;
+}
+
+/* === BACKGROUND COLORS === */
+.bg-palatial-vivid {
+  background-color: #00C4CC !important;
+}
+
+.bg-palatial-deep {
+  background-color: #1a0533 !important;
+}
+
+.bg-palatial-void {
+  background-color: #0d0118 !important;
+}
+
+/* === GRADIENT FROM/TO/VIA OVERRIDES === */
+.from-palatial-vivid {
+  --tw-gradient-from: #00C4CC !important;
+}
+
+.to-palatial-vivid {
+  --tw-gradient-to: #00C4CC !important;
+}
+
+.via-palatial-vivid {
+  --tw-gradient-via: #00C4CC !important;
+}
+
+.to-palatial-soft {
+  --tw-gradient-to: #33D0D4 !important;
+}
+
+.from-palatial-soft {
+  --tw-gradient-from: #33D0D4 !important;
+}
+
+/* === BORDER OVERRIDES === */
+.border-palatial-vivid\/30,
+[class*="border-palatial-vivid"] {
+  border-color: rgba(0, 196, 204, 0.3) !important;
+}
+
+/* === SHADOW OVERRIDES === */
+.shadow-palatial-vivid\/25,
+.shadow-palatial-vivid\/30,
+.shadow-palatial-vivid\/40,
+.shadow-palatial-vivid\/50,
+[class*="shadow-palatial-vivid"] {
+  --tw-shadow-color: rgba(0, 196, 204, 0.25) !important;
+}
+
+[class*="hover\:shadow-palatial-vivid"]:hover {
+  --tw-shadow-color: rgba(0, 196, 204, 0.4) !important;
+}
+
+/* === BACKGROUND OPACITY VARIANTS === */
+.bg-palatial-vivid\/5,
+[class*="bg-palatial-vivid\\/5"] {
+  background-color: rgba(0, 196, 204, 0.05) !important;
+}
+
+.bg-palatial-vivid\/10,
+[class*="bg-palatial-vivid\\/10"],
+[class*="bg-palatial-vivid/10"] {
+  background-color: rgba(0, 196, 204, 0.1) !important;
+}
+
+.bg-palatial-vivid\/15,
+[class*="bg-palatial-vivid\\/15"],
+[class*="bg-palatial-vivid/15"] {
+  background-color: rgba(0, 196, 204, 0.15) !important;
+}
+
+.bg-palatial-vivid\/20,
+[class*="bg-palatial-vivid\\/20"],
+[class*="bg-palatial-vivid/20"] {
+  background-color: rgba(0, 196, 204, 0.2) !important;
+}
+
+/* === RING/FOCUS STATES === */
+.ring-palatial-vivid,
+[class*="ring-palatial-vivid"] {
+  --tw-ring-color: rgba(0, 196, 204, 0.5) !important;
+}
+
+/* === FILL OVERRIDES (SVG icons, stars) === */
+.fill-palatial-vivid,
+[class*="fill-palatial-vivid"] {
+  fill: #00C4CC !important;
+}
+
+.fill-yellow-400,
+[class*="fill-yellow"] {
+  fill: #00C4CC !important;
+}
+
+/* === HOVER STATES === */
+[class*="hover\:bg-palatial-vivid"]:hover {
+  background-color: rgba(0, 196, 204, 0.1) !important;
+}
+
+[class*="hover\:text-palatial-vivid"]:hover {
+  color: #00C4CC !important;
+}
+
+[class*="hover\:border-palatial-vivid"]:hover {
+  border-color: rgba(0, 196, 204, 0.4) !important;
+}
+
+/* === INLINE BUTTON OVERRIDES === */
+.inline-flex[class*="bg-gradient"][class*="from-palatial-vivid"],
+button[class*="bg-gradient"][class*="from-palatial-vivid"] {
+  background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+  color: #1a0533 !important;
+}
+
+/* View All Services - outline button */
+.inline-flex[class*="border-palatial-vivid"] {
+  border-color: rgba(0, 196, 204, 0.3) !important;
+}
+
+.inline-flex[class*="border-palatial-vivid"]:hover {
+  background-color: rgba(0, 196, 204, 0.1) !important;
+}
+
+/* === SECTION HEADINGS === */
+.text-palatial-vivid.text-sm,
+.text-palatial-vivid.uppercase,
+[class*="text-palatial-vivid"][class*="uppercase"],
+[class*="text-palatial-vivid"][class*="tracking"] {
+  color: #00C4CC !important;
+}
+
+/* === SERVICE TAGS === */
+[class*="border-palatial-vivid"][class*="text-palatial-soft"],
+[class*="border-palatial-vivid"][class*="text-palatial"] {
+  border-color: rgba(0, 196, 204, 0.3) !important;
+  color: #33D0D4 !important;
+}
+
+/* === PRICING SECTION === */
+.text-palatial-vivid.text-4xl,
+.text-palatial-vivid.text-3xl,
+.text-palatial-vivid.text-2xl {
+  color: #00C4CC !important;
+}
+
+/* Green checkmarks → teal */
+.text-emerald-400,
+.text-emerald-500,
+.text-green-400,
+.text-green-500,
+[class*="text-emerald"],
+[class*="text-green"] {
+  color: #00C4CC !important;
+}
+
+/* === REVIEW STARS === */
+.text-yellow-400,
+.text-yellow-500,
+[class*="text-yellow"] {
+  color: #00C4CC !important;
+}
+
+/* === FOOTER === */
+footer {
+  border-top-color: rgba(0, 196, 204, 0.2) !important;
+}
+
+footer .text-palatial-vivid,
+footer .text-palatial-soft,
+footer [class*="text-palatial-vivid"],
+footer [class*="text-palatial-soft"] {
+  color: #00C4CC !important;
+}
+
+footer a:hover {
+  color: #33D0D4 !important;
+}
+
+/* === FORM ELEMENTS === */
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(0, 196, 204, 0.5) !important;
+  box-shadow: 0 0 0 2px rgba(0, 196, 204, 0.2) !important;
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 196, 204, 0.3) !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 196, 204, 0.5) !important;
+}
+
+/* === SELECTION === */
+::selection {
+  background: rgba(0, 196, 204, 0.3) !important;
+  color: #fff !important;
+}
+
+/* === ANIMATED GRADIENT BORDER GLOW === */
+@keyframes teal-shimmer {
+  0% { border-color: rgba(0, 196, 204, 0.2); }
+  50% { border-color: rgba(0, 196, 204, 0.5); }
+  100% { border-color: rgba(0, 196, 204, 0.2); }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .text-palatial-vivid {
+    color: #00C4CC !important;
+  }
+  [class*="bg-gradient"][class*="from-palatial-vivid"] {
+    background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+    color: #1a0533 !important;
+  }
+}

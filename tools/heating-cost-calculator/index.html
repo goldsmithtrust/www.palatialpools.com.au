@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pool Heating Cost Calculator | Palatial Pools Melbourne</title>
+<meta name="description" content="Compare pool heating running costs for heat pumps, gas, solar, and electric heaters. See monthly costs for your pool size and desired temperature in Melbourne's climate.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://palatialpools.com.au/tools/heating-cost-calculator">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pool Heating Cost Calculator | Palatial Pools Melbourne">
+<meta property="og:description" content="Compare pool heating running costs — heat pump vs gas vs solar vs electric. Find the best option for Melbourne pools.">
+<meta property="og:url" content="https://palatialpools.com.au/tools/heating-cost-calculator">
+<meta property="og:site_name" content="Palatial Pools">
+<meta property="og:locale" content="en_AU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pp-luxury.css">
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-purple: #1a0533;
+    --brand-purple-mid: #2d0a52;
+    --brand-purple-light: #3d1468;
+    --brand-teal: #00C4CC;
+    --brand-teal-dark: #009aa0;
+    --brand-teal-light: #33d0d7;
+    --brand-teal-glow: rgba(0,196,204,0.15);
+    --text-light: #f0f0f8;
+    --text-muted: #a0a0c0;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(0,196,204,0.2);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--brand-purple);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-mid) 100%);
+    border-bottom: 2px solid var(--brand-teal);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,196,204,0.3);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .logo-area { display: flex; align-items: center; gap: 14px; }
+  .logo-mark {
+    width: 48px; height: 48px;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; font-weight: 900;
+    color: var(--brand-purple);
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(0,196,204,0.4);
+  }
+  .logo-text h1 { font-size: 1.1rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.5px; }
+  .logo-text p { font-size: 0.75rem; color: var(--brand-teal); letter-spacing: 1px; text-transform: uppercase; }
+  .header-badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(180deg, var(--brand-purple-mid) 0%, var(--brand-purple) 100%);
+    text-align: center;
+    padding: 56px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(0,196,204,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .hero h2 span { color: var(--brand-teal); }
+  .hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 620px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INPUTS PANEL ===== */
+  .inputs-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: sticky;
+    top: 90px;
+    box-shadow: var(--shadow);
+  }
+  .panel-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 16px;
+    background: var(--brand-teal);
+    border-radius: 2px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .form-group label span {
+    color: var(--brand-teal);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px; height: 18px;
+    background: var(--brand-teal);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,196,204,0.5);
+    transition: transform 0.15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px; height: 18px;
+    background: var(--brand-teal);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 8px rgba(0,196,204,0.5);
+  }
+  select, input[type="number"] {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  select:focus, input[type="number"]:focus { border-color: var(--brand-teal); }
+  select option { background: var(--brand-purple-mid); }
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 20px 0;
+  }
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .toggle-row label { margin-bottom: 0; flex: 1; }
+  .toggle-switch {
+    position: relative;
+    width: 44px; height: 24px;
+    flex-shrink: 0;
+  }
+  .toggle-switch input { opacity: 0; width: 0; height: 0; }
+  .toggle-track {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.1);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .toggle-track::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    background: var(--text-muted);
+    border-radius: 50%;
+    transition: all 0.2s;
+  }
+  .toggle-switch input:checked + .toggle-track {
+    background: var(--brand-teal);
+  }
+  .toggle-switch input:checked + .toggle-track::after {
+    transform: translateX(20px);
+    background: var(--brand-purple);
+  }
+  .rate-note {
+    background: rgba(0,196,204,0.08);
+    border: 1px solid rgba(0,196,204,0.2);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .rate-note strong { color: var(--brand-teal); }
+
+  /* ===== RESULTS PANEL ===== */
+  .results-panel { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ===== SAVINGS HERO CARD ===== */
+  .savings-hero {
+    background: linear-gradient(135deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border: 1px solid var(--brand-teal);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 0 32px rgba(0,196,204,0.15), var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .savings-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(0,196,204,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .savings-hero h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--brand-teal);
+    margin-bottom: 8px;
+  }
+  .savings-amount {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 900;
+    color: var(--brand-teal);
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 24px rgba(0,196,204,0.4);
+  }
+  .savings-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .savings-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item { text-align: center; }
+  .meta-item .val {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-light);
+    display: block;
+  }
+  .meta-item .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+  .section-header .badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .comparison-table thead tr {
+    background: linear-gradient(90deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border-bottom: 2px solid var(--brand-teal);
+  }
+  .comparison-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .comparison-table thead th:first-child { color: var(--brand-teal); }
+  .comparison-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+  }
+  .comparison-table tbody tr:hover { background: rgba(0,196,204,0.04); }
+  .comparison-table tbody tr.best-row {
+    background: rgba(0,196,204,0.06);
+    border-left: 3px solid var(--brand-teal);
+  }
+  .comparison-table tbody tr.best-row:hover { background: rgba(0,196,204,0.1); }
+  .comparison-table td {
+    padding: 13px 16px;
+    vertical-align: middle;
+  }
+  .system-name { font-weight: 700; color: var(--text-light); }
+  .system-detail { font-size: 0.75rem; color: var(--text-muted); }
+  .best-row .system-name { color: var(--brand-teal); }
+  .best-badge {
+    display: inline-block;
+    background: var(--brand-teal);
+    color: var(--brand-purple);
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .cost-val { font-weight: 700; font-size: 0.95rem; }
+  .cost-val.best { color: var(--success); }
+  .cost-val.mid { color: var(--warning); }
+  .cost-val.worst { color: var(--danger); }
+  .rating-stars { letter-spacing: -1px; font-size: 0.85rem; }
+
+  /* ===== EFFICIENCY BARS ===== */
+  .efficiency-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .eff-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .eff-row:last-child { margin-bottom: 0; }
+  .eff-label { width: 160px; flex-shrink: 0; }
+  .eff-label .name { font-size: 0.82rem; font-weight: 600; color: var(--text-light); }
+  .eff-label .sub { font-size: 0.72rem; color: var(--text-muted); }
+  .eff-track {
+    flex: 1;
+    height: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .eff-bar {
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brand-purple);
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+  }
+  .eff-val { font-size: 0.82rem; font-weight: 700; width: 80px; text-align: right; color: var(--text-light); }
+
+  /* ===== PAYBACK CARDS ===== */
+  .payback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .payback-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .payback-card:hover { border-color: var(--brand-teal); transform: translateY(-2px); }
+  .payback-card.highlight {
+    border-color: var(--brand-teal);
+    background: rgba(0,196,204,0.06);
+    box-shadow: 0 0 20px rgba(0,196,204,0.15), var(--shadow);
+  }
+  .payback-card .system { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .payback-card .cost-big { font-size: 2rem; font-weight: 900; color: var(--brand-teal); line-height: 1; }
+  .payback-card .cost-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
+  .payback-card .saving { font-size: 0.85rem; font-weight: 700; }
+  .payback-card .saving.positive { color: var(--success); }
+  .payback-card .saving.negative { color: var(--danger); }
+  .payback-card .saving.neutral { color: var(--text-muted); }
+  .payback-card .saving-label { font-size: 0.72rem; color: var(--text-muted); }
+
+  /* ===== BASELINE SECTION ===== */
+  .baseline-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .baseline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .baseline-item {
+    text-align: center;
+    padding: 16px;
+    background: rgba(255,255,255,0.02);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .baseline-item .sys-name { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .baseline-item .save-val { font-size: 1.6rem; font-weight: 900; line-height: 1; margin-bottom: 2px; }
+  .baseline-item .save-val.positive { color: var(--success); }
+  .baseline-item .save-val.negative { color: var(--danger); }
+  .baseline-item .save-val.neutral { color: var(--text-muted); }
+  .baseline-item .save-desc { font-size: 0.72rem; color: var(--text-muted); }
+
+  /* ===== FOOTNOTE ===== */
+  .footnote {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .footnote strong { color: var(--text-light); }
+
+  /* ===== TOOLS CROSSLINK ===== */
+  .tools-crosslink {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+  }
+  .tools-crosslink a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .tools-crosslink a:hover {
+    background: rgba(0,196,204,0.06);
+    border-color: var(--brand-teal);
+    color: var(--brand-teal);
+    transform: translateX(3px);
+  }
+  .tool-icon {
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--card-border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  /* ===== SCROLL FADE ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    .comparison-table { font-size: 0.78rem; }
+    .comparison-table td, .comparison-table th { padding: 10px 10px; }
+    .savings-meta { gap: 16px; }
+    .eff-label { width: 110px; }
+  }
+  @media print {
+    header { position: static; }
+    .inputs-panel { position: static; }
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+  .pp-section, .pp-cta-band, .pp-footer { opacity: 1 !important; transform: none !important; }
+</style>
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/naked-freshwater-pools">Naked Pools</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+  <span class="pp-trust-item">&#10003; Mon&ndash;Sat Service</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>Heating Cost Calculator</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Compare Pool Heating <span>Running Costs</span></h2>
+  <p>See monthly costs for inverter heat pumps, standard heat pumps, gas, and electric heaters. Based on real energy prices and Melbourne&rsquo;s seasonal temperatures.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+  <div class="calculator-grid">
+
+    <!-- INPUTS PANEL -->
+    <aside class="inputs-panel fade-in">
+      <div class="panel-title">Your Pool Details</div>
+
+      <div class="form-group">
+        <label>Pool Volume &nbsp;<span id="vol-display">50,000 L</span></label>
+        <input type="range" id="pool-volume" min="10000" max="120000" step="1000" value="50000" oninput="updateAll()">
+        <input type="number" id="pool-volume-num" min="10000" max="200000" step="1000" value="50000" style="margin-top:6px;" oninput="document.getElementById('pool-volume').value=this.value;updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Target Temperature &nbsp;<span id="temp-display">28&deg;C</span></label>
+        <input type="range" id="target-temp" min="22" max="34" step="1" value="28" oninput="updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Heating Season</label>
+        <select id="season" onchange="updateAll()">
+          <option value="summer">Summer only (Dec&ndash;Feb)</option>
+          <option value="extended" selected>Extended season (Oct&ndash;Apr)</option>
+          <option value="year">Year-round</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <div class="toggle-row">
+          <label>Pool Cover (thermal blanket)</label>
+          <label class="toggle-switch">
+            <input type="checkbox" id="pool-cover" checked onchange="updateAll()">
+            <span class="toggle-track"></span>
+          </label>
+        </div>
+        <div style="font-size:0.72rem;color:var(--text-muted);margin-top:4px">A cover reduces heat loss by ~70%</div>
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label>Electricity Rate (&cent;/kWh)</label>
+        <input type="number" id="elec-rate" value="32" min="15" max="60" step="0.5" oninput="updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Gas Rate (&cent;/MJ)</label>
+        <input type="number" id="gas-rate" value="3.5" min="1" max="8" step="0.1" oninput="updateAll()">
+      </div>
+
+      <div class="rate-note">
+        <strong>Melbourne 2025 Defaults:</strong> Electricity ~32&cent;/kWh (residential default offer), Gas ~3.5&cent;/MJ. Adjust above if you&rsquo;re on a different tariff or have solar.
+      </div>
+    </aside>
+
+    <!-- RESULTS AREA -->
+    <main class="results-panel">
+
+      <!-- CHEAPEST OPTION HERO -->
+      <div class="savings-hero fade-in">
+        <h3>Cheapest Heating Option</h3>
+        <div class="savings-amount" id="hero-cost">$0</div>
+        <div class="savings-sub" id="hero-system">per month &mdash; calculating&hellip;</div>
+        <div class="savings-meta">
+          <div class="meta-item">
+            <span class="val" id="hero-annual">$0</span>
+            <span class="lbl">Annual Cost</span>
+          </div>
+          <div class="meta-item">
+            <span class="val" id="hero-saving">$0</span>
+            <span class="lbl">Saved vs Electric</span>
+          </div>
+          <div class="meta-item">
+            <span class="val" id="hero-cop">0</span>
+            <span class="lbl">COP / Efficiency</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPARISON TABLE -->
+      <div class="fade-in">
+        <div class="section-header">
+          <h3>Heating System Comparison</h3>
+          <span class="badge">Monthly &amp; Annual</span>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison-table" id="compare-table">
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Monthly Cost</th>
+                <th>Annual Cost</th>
+                <th>Efficiency</th>
+                <th>Rating</th>
+              </tr>
+            </thead>
+            <tbody id="compare-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- EFFICIENCY BARS -->
+      <div class="efficiency-section fade-in">
+        <div class="section-header">
+          <h3>COP / Efficiency Comparison</h3>
+          <span class="badge">Higher is Better</span>
+        </div>
+        <div id="eff-bars"></div>
+      </div>
+
+      <!-- PAYBACK CARDS -->
+      <div class="fade-in">
+        <div class="section-header">
+          <h3>Monthly Cost per System</h3>
+          <span class="badge">Quick Compare</span>
+        </div>
+        <div class="payback-grid" id="payback-cards"></div>
+      </div>
+
+      <!-- VS BASELINE -->
+      <div class="baseline-section fade-in">
+        <div class="section-header">
+          <h3>Savings vs Electric Element</h3>
+          <span class="badge">Baseline Comparison</span>
+        </div>
+        <div class="baseline-grid" id="baseline-grid"></div>
+      </div>
+
+      <!-- CROSSLINKS -->
+      <div class="fade-in">
+        <div class="section-header">
+          <h3>Related Tools</h3>
+          <span class="badge">Explore</span>
+        </div>
+        <div class="tools-crosslink">
+          <a href="/tools/pool-cost-calculator">
+            <span class="tool-icon">&#9881;</span>
+            <span>Running Cost Calculator</span>
+          </a>
+          <a href="/tools/energy-calculator">
+            <span class="tool-icon">&#9889;</span>
+            <span>Energy Savings Calculator</span>
+          </a>
+          <a href="/tools/chemical-dosage-calculator">
+            <span class="tool-icon">&#9883;</span>
+            <span>Chemical Dosage Calculator</span>
+          </a>
+          <a href="/tools/salt-chlorinator-calculator">
+            <span class="tool-icon">&#128268;</span>
+            <span>Salt Chlorinator Sizing</span>
+          </a>
+          <a href="/melbourne-pool-heating">
+            <span class="tool-icon">&#127777;</span>
+            <span>Pool Heating Services</span>
+          </a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote" style="margin-top:32px;">
+    <strong>Methodology &amp; Assumptions:</strong> Running costs use Melbourne climate averages — Summer ~20&deg;C, Extended season ~15&deg;C, Year-round ~12&deg;C ambient. Electricity priced at the 2025 Victorian residential default offer. Gas priced at the average Melbourne retail rate. Heat pump COP values based on mid-range manufacturer specifications at each ambient temperature. Pool cover reduces heat loss by approximately 70%. Actual savings will vary with pool insulation, location, installation quality, and individual usage patterns. Solar heating excluded as running cost is near-zero (pump-only cost). All figures are indicative estimates and should not be relied upon as financial advice.
+  </div>
+</div>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Ready to Heat <span class="accent">Your Pool</span>?</h2>
+    <p>Palatial Pools installs Madimack, AstralPool, and Hayward heat pumps with full warranty. Free on-site quotes across Melbourne.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Get a Heating Quote</a>
+      <a href="tel:0342317665" class="pp-btn pp-btn-outline">Call 03 4231 7665</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div>
+        <h4>Palatial Pools</h4>
+        <p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne&rsquo;s premium pool and spa service. Expert care across all inner and middle suburbs.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/melbourne-pool-services">Pool Maintenance</a>
+        <a href="/melbourne-pool-spa-leak-detection">Leak Detection</a>
+        <a href="/melbourne-pool-heating">Pool Heating</a>
+        <a href="/naked-freshwater-pools">Freshwater Pools</a>
+        <a href="/melbourne-sand-changes">Sand Changes</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/tools/pool-cost-calculator">Running Cost Calc</a>
+        <a href="/tools/chemical-dosage-calculator">Chemical Dosage</a>
+        <a href="/tools/heating-cost-calculator">Heating Cost Calc</a>
+        <a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a>
+        <a href="/pool-volume-calculator">Volume Calculator</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/guides/">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="/testimonials">Reviews</a>
+        <a href="/palatial-service-area">Service Areas</a>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>&copy; 2026 Palatial Pool Services. All rights reserved.</span>
+      <span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// DATA — Melbourne climate & heating system specs
+// ============================================================
+const MELB_AVG_TEMPS = { summer: 20, extended: 15, year: 12 };
+const SEASON_MONTHS  = { summer: 3, extended: 7, year: 12 };
+
+const HEATING_SYSTEMS = [
+  {
+    id: 'inverter-hp',
+    name: 'Inverter Heat Pump',
+    detail: 'Madimack InverECO class',
+    icon: '🌡️',
+    cop: 6.5,
+    fuel: 'elec',
+    color: '#00C4CC',
+    stars: 5,
+    note: 'COP 6.5 (full-inverter DC)'
+  },
+  {
+    id: 'standard-hp',
+    name: 'Standard Heat Pump',
+    detail: 'Entry-level on/off unit',
+    icon: '☀️',
+    cop: 4.5,
+    fuel: 'elec',
+    color: '#60a5fa',
+    stars: 4,
+    note: 'COP 4.5 (on/off compressor)'
+  },
+  {
+    id: 'gas',
+    name: 'Gas Heater (Natural)',
+    detail: '85% thermal efficiency',
+    icon: '🔥',
+    cop: 0.85,
+    fuel: 'gas',
+    color: '#f97316',
+    stars: 3,
+    note: '85% thermal efficiency'
+  },
+  {
+    id: 'electric',
+    name: 'Electric Element',
+    detail: 'Direct electric resistance',
+    icon: '⚡',
+    cop: 1.0,
+    fuel: 'elec',
+    color: '#fb7185',
+    stars: 1,
+    note: 'COP 1.0 (direct electric)'
+  }
+];
+
+// ============================================================
+// HELPERS
+// ============================================================
+function fmt(n, prefix) {
+  prefix = prefix || '$';
+  if (isNaN(n)) return '—';
+  return prefix + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function fmtDec(n, dec) {
+  if (isNaN(n)) return '—';
+  return n.toFixed(dec || 0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// ============================================================
+// CALCULATION (preserved from original)
+// ============================================================
+function calculateResults() {
+  var vol        = parseFloat(document.getElementById('pool-volume').value);
+  var target     = parseFloat(document.getElementById('target-temp').value);
+  var season     = document.getElementById('season').value;
+  var hasCover   = document.getElementById('pool-cover').checked;
+  var elecRate   = parseFloat(document.getElementById('elec-rate').value) / 100;
+  var gasRate    = parseFloat(document.getElementById('gas-rate').value) / 100;
+
+  var ambientTemp = MELB_AVG_TEMPS[season];
+  var months      = SEASON_MONTHS[season];
+  var tempRise    = target - ambientTemp;
+  var coverFactor = hasCover ? 0.3 : 1.0;
+
+  if (tempRise <= 0) tempRise = 1;
+
+  var kwhToHeat  = (vol * tempRise * 1.163) / 1000;
+  var dailyLoss  = kwhToHeat * 0.04 * coverFactor;
+  var monthlyKwh = (kwhToHeat / 3 + dailyLoss * 30);
+
+  var results = HEATING_SYSTEMS.map(function(sys) {
+    var monthlyCost;
+    if (sys.fuel === 'elec') {
+      monthlyCost = (monthlyKwh / sys.cop) * elecRate;
+    } else {
+      var mjNeeded = monthlyKwh * 3.6;
+      monthlyCost = (mjNeeded / sys.cop) * gasRate;
+    }
+    return {
+      id:          sys.id,
+      name:        sys.name,
+      detail:      sys.detail,
+      icon:        sys.icon,
+      cop:         sys.cop,
+      fuel:        sys.fuel,
+      color:       sys.color,
+      stars:       sys.stars,
+      note:        sys.note,
+      monthlyCost: monthlyCost,
+      annualCost:  monthlyCost * months
+    };
+  });
+
+  return { results: results, months: months, ambientTemp: ambientTemp, season: season, hasCover: hasCover };
+}
+
+// ============================================================
+// RENDER — HERO CARD
+// ============================================================
+function renderHero(data) {
+  var results  = data.results;
+  var sorted   = results.slice().sort(function(a,b){ return a.monthlyCost - b.monthlyCost; });
+  var best     = sorted[0];
+  var electric = results.find(function(r){ return r.id === 'electric'; });
+
+  document.getElementById('hero-cost').textContent   = fmt(best.monthlyCost);
+  document.getElementById('hero-system').textContent  = 'per month — ' + best.name;
+  document.getElementById('hero-annual').textContent  = fmt(best.annualCost);
+  document.getElementById('hero-saving').textContent  = fmt(electric.annualCost - best.annualCost) + '/yr';
+  document.getElementById('hero-cop').textContent     = best.cop >= 1.5 ? best.cop.toFixed(1) : (best.cop * 100).toFixed(0) + '%';
+}
+
+// ============================================================
+// RENDER — COMPARISON TABLE
+// ============================================================
+function renderTable(data) {
+  var results  = data.results;
+  var months   = data.months;
+  var sorted   = results.slice().sort(function(a,b){ return a.monthlyCost - b.monthlyCost; });
+  var bestCost = sorted[0].monthlyCost;
+  var worstCost = sorted[sorted.length - 1].monthlyCost;
+
+  var tbody = document.getElementById('compare-tbody');
+  tbody.innerHTML = '';
+
+  sorted.forEach(function(r) {
+    var isBest = Math.abs(r.monthlyCost - bestCost) < 1;
+    var costClass = 'best';
+    if (!isBest && r.monthlyCost < worstCost * 0.6) costClass = 'mid';
+    else if (!isBest) costClass = r.monthlyCost >= worstCost * 0.8 ? 'worst' : 'mid';
+
+    var starsHtml = '';
+    for (var i = 0; i < 5; i++) {
+      starsHtml += i < r.stars ? '★' : '☆';
+    }
+    var starsColor = r.stars >= 5 ? 'var(--brand-teal)' : r.stars >= 4 ? 'var(--success)' : r.stars >= 3 ? 'var(--warning)' : 'var(--danger)';
+
+    tbody.innerHTML +=
+      '<tr class="' + (isBest ? 'best-row' : '') + '">' +
+        '<td>' +
+          '<div class="system-name">' + r.name + (isBest ? '<span class="best-badge">Best Value</span>' : '') + '</div>' +
+          '<div class="system-detail">' + r.detail + '</div>' +
+        '</td>' +
+        '<td><span class="cost-val ' + (isBest ? 'best' : costClass) + '">' + fmt(r.monthlyCost) + '</span></td>' +
+        '<td><span class="cost-val ' + (isBest ? 'best' : costClass) + '">' + fmt(r.annualCost) + '</span><span style="font-size:0.72rem;color:var(--text-muted)"> (' + months + ' mo)</span></td>' +
+        '<td style="font-size:0.82rem;color:var(--text-light)">' + r.note + '</td>' +
+        '<td><span class="rating-stars" style="color:' + starsColor + '">' + starsHtml + '</span></td>' +
+      '</tr>';
+  });
+}
+
+// ============================================================
+// RENDER — EFFICIENCY BARS
+// ============================================================
+function renderEffBars(data) {
+  var results   = data.results;
+  var container = document.getElementById('eff-bars');
+  container.innerHTML = '';
+
+  var maxCop = Math.max.apply(null, results.map(function(r){ return r.cop; }));
+  var sorted = results.slice().sort(function(a,b){ return b.cop - a.cop; });
+
+  sorted.forEach(function(r) {
+    var pct = (r.cop / (maxCop * 1.15)) * 100;
+    var barLabel = r.cop >= 1.5 ? r.cop.toFixed(1) : (r.cop * 100).toFixed(0) + '%';
+    var valLabel = r.cop >= 1.5 ? 'COP ' + r.cop.toFixed(1) : (r.cop * 100).toFixed(0) + '% eff.';
+
+    container.innerHTML +=
+      '<div class="eff-row">' +
+        '<div class="eff-label">' +
+          '<div class="name">' + r.name + '</div>' +
+          '<div class="sub">' + r.detail + '</div>' +
+        '</div>' +
+        '<div class="eff-track">' +
+          '<div class="eff-bar" style="width:' + pct + '%;background:' + r.color + '">' + barLabel + '</div>' +
+        '</div>' +
+        '<div class="eff-val" style="color:' + r.color + '">' + valLabel + '</div>' +
+      '</div>';
+  });
+}
+
+// ============================================================
+// RENDER — PAYBACK CARDS
+// ============================================================
+function renderPaybackCards(data) {
+  var results   = data.results;
+  var container = document.getElementById('payback-cards');
+  container.innerHTML = '';
+  var electric  = results.find(function(r){ return r.id === 'electric'; });
+  var sorted    = results.slice().sort(function(a,b){ return a.monthlyCost - b.monthlyCost; });
+  var bestCost  = sorted[0].monthlyCost;
+
+  sorted.forEach(function(r) {
+    var isBest  = Math.abs(r.monthlyCost - bestCost) < 1;
+    var saving  = electric.monthlyCost - r.monthlyCost;
+    var savClass, savText;
+    if (saving > 1) {
+      savClass = 'positive';
+      savText  = fmt(saving) + ' less';
+    } else if (saving < -1) {
+      savClass = 'negative';
+      savText  = fmt(Math.abs(saving)) + ' more';
+    } else {
+      savClass = 'neutral';
+      savText  = 'Baseline';
+    }
+
+    container.innerHTML +=
+      '<div class="payback-card ' + (isBest ? 'highlight' : '') + '">' +
+        '<div class="system">' + r.name + '</div>' +
+        '<div class="cost-big">' + fmt(r.monthlyCost) + '</div>' +
+        '<div class="cost-label">per month</div>' +
+        '<div class="saving ' + savClass + '">' + savText + '</div>' +
+        '<div class="saving-label">vs electric element</div>' +
+      '</div>';
+  });
+}
+
+// ============================================================
+// RENDER — VS BASELINE ROW
+// ============================================================
+function renderBaseline(data) {
+  var results   = data.results;
+  var container = document.getElementById('baseline-grid');
+  container.innerHTML = '';
+  var electric  = results.find(function(r){ return r.id === 'electric'; });
+
+  results.forEach(function(r) {
+    if (r.id === 'electric') return;
+    var saving = electric.annualCost - r.annualCost;
+    var cls    = saving > 1 ? 'positive' : saving < -1 ? 'negative' : 'neutral';
+    var pct    = electric.annualCost > 0 ? ((saving / electric.annualCost) * 100) : 0;
+
+    container.innerHTML +=
+      '<div class="baseline-item">' +
+        '<div class="sys-name">' + r.name + '</div>' +
+        '<div class="save-val ' + cls + '">' + fmt(saving) + '</div>' +
+        '<div class="save-desc">saved per year (' + Math.round(pct) + '% less)</div>' +
+      '</div>';
+  });
+}
+
+// ============================================================
+// UPDATE DISPLAY LABELS
+// ============================================================
+function updateLabels() {
+  var vol = parseFloat(document.getElementById('pool-volume').value);
+  document.getElementById('vol-display').textContent = vol.toLocaleString() + ' L';
+  document.getElementById('pool-volume-num').value = vol;
+  document.getElementById('temp-display').innerHTML = document.getElementById('target-temp').value + '&deg;C';
+}
+
+// ============================================================
+// MAIN UPDATE
+// ============================================================
+function updateAll() {
+  updateLabels();
+  var data = calculateResults();
+  renderHero(data);
+  renderTable(data);
+  renderEffBars(data);
+  renderPaybackCards(data);
+  renderBaseline(data);
+}
+
+// ============================================================
+// INTERSECTION OBSERVER FOR FADE-IN
+// ============================================================
+function initFadeIn() {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  initFadeIn();
+  updateAll();
+});
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+</body>
+</html>

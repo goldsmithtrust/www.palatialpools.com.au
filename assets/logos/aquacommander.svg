@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="ac-bg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#2e0a52"/>
+      <stop offset="100%" style="stop-color:#0d0118"/>
+    </radialGradient>
+    <linearGradient id="ac-card-face" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:rgba(197,165,90,0.28)"/>
+      <stop offset="100%" style="stop-color:rgba(197,165,90,0.08)"/>
+    </linearGradient>
+    <filter id="ac-glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="ac-glow-strong">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="ac-clip">
+      <circle cx="256" cy="256" r="240"/>
+    </clipPath>
+  </defs>
+
+  <!-- Deep dark background -->
+  <circle cx="256" cy="256" r="256" fill="url(#ac-bg)"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#C5A55A" stroke-width="8"/>
+
+  <!-- Card glow -->
+  <rect x="50" y="142" width="412" height="258" rx="26"
+        fill="rgba(197,165,90,0.18)" filter="url(#ac-glow-strong)" clip-path="url(#ac-clip)"/>
+
+  <!-- Card body — bold border -->
+  <rect x="50" y="142" width="412" height="258" rx="26"
+        fill="url(#ac-card-face)" stroke="#C5A55A" stroke-width="8"
+        clip-path="url(#ac-clip)"/>
+
+  <!-- Magnetic stripe — solid, bold -->
+  <rect x="50" y="192" width="412" height="44" fill="#C5A55A" opacity="0.35" clip-path="url(#ac-clip)"/>
+
+  <!-- EMV Chip — solid gold, bold -->
+  <rect x="86" y="260" width="64" height="50" rx="8" fill="#C5A55A"/>
+  <!-- Chip internal grid — thick lines -->
+  <line x1="86"  y1="275" x2="150" y2="275" stroke="#0d0118" stroke-width="2.5"/>
+  <line x1="86"  y1="285" x2="150" y2="285" stroke="#0d0118" stroke-width="2.5"/>
+  <line x1="86"  y1="295" x2="150" y2="295" stroke="#0d0118" stroke-width="2.5"/>
+  <line x1="118" y1="260" x2="118" y2="310" stroke="#0d0118" stroke-width="2.5"/>
+
+  <!-- Contactless symbol — thick arcs, glowing -->
+  <path d="M 306 278 Q 326 262 326 285 Q 326 308 306 292"
+        fill="none" stroke="#ffe085" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 320 266 Q 348 248 348 285 Q 348 322 320 304"
+        fill="none" stroke="#ffe085" stroke-width="8" stroke-linecap="round" opacity="0.85"/>
+  <path d="M 334 254 Q 370 232 370 285 Q 370 338 334 316"
+        fill="none" stroke="#ffe085" stroke-width="8" stroke-linecap="round" opacity="0.65"/>
+  <path d="M 348 242 Q 392 216 392 285 Q 392 354 348 328"
+        fill="none" stroke="#ffe085" stroke-width="8" stroke-linecap="round" opacity="0.45"/>
+
+  <!-- Card number dots — large, bold -->
+  <circle cx="168" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="186" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="204" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="222" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="250" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="268" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="286" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+  <circle cx="304" cy="348" r="7" fill="#C5A55A" opacity="0.8"/>
+
+  <!-- Dollar sign — large, vivid, glowing -->
+  <text x="256" y="460" text-anchor="middle"
+        font-family="Arial Black, Arial, sans-serif" font-size="62" font-weight="900"
+        fill="#ffe085" filter="url(#ac-glow)" opacity="0.85">$</text>
+</svg>

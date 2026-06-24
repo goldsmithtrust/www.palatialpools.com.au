@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palatial Link | Client Portal | Palatial Pools</title>
+  <meta name="description" content="Palatial Link is your personal pool care portal. View your service history, water test results, job updates, and more. Existing clients log in here.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://palatialpools.com.au/palatial-link">
+  <meta property="og:title" content="Palatial Link | Client Portal | Palatial Pools">
+  <meta property="og:description" content="A central dashboard that helps Palatial Pools manage servicing, communication, and customer records clearly and efficiently.">
+  <meta property="og:type" content="website">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #0a1628;
+      --navy-light: #111d33;
+      --navy-card: #152238;
+      --purple: #6366f1;
+      --purple-dark: #4f46e5;
+      --gold: #00C4CC;
+      --cyan: #06b6d4;
+      --white: #f1f5f9;
+      --gray: #94a3b8;
+      --gray-dark: #64748b;
+      --border: rgba(255,255,255,0.08);
+    }
+    body { word-wrap: break-word; overflow-wrap: break-word; max-width: 100vw; overflow-x: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-size: 1.25rem; font-weight: 700; color: var(--white);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .nav-brand svg { width: 28px; height: 28px; }
+    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+    .nav-links a { color: var(--gray); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); text-decoration: none; }
+    .nav-cta {
+      background: var(--purple); color: white; padding: 0.5rem 1.25rem;
+      border-radius: 8px; font-weight: 600; font-size: 0.85rem;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--purple-dark); text-decoration: none; }
+
+    /* HERO */
+    .hero {
+      padding: 120px 2rem 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(0,196,204,0.12); border: 1px solid rgba(0,196,204,0.25);
+      color: var(--gold); padding: 0.4rem 1rem; border-radius: 100px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero h1 span { background: linear-gradient(135deg, var(--purple) 0%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero-sub {
+      font-size: 1.2rem; color: var(--gray); max-width: 640px; margin: 0 auto 2.5rem;
+    }
+
+    /* DASHBOARD PREVIEW */
+    .dash-preview {
+      max-width: 1000px; margin: 0 auto 4rem;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 25px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+    }
+    .dash-chrome {
+      background: var(--navy-light);
+      padding: 0.75rem 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .chrome-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .chrome-dot.r { background: #ef4444; }
+    .chrome-dot.y { background: #eab308; }
+    .chrome-dot.g { background: #22c55e; }
+    .chrome-url {
+      flex: 1; margin-left: 0.75rem;
+      background: var(--navy); border-radius: 6px; padding: 0.35rem 0.75rem;
+      font-size: 0.75rem; color: var(--gray-dark); font-family: monospace;
+    }
+    .dash-body { word-wrap: break-word; overflow-wrap: break-word; max-width: 100vw; overflow-x: hidden;
+      background: var(--navy);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      min-height: 420px;
+    }
+    .dash-sidebar {
+      background: var(--navy-light);
+      border-right: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    .dash-sidebar-item {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      color: var(--gray-dark);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .dash-sidebar-item.active { color: var(--white); background: rgba(99,102,241,0.1); border-left: 2px solid var(--purple); }
+    .dash-sidebar-item .icon { width: 16px; height: 16px; border-radius: 4px; background: var(--border); }
+    .dash-sidebar-item.active .icon { background: var(--purple); }
+    .dash-content { padding: 1.25rem; }
+    .dash-kpis {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .dash-kpi {
+      background: var(--navy-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 0.75rem;
+      animation: kpi-pulse 3s ease-in-out infinite;
+    }
+    .dash-kpi:nth-child(2) { animation-delay: 0.5s; }
+    .dash-kpi:nth-child(3) { animation-delay: 1s; }
+    .dash-kpi:nth-child(4) { animation-delay: 1.5s; }
+    @keyframes kpi-pulse { 0%, 100% { border-color: var(--border); } 50% { border-color: rgba(99,102,241,0.2); } }
+    .kpi-label { font-size: 0.65rem; color: var(--gray-dark); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .kpi-val { font-size: 1.3rem; font-weight: 700; color: var(--white); }
+    .kpi-val.purple { color: var(--purple); }
+    .kpi-val.cyan { color: var(--cyan); }
+    .kpi-val.gold { color: var(--gold); }
+    .kpi-val.green { color: #22c55e; }
+    .dash-table {
+      background: var(--navy-card); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+    }
+    .dash-table-header {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.75rem; font-weight: 600; color: var(--gray);
+      border-bottom: 1px solid var(--border);
+      display: flex; justify-content: space-between;
+    }
+    .dash-table-row {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      display: grid; grid-template-columns: 2fr 1.5fr 1fr 1fr;
+      gap: 0.5rem; align-items: center;
+      font-size: 0.7rem; color: var(--gray);
+      animation: row-slide 0.6s ease-out both;
+    }
+    .dash-table-row:nth-child(2) { animation-delay: 0.1s; }
+    .dash-table-row:nth-child(3) { animation-delay: 0.2s; }
+    .dash-table-row:nth-child(4) { animation-delay: 0.3s; }
+    .dash-table-row:nth-child(5) { animation-delay: 0.4s; }
+    @keyframes row-slide { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }
+    .row-name { color: var(--white); font-weight: 500; }
+    .row-badge {
+      display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+      font-size: 0.65rem; font-weight: 600;
+    }
+    .badge-green { background: rgba(34,197,94,0.15); color: #22c55e; }
+    .badge-blue { background: rgba(99,102,241,0.15); color: var(--purple); }
+    .badge-amber { background: rgba(234,179,8,0.15); color: #eab308; }
+    .glow-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      background: linear-gradient(to top, var(--navy) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* LOGIN SECTION */
+    .login-section {
+      max-width: 480px; margin: 0 auto 5rem;
+      text-align: center;
+    }
+    .login-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .login-icon {
+      width: 56px; height: 56px; margin: 0 auto 1.25rem;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-icon svg { width: 28px; height: 28px; stroke: white; fill: none; }
+    .login-card h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .login-card p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .login-field {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--navy); border: 1px solid var(--border);
+      border-radius: 8px; color: var(--white); font-size: 0.95rem;
+      margin-bottom: 0.75rem; outline: none; transition: border-color 0.2s;
+    }
+    .login-field:focus { border-color: var(--purple); }
+    .login-field::placeholder { color: var(--gray-dark); }
+    .login-btn {
+      width: 100%; padding: 0.85rem;
+      background: linear-gradient(135deg, var(--purple), var(--purple-dark));
+      color: white; border: none; border-radius: 8px;
+      font-size: 1rem; font-weight: 600; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .login-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+    .login-btn:active { transform: scale(0.98); }
+    .login-note { font-size: 0.75rem; color: var(--gray-dark); margin-top: 1rem; }
+
+    /* WELCOME / DOCUMENTS SECTION */
+    .welcome-section {
+      max-width: 640px; margin: 0 auto 5rem;
+      text-align: center;
+    }
+    .welcome-card {
+      background: var(--navy-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .welcome-header {
+      margin-bottom: 1.75rem;
+    }
+    .welcome-header h2 {
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 0.4rem;
+      background: linear-gradient(135deg, var(--white) 0%, var(--gray) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .welcome-header p { color: var(--gray); font-size: 0.9rem; }
+    .docs-grid {
+      display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.75rem;
+    }
+    .doc-card {
+      background: var(--navy); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      display: flex; align-items: flex-start; gap: 1rem;
+      text-align: left; transition: border-color 0.2s, transform 0.15s;
+    }
+    .doc-card:hover { border-color: rgba(0,196,204,0.35); transform: translateY(-1px); }
+    .doc-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .doc-icon svg { width: 22px; height: 22px; stroke-width: 2; fill: none; }
+    .doc-icon-book { background: rgba(0,196,204,0.12); }
+    .doc-icon-book svg { stroke: var(--gold); }
+    .doc-icon-wrench { background: rgba(99,102,241,0.12); }
+    .doc-icon-wrench svg { stroke: var(--purple); }
+    .doc-info { flex: 1; }
+    .doc-info h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--white); }
+    .doc-info p { font-size: 0.82rem; color: var(--gray); line-height: 1.5; margin-bottom: 0.75rem; }
+    .doc-download {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; font-weight: 600; color: var(--gold);
+      padding: 0.35rem 0.85rem;
+      background: rgba(0,196,204,0.08); border: 1px solid rgba(0,196,204,0.2);
+      border-radius: 6px; transition: background 0.2s;
+    }
+    .doc-download:hover { background: rgba(0,196,204,0.15); text-decoration: none; }
+    .doc-download svg { width: 14px; height: 14px; stroke-width: 2; fill: none; stroke: var(--gold); }
+    .dashboard-btn {
+      display: block; width: 100%; padding: 1rem;
+      background: linear-gradient(135deg, var(--gold), #00A8AA);
+      color: var(--navy); font-weight: 700; font-size: 1.05rem;
+      border-radius: 10px; text-align: center; margin-bottom: 1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+    }
+    .dashboard-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 24px rgba(0,196,204,0.4); text-decoration: none; }
+    .signout-link {
+      font-size: 0.8rem; color: var(--gray-dark); cursor: pointer;
+      background: none; border: none; padding: 0;
+      text-decoration: underline; text-underline-offset: 2px;
+    }
+    .signout-link:hover { color: var(--gray); }
+
+    /* FEATURES */
+    .features { max-width: 1100px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .features-header { text-align: center; margin-bottom: 3rem; }
+    .features-header .label { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .features-header h2 { font-size: 2.25rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .features-header p { color: var(--gray); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+    .divider { height: 1px; width: 80px; margin: 1rem auto; background: linear-gradient(to right, transparent, var(--gold), transparent); }
+
+    .feature-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+    .feature-card {
+      background: var(--navy-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem;
+      transition: border-color 0.3s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: rgba(99,102,241,0.3); transform: translateY(-2px); }
+    .feature-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .feature-icon svg { width: 22px; height: 22px; stroke-width: 2; fill: none; }
+    .fi-purple { background: rgba(99,102,241,0.12); }
+    .fi-purple svg { stroke: var(--purple); }
+    .fi-cyan { background: rgba(6,182,212,0.12); }
+    .fi-cyan svg { stroke: var(--cyan); }
+    .fi-gold { background: rgba(0,196,204,0.12); }
+    .fi-gold svg { stroke: var(--gold); }
+    .fi-green { background: rgba(34,197,94,0.12); }
+    .fi-green svg { stroke: #22c55e; }
+    .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .feature-card p { color: var(--gray); font-size: 0.9rem; line-height: 1.6; }
+
+    /* WHY SECTION */
+    .why-section {
+      max-width: 900px; margin: 0 auto; padding: 0 2rem 5rem;
+    }
+    .why-header { text-align: center; margin-bottom: 2.5rem; }
+    .why-header .label { color: var(--gold); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem; }
+    .why-header h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .why-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+    .why-stat { text-align: center; }
+    .why-stat-num {
+      font-size: 2.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--purple), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .why-stat-label { font-size: 0.85rem; color: var(--gray); margin-top: 0.25rem; }
+    .why-text { color: var(--gray); font-size: 1rem; line-height: 1.8; text-align: center; }
+
+    /* CTA */
+    .cta-section {
+      text-align: center; padding: 4rem 2rem;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.05));
+      border-top: 1px solid var(--border);
+    }
+    .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .cta-section p { color: var(--gray); margin-bottom: 1.5rem; font-size: 1.05rem; }
+    .cta-btn {
+      display: inline-block; padding: 0.85rem 2rem;
+      background: var(--gold); color: var(--navy); font-weight: 700;
+      border-radius: 8px; font-size: 1rem; transition: transform 0.15s;
+    }
+    .cta-btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 2rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem; color: var(--gray-dark);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .dash-body { grid-template-columns: 1fr; }
+      .dash-sidebar { display: none; }
+      .dash-kpis { grid-template-columns: repeat(2, 1fr); }
+      .feature-grid { grid-template-columns: 1fr; }
+      .why-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+  <style id="pp-brand-override">
+    /* PALATIAL BRAND OVERRIDE */
+    *{box-sizing:border-box;}
+    body{background:#0d0118!important;color:#f1f5f9!important;}
+    h1,h2,h3,h4,h5,h6{line-height:1.2!important;}
+    header,nav{background:linear-gradient(90deg,#1a0533 0%,#2a0e4a 60%,#1a0533 100%)!important;border-bottom:2px solid #00C4CC!important;box-shadow:0 2px 20px rgba(0,196,204,0.15)!important;}
+    .logo{font-size:2.2rem!important;font-weight:900!important;color:#00C4CC!important;letter-spacing:-1px!important;font-family:Georgia,serif!important;text-decoration:none!important;}
+    .logo span,.logo-text{display:none!important;}
+    nav a{color:rgba(255,255,255,0.75)!important;font-weight:600!important;text-transform:uppercase!important;font-size:0.78rem!important;letter-spacing:0.05em!important;}
+    nav a:hover{color:#00C4CC!important;}
+    .hero{background:linear-gradient(160deg,#1a0533 0%,#2D2252 50%,#1a0533 100%)!important;}
+    .hero h1 span,.hero h1 strong{color:#00C4CC!important;}
+    .hero p{color:rgba(241,245,249,0.7)!important;}
+    .cta-btn,.btn,.button{background:linear-gradient(135deg,#00C4CC,#00A8AA)!important;color:#1a0533!important;font-weight:700!important;border:none!important;}
+    .cta-btn:hover,.btn:hover{background:linear-gradient(135deg,#33D0D4,#00C4CC)!important;box-shadow:0 4px 20px rgba(0,196,204,0.35)!important;}
+    .services,.services-section,.section{background:linear-gradient(180deg,#0d0118 0%,#1a0533 100%)!important;}
+    .service-card,.card{background:rgba(255,255,255,0.04)!important;border:1px solid rgba(0,196,204,0.15)!important;border-radius:12px!important;}
+    .service-card:hover,.card:hover{border-color:rgba(0,196,204,0.4)!important;background:rgba(0,196,204,0.06)!important;}
+    .service-card h3,.card h3{color:#f1f5f9!important;}
+    .service-card p,.card p{color:rgba(241,245,249,0.65)!important;}
+    .contact-section{background:linear-gradient(135deg,#1a0533,#2D2252)!important;border-top:1px solid rgba(0,196,204,0.2)!important;}
+    .phone-link,.tel-link{color:#00C4CC!important;font-weight:700!important;}
+    footer{background:linear-gradient(180deg,#0d0118,#1a0533)!important;border-top:1px solid rgba(0,196,204,0.2)!important;color:rgba(241,245,249,0.5)!important;}
+    footer a{color:#00C4CC!important;}
+    h2{color:#f1f5f9!important;}
+    h2 span{color:#00C4CC!important;}
+    p{color:rgba(241,245,249,0.75)!important;overflow-wrap:break-word;word-wrap:break-word;}
+    a[href^="tel"]{color:#00C4CC!important;font-weight:700!important;}
+    input,textarea,select{background:rgba(255,255,255,0.06)!important;border:1px solid rgba(0,196,204,0.25)!important;color:#f1f5f9!important;border-radius:8px!important;}
+    input::placeholder,textarea::placeholder{color:rgba(241,245,249,0.35)!important;}
+    li{color:rgba(241,245,249,0.75)!important;}
+  </style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="https://palatialpools.com.au" class="nav-brand">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12c2-2 4-3 6-3s4 1 6 3 4 3 6 3"/><path d="M2 18c2-2 4-3 6-3s4 1 6 3 4 3 6 3"/></svg>
+      Palatial Pools
+    </a>
+    <div class="nav-links">
+      <a href="https://palatialpools.com.au">Home</a>
+      <a href="https://palatialpools.com.au/melbourne-pool-services">Services</a>
+      <a href="https://palatialpools.com.au/palatial-project-gallery">Gallery</a>
+      <a href="https://palatialpools.com.au/faq/">How We Work</a>
+      <a href="https://palatialpools.com.au/palatial-link" class="active">Palatial Link</a>
+      <a href="https://palatialpools.com.au/contact-palatial-pool-services">Contact</a>
+      <a href="https://palatialpools.com.au/admin" class="nav-cta">Login</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge"><span class="dot"></span> Client Portal</div>
+    <h1>Palatial Link <span style="font-size:0.55em;font-weight:400;color:rgba(241,245,249,0.5);letter-spacing:0.02em;">by Palatial</span></h1>
+    <p class="hero-sub">Your pool care, all in one place. View your service history, water test results, job updates, and communicate directly with our team.</p>
+
+    <!-- DASHBOARD PREVIEW - Real Screenshot -->
+    <div class="dash-preview">
+      <div class="dash-chrome">
+        <span class="chrome-dot r"></span>
+        <span class="chrome-dot y"></span>
+        <span class="chrome-dot g"></span>
+        <span class="chrome-url">palatialpools.com.au/admin &mdash; Palatial Link Dashboard</span>
+      </div>
+      <img src="/images/palatial-link-dashboard.png" alt="Palatial Link Dashboard - Real-time business overview showing customers, jobs, pools, revenue, and analytics" style="width:100%;display:block;">
+      <div class="glow-overlay"></div>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section class="login-section" id="login-section">
+    <div class="login-card">
+      <div class="login-icon">
+        <svg viewBox="0 0 24 24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      </div>
+      <h2>Sign in to Palatial Link <span style="font-size:0.6em;font-weight:400;color:rgba(241,245,249,0.4);display:block;margin-top:0.2rem;">by Palatial</span></h2>
+
+      <!-- Status: checking -->
+      <div id="portal-status-checking" style="padding:0.75rem 1rem;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;margin-bottom:1.25rem;font-size:0.85rem;color:rgba(241,245,249,0.5);display:flex;align-items:center;gap:0.5rem;">
+        <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#64748b;animation:pulse-dot 1.5s infinite;"></span>
+        Checking portal availability&hellip;
+      </div>
+
+      <!-- Status: offline -->
+      <div id="portal-status-offline" style="display:none;padding:1.25rem;background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.2);border-radius:10px;margin-bottom:1.25rem;text-align:left;">
+        <p style="color:#f87171;font-weight:600;font-size:0.9rem;margin-bottom:0.4rem;">Portal Temporarily Unavailable</p>
+        <p style="color:rgba(241,245,249,0.6);font-size:0.85rem;line-height:1.6;margin:0;">The portal is currently unavailable due to server maintenance and upgrades. Please try again shortly, or contact us at <a href="tel:+61342317665" style="color:#00C4CC;font-weight:600;">03&nbsp;4231&nbsp;POOL</a> / <a href="tel:+61468277665" style="color:#00C4CC;font-weight:600;">0468&nbsp;27&nbsp;POOL</a> or email <a href="mailto:service@palatialpools.com.au" style="color:#00C4CC;font-weight:600;">service@palatialpools.com.au</a> if you need immediate assistance.</p>
+      </div>
+
+      <!-- Status: online - login form -->
+      <div id="portal-status-online" style="display:none;">
+        <p style="color:rgba(241,245,249,0.55);font-size:0.85rem;margin-bottom:1.25rem;">Existing clients automatically have an account. <a href="mailto:service@palatialpools.com.au?subject=Palatial Link temporary password request" style="color:#00C4CC;font-weight:600;">Click here to request your temporary password</a> if this is your first time.</p>
+        <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:1rem;padding:0.5rem 0.75rem;background:rgba(34,197,94,0.07);border:1px solid rgba(34,197,94,0.2);border-radius:7px;">
+          <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;"></span>
+          <span style="font-size:0.78rem;color:#86efac;">Portal is online</span>
+        </div>
+        <form id="loginForm" onsubmit="handleLogin(event)">
+          <input type="email" class="login-field" id="username" placeholder="Email Address" autocomplete="username" required>
+          <input type="password" class="login-field" id="password" placeholder="Password" autocomplete="current-password" required>
+          <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+        </form>
+        <div id="login-error" style="display:none;margin-top:0.75rem;padding:0.6rem 0.9rem;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.25);border-radius:7px;color:#f87171;font-size:0.82rem;"></div>
+        <p class="login-note">Your pool care portal. <a href="mailto:service@palatialpools.com.au?subject=Palatial Link help" style="color:#00C4CC;">Need help?</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WELCOME / DOCUMENTS (shown after login) -->
+  <section class="welcome-section" id="welcome-section" style="display:none;">
+    <div class="welcome-card">
+      <div class="welcome-header">
+        <h2>Welcome to Palatial Link</h2>
+        <p>You're signed in. Access your documents below or open the full dashboard.</p>
+      </div>
+
+      <div class="docs-grid" id="docs-grid">
+        <!-- Pool Owner's Guide - visible to all roles -->
+        <div class="doc-card" id="doc-owners-guide">
+          <div class="doc-icon doc-icon-book">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </div>
+          <div class="doc-info">
+            <h3>Pool Owner's Guide</h3>
+            <p>Everything you need to know about maintaining your pool. Covers water chemistry, equipment care, seasonal tips, and troubleshooting.</p>
+            <a href="/documents/Palatial_Pools_Universal_Owner_Guide_v3.pdf" class="doc-download" download>
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+
+        <!-- Field Manual - visible to admin role only -->
+        <div class="doc-card" id="doc-field-manual" style="display:none;">
+          <div class="doc-icon doc-icon-wrench">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="doc-info">
+            <h3>Field Manual</h3>
+            <p>Technical reference for field technicians. Covers advanced diagnostics, equipment specifications, repair procedures, and safety protocols.</p>
+            <a href="/documents/Palatial_Pools_Field_Manual.pdf" class="doc-download" download>
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a href="/admin" class="dashboard-btn">Open Dashboard &rarr;</a>
+      <button class="signout-link" onclick="handleSignOut()">Sign Out</button>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="features-header">
+      <div class="label">Service Dashboard Features</div>
+      <h2>What It Helps Us Manage</h2>
+      <div class="divider"></div>
+      <p>These tools help our team manage day-to-day operations with precision and clarity.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon fi-purple"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Sales &amp; Payments</h3>
+        <p>Manage quotes, invoices, and payments in one place. Automated follow-ups and real-time financial tracking for every job.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-cyan"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Water Testing</h3>
+        <p>Direct integration with water testing hardware. Results are automatically synced to customer profiles and previous service history.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-gold"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
+        <h3>Photo Diagnostics</h3>
+        <p>Technicians upload photos of equipment and pool conditions. AI-assisted analysis helps identify wear and potential failures early.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-purple"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></svg></div>
+        <h3>Chemical Calculator</h3>
+        <p>Calculate exact dosages for chlorine, pH adjustment, alkalinity, calcium hardness, cyanuric acid, and salt. Input pool volume and current readings, get precise grams or kilograms.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-cyan"><svg viewBox="0 0 24 24"><path d="M2 12c2-2 4-3 6-3s4 1 6 3 4 3 6 3"/><path d="M2 18c2-2 4-3 6-3s4 1 6 3 4 3 6 3"/></svg></div>
+        <h3>Volume Calculator</h3>
+        <p>Calculate pool volume for rectangular, circular, oval, kidney, and freeform shapes. Returns litres, gallons, surface area, salt requirements, and pump turnover rate.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-gold"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M7 8h10M7 12h6"/></svg></div>
+        <h3>Label Printer</h3>
+        <p>Create product labels with name, SKU, barcode, price, warnings, batch number, and expiry date. SVG preview with print-ready output for Brother QL-800.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon fi-green"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg></div>
+        <h3>Shared Records</h3>
+        <p>Automatic synchronisation across contacts, jobs, pools, products, and quotes. Real-time data, no manual imports, no stale records.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY IT MATTERS -->
+  <section class="why-section">
+    <div class="why-header">
+      <div class="label">Why It Matters</div>
+      <h2>Organised for Excellence</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="why-stats">
+      <div class="why-stat"><div class="why-stat-num">8+</div><div class="why-stat-label">Tools Replaced</div></div>
+      <div class="why-stat"><div class="why-stat-num">1</div><div class="why-stat-label">Connected System</div></div>
+      <div class="why-stat"><div class="why-stat-num">0</div><div class="why-stat-label">Separate Records</div></div>
+      <div class="why-stat"><div class="why-stat-num">24/7</div><div class="why-stat-label">Live Updates</div></div>
+    </div>
+    <p class="why-text">
+      Many pool service businesses rely on separate spreadsheets and apps for scheduling, invoicing, inventory, and communication. We prefer to keep those records together in one clear system, so our team can see service history, water test results, customer notes, and job updates quickly and accurately.
+    </p>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to See It in Action?</h2>
+    <p>Contact Palatial Pools to learn how our monitoring and service systems support reliable pool care.</p>
+    <div style="display:flex;flex-direction:column;gap:0.75rem;align-items:center;margin-top:1.5rem">
+      <a href="tel:+61342317665" style="font-size:clamp(1.4rem,4vw,1.8rem);font-weight:800;color:#00C4CC;text-decoration:none;letter-spacing:0.05em;display:block">03 4231 POOL</a>
+      <a href="tel:+61468277665" style="font-size:1.1rem;font-weight:600;color:rgba(241,245,249,0.75);text-decoration:none;display:block">0468 27 POOL</a>
+      <a href="mailto:service@palatialpools.com.au" style="font-size:0.9rem;font-weight:400;color:rgba(241,245,249,0.5);text-decoration:none;display:block">Priority scheduling and booking via email: service@palatialpools.com.au</a>
+    </div>
+  </section>
+
+  <!-- FOOTER (OpenHands/OpenManus links removed) -->
+  <footer class="footer">
+    <p style="text-align:center;margin-bottom:0.75rem">&copy; 2026 Palatial Pool Services. | <a href="https://palatialpools.com.au">Home</a></p>
+    <p style="text-align:center;margin-top:0.5rem;font-size:0.75rem"><a href="/privacy-policy/" style="color:#64748b;text-decoration:none">Privacy Policy</a></p>
+  </footer>
+
+  <script>
+  // =====================================================================
+  // AUTH CONFIGURATION
+  // =====================================================================
+  // Public pages must never contain fallback passwords or client-side
+  // credential checks. Authentication is delegated to /api/login, which
+  // runs outside this static repository.
+  // =====================================================================
+
+  // ─── Session / UI helpers ────────────────────────────────────────────
+  function showLoginSection() {
+    document.getElementById('login-section').style.display = '';
+    document.getElementById('welcome-section').style.display = 'none';
+  }
+
+  function showWelcomeSection(role) {
+    document.getElementById('login-section').style.display = 'none';
+    document.getElementById('welcome-section').style.display = '';
+    // Show Field Manual only for admin
+    var fieldManual = document.getElementById('doc-field-manual');
+    if (role === 'admin') {
+      fieldManual.style.display = '';
+    } else {
+      fieldManual.style.display = 'none';
+    }
+  }
+
+  function handleSignOut() {
+    localStorage.removeItem('palatial_role');
+    localStorage.removeItem('palatial_username');
+    sessionStorage.removeItem('palatial_role');
+    sessionStorage.removeItem('palatial_username');
+    showLoginSection();
+  }
+
+  // ─── Portal health check + session restore on page load ─────────────
+  (function() {
+    var checking = document.getElementById('portal-status-checking');
+    var offline  = document.getElementById('portal-status-offline');
+    var online   = document.getElementById('portal-status-online');
+
+    function showOnline()  { checking.style.display='none'; offline.style.display='none'; online.style.display='block'; }
+    function showOffline() { checking.style.display='none'; online.style.display='none';  offline.style.display='block'; }
+
+    var ctrl = new AbortController();
+    var timer = setTimeout(function() { ctrl.abort(); }, 5000);
+
+    fetch('/api/health', { method: 'GET', signal: ctrl.signal })
+      .then(function(r) {
+        clearTimeout(timer);
+        if (r.ok) {
+          showOnline();
+        } else {
+          localStorage.removeItem('palatial_role');
+          sessionStorage.removeItem('palatial_role');
+          showOffline();
+        }
+      })
+      .catch(function() {
+        clearTimeout(timer);
+        localStorage.removeItem('palatial_role');
+        sessionStorage.removeItem('palatial_role');
+        showOffline();
+      });
+  })();
+
+  // ─── Login handler ───────────────────────────────────────────────────
+  async function handleLogin(e) {
+    e.preventDefault();
+    var btn = document.getElementById('loginBtn');
+    var errBox = document.getElementById('login-error');
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value;
+    btn.disabled = true;
+    btn.textContent = 'Signing in\u2026';
+    errBox.style.display = 'none';
+
+    // Validate that username is not empty
+    if (!username) {
+      errBox.textContent = 'Please enter your username or email address.';
+      errBox.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+      return;
+    }
+    try {
+      var res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: username, password: password }),
+        signal: AbortSignal.timeout(10000)
+      });
+      var data = await res.json();
+      if (res.ok && data.success) {
+        sessionStorage.setItem('palatial_role', data.role || 'customer');
+        sessionStorage.setItem('palatial_username', username);
+        showWelcomeSection(data.role || 'customer');
+        return;
+      } else {
+        errBox.textContent = data.error || 'Invalid email or password. Please try again.';
+        errBox.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+
+    } catch (err) {
+      errBox.textContent = 'Unable to connect to the portal. Please try again shortly.';
+      errBox.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Sign In';
+    }
+  }
+  </script>
+
+  <script src="/assets/tracker.js"></script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

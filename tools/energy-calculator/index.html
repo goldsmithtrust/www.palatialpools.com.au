@@ -1,0 +1,1624 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pool Energy Savings Calculator | Palatial Pools</title>
+<meta name="description" content="Calculate your pool energy costs and potential savings with energy-efficient equipment. Compare running costs for pumps, heaters, and chlorinators. Palatial Pools Melbourne.">
+<link rel="canonical" href="https://www.palatialpools.com.au/tools/energy-calculator/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pp-luxury.css">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-purple: #1a0533;
+    --brand-purple-mid: #2d0a52;
+    --brand-purple-light: #3d1468;
+    --brand-teal: #00C4CC;
+    --brand-teal-dark: #009aa0;
+    --brand-teal-light: #33d0d7;
+    --brand-teal-glow: rgba(0,196,204,0.15);
+    --text-light: #f0f0f8;
+    --text-muted: #a0a0c0;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(0,196,204,0.2);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--brand-purple);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== HEADER ===== */
+  header {
+    background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-mid) 100%);
+    border-bottom: 2px solid var(--brand-teal);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,196,204,0.3);
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .logo-area {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .logo-mark {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--brand-purple);
+    flex-shrink: 0;
+    box-shadow: 0 0 16px rgba(0,196,204,0.4);
+  }
+  .logo-text h1 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+  .logo-text p {
+    font-size: 0.75rem;
+    color: var(--brand-teal);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .header-badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.75rem;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(180deg, var(--brand-purple-mid) 0%, var(--brand-purple) 100%);
+    text-align: center;
+    padding: 56px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0,196,204,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .hero h2 span { color: var(--brand-teal); }
+  .hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto 24px;
+    position: relative;
+  }
+  .hero-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .tab-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 10px 24px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .tab-btn:hover { border-color: var(--brand-teal); color: var(--brand-teal); }
+  .tab-btn.active {
+    background: var(--brand-teal);
+    border-color: var(--brand-teal);
+    color: var(--brand-purple);
+    box-shadow: 0 0 16px rgba(0,196,204,0.4);
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INPUTS PANEL ===== */
+  .inputs-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: sticky;
+    top: 90px;
+    box-shadow: var(--shadow);
+  }
+  .panel-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 16px;
+    background: var(--brand-teal);
+    border-radius: 2px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .form-group label span {
+    color: var(--brand-teal);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--brand-teal);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,196,204,0.5);
+    transition: transform 0.15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  select, input[type="number"] {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  select:focus, input[type="number"]:focus { border-color: var(--brand-teal); }
+  select option { background: var(--brand-purple-mid); }
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 20px 0;
+  }
+  .rate-note {
+    background: rgba(0,196,204,0.08);
+    border: 1px solid rgba(0,196,204,0.2);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .rate-note strong { color: var(--brand-teal); }
+
+  /* ===== RESULTS PANEL ===== */
+  .results-panel { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ===== SAVINGS HERO CARD ===== */
+  .savings-hero {
+    background: linear-gradient(135deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border: 1px solid var(--brand-teal);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 0 32px rgba(0,196,204,0.15), var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .savings-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,196,204,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .savings-hero h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--brand-teal);
+    margin-bottom: 8px;
+  }
+  .savings-amount {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 900;
+    color: var(--brand-teal);
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 24px rgba(0,196,204,0.4);
+  }
+  .savings-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .savings-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item { text-align: center; }
+  .meta-item .val {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-light);
+    display: block;
+  }
+  .meta-item .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+  .section-header .badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .comparison-table thead tr {
+    background: linear-gradient(90deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border-bottom: 2px solid var(--brand-teal);
+  }
+  .comparison-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .comparison-table thead th:first-child { color: var(--brand-teal); }
+  .comparison-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+  }
+  .comparison-table tbody tr:hover { background: rgba(0,196,204,0.04); }
+  .comparison-table tbody tr.palatial-row {
+    background: rgba(0,196,204,0.06);
+    border-left: 3px solid var(--brand-teal);
+  }
+  .comparison-table tbody tr.palatial-row:hover { background: rgba(0,196,204,0.1); }
+  .comparison-table td {
+    padding: 13px 16px;
+    vertical-align: middle;
+  }
+  .product-name { font-weight: 700; color: var(--text-light); }
+  .product-brand { font-size: 0.75rem; color: var(--text-muted); }
+  .palatial-row .product-name { color: var(--brand-teal); }
+  .palatial-badge {
+    display: inline-block;
+    background: var(--brand-teal);
+    color: var(--brand-purple);
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  .cop-bar-wrap { display: flex; align-items: center; gap: 8px; }
+  .cop-bar {
+    height: 6px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+    flex: 1;
+    overflow: hidden;
+    min-width: 60px;
+  }
+  .cop-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+  .cop-val { font-weight: 700; font-size: 0.9rem; min-width: 32px; }
+  .cost-val { font-weight: 700; font-size: 0.95rem; }
+  .cost-val.best { color: var(--success); }
+  .cost-val.mid { color: var(--warning); }
+  .cost-val.worst { color: var(--danger); }
+  .saving-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .saving-pill.positive { background: rgba(34,197,94,0.15); color: var(--success); }
+  .saving-pill.negative { background: rgba(239,68,68,0.1); color: var(--text-muted); }
+  .saving-pill.neutral { background: rgba(255,255,255,0.06); color: var(--text-muted); }
+
+  /* ===== STAR RATING ===== */
+  .stars { color: var(--brand-teal); font-size: 0.85rem; letter-spacing: -1px; }
+
+  /* ===== ROI CHART ===== */
+  .roi-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .roi-chart-wrap { position: relative; height: 220px; margin-top: 16px; }
+  canvas { border-radius: var(--radius-sm); }
+
+  /* ===== EFFICIENCY BARS ===== */
+  .efficiency-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .eff-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .eff-row:last-child { margin-bottom: 0; }
+  .eff-label { width: 160px; flex-shrink: 0; }
+  .eff-label .name { font-size: 0.82rem; font-weight: 600; color: var(--text-light); }
+  .eff-label .brand { font-size: 0.72rem; color: var(--text-muted); }
+  .eff-track {
+    flex: 1;
+    height: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .eff-bar {
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brand-purple);
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+  }
+  .eff-val { font-size: 0.82rem; font-weight: 700; width: 80px; text-align: right; color: var(--text-light); }
+
+  /* ===== PAYBACK CARD ===== */
+  .payback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .payback-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .payback-card:hover { border-color: var(--brand-teal); transform: translateY(-2px); }
+  .payback-card.highlight {
+    border-color: var(--brand-teal);
+    background: rgba(0,196,204,0.06);
+    box-shadow: 0 0 20px rgba(0,196,204,0.15), var(--shadow);
+  }
+  .payback-card .product { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .payback-card .years { font-size: 2rem; font-weight: 900; color: var(--brand-teal); line-height: 1; }
+  .payback-card .years-label { font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px; }
+  .payback-card .annual { font-size: 0.85rem; font-weight: 700; color: var(--success); }
+  .payback-card .annual-label { font-size: 0.72rem; color: var(--text-muted); }
+
+  /* ===== FOOTNOTE ===== */
+  .footnote {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .footnote strong { color: var(--text-light); }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    .comparison-table { font-size: 0.78rem; }
+    .comparison-table td, .comparison-table th { padding: 10px 10px; }
+    .savings-meta { gap: 16px; }
+    .eff-label { width: 110px; }
+  }
+  @media print {
+    header { position: static; }
+    .inputs-panel { position: static; }
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== TABS CONTENT ===== */
+  .tab-content { display: none; }
+  .tab-content.active { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ===== TOOLTIP ===== */
+  [data-tip] { position: relative; cursor: help; }
+  [data-tip]::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-purple-mid);
+    border: 1px solid var(--brand-teal);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.72rem;
+    color: var(--text-light);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 10;
+  }
+  [data-tip]:hover::after { opacity: 1; }
+
+  /* ===== ANIMATED COUNTER ===== */
+  .count-up { transition: all 0.4s; }
+
+  /* ===== SCROLL FADE ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+</style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>Energy Comparison Tool</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>See How Much You Could <span>Save</span> Each Year</h2>
+  <p>Compare real running costs between Neptune &amp; Echo equipment and leading competitors. Enter your pool details below for a personalised estimate.</p>
+  <div class="hero-tabs">
+    <button class="tab-btn active" onclick="switchTab('heat-pumps', this)">Heat Pumps</button>
+    <button class="tab-btn" onclick="switchTab('pool-pumps', this)">Pool Pumps</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+  <div class="calculator-grid">
+
+    <!-- INPUTS PANEL -->
+    <aside class="inputs-panel fade-in">
+      <div class="panel-title">Your Pool Details</div>
+
+      <div class="form-group">
+        <label>Pool Volume &nbsp;<span id="vol-display">50,000 L</span></label>
+        <input type="range" id="pool-volume" min="20000" max="150000" step="5000" value="50000" oninput="updateDisplay()">
+      </div>
+
+      <div class="form-group">
+        <label>Daily Filtration Run Time &nbsp;<span id="run-display">8 hrs</span></label>
+        <input type="range" id="run-hours" min="4" max="14" step="0.5" value="8" oninput="updateDisplay()">
+      </div>
+
+      <div class="form-group" id="heat-pump-usage-group">
+        <label>Heat Pump Usage (months/year) &nbsp;<span id="hp-months-display">8 months</span></label>
+        <input type="range" id="hp-months" min="3" max="12" step="1" value="8" oninput="updateDisplay()">
+      </div>
+
+      <div class="form-group" id="heat-pump-daily-group">
+        <label>Heat Pump Daily Run Time &nbsp;<span id="hp-hours-display">6 hrs</span></label>
+        <input type="range" id="hp-hours" min="2" max="12" step="0.5" value="6" oninput="updateDisplay()">
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label>Electricity Rate (¢/kWh)</label>
+        <input type="number" id="elec-rate" value="33" min="15" max="60" step="0.5" oninput="updateDisplay()">
+      </div>
+
+      <div class="rate-note">
+        <strong>Melbourne 2025 Default Offer:</strong> ~33¢/kWh peak residential rate. Adjust above if you're on a different tariff or have solar.
+      </div>
+
+      <hr class="divider">
+
+      <div class="form-group">
+        <label>Desired Pool Temperature (°C) &nbsp;<span id="temp-display">28°C</span></label>
+        <input type="range" id="target-temp" min="24" max="34" step="1" value="28" oninput="updateDisplay()">
+      </div>
+
+      <div class="form-group">
+        <label>Average Ambient Air Temp (°C) &nbsp;<span id="ambient-display">15°C</span></label>
+        <input type="range" id="ambient-temp" min="5" max="30" step="1" value="15" oninput="updateDisplay()">
+      </div>
+    </aside>
+
+    <!-- RESULTS AREA -->
+    <main class="results-panel">
+
+      <!-- HEAT PUMPS TAB -->
+      <div id="tab-heat-pumps" class="tab-content active">
+
+        <!-- SAVINGS HERO -->
+        <div class="savings-hero fade-in">
+          <h3>Annual Saving with Neptune X-Pro vs Average Competitor</h3>
+          <div class="savings-amount count-up" id="hp-savings-hero">$0</div>
+          <div class="savings-sub">estimated annual electricity cost saving</div>
+          <div class="savings-meta">
+            <div class="meta-item">
+              <span class="val count-up" id="hp-kwh-saved">0</span>
+              <span class="lbl">kWh Saved / Year</span>
+            </div>
+            <div class="meta-item">
+              <span class="val count-up" id="hp-payback">0 yrs</span>
+              <span class="lbl">Typical Payback</span>
+            </div>
+            <div class="meta-item">
+              <span class="val count-up" id="hp-co2">0 kg</span>
+              <span class="lbl">CO₂ Avoided / Year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPARISON TABLE -->
+        <div class="fade-in">
+          <div class="section-header">
+            <h3>Heat Pump Running Cost Comparison</h3>
+            <span class="badge">Annual Estimate</span>
+          </div>
+          <div class="comparison-wrap">
+            <table class="comparison-table" id="hp-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th data-tip="Coefficient of Performance at 15°C ambient">COP @ 15°C</th>
+                  <th>Annual kWh</th>
+                  <th>Annual Cost</th>
+                  <th>vs Neptune X-Pro</th>
+                </tr>
+              </thead>
+              <tbody id="hp-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- COP EFFICIENCY BARS -->
+        <div class="efficiency-section fade-in">
+          <div class="section-header">
+            <h3>COP Efficiency Comparison</h3>
+            <span class="badge">Higher is Better</span>
+          </div>
+          <div id="hp-eff-bars"><!-- Populated by JS --></div>
+        </div>
+
+        <!-- ROI CHART -->
+        <div class="roi-section fade-in">
+          <div class="section-header">
+            <h3>Cumulative Savings Over Time</h3>
+            <span class="badge">Neptune X-Pro vs Competitors</span>
+          </div>
+          <div class="roi-chart-wrap">
+            <canvas id="hp-roi-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- PAYBACK CARDS -->
+        <div class="fade-in">
+          <div class="section-header">
+            <h3>Return on Investment</h3>
+            <span class="badge">Payback Period</span>
+          </div>
+          <div class="payback-grid" id="hp-payback-cards"><!-- Populated by JS --></div>
+        </div>
+
+      </div><!-- /tab-heat-pumps -->
+
+      <!-- POOL PUMPS TAB -->
+      <div id="tab-pool-pumps" class="tab-content">
+
+        <!-- SAVINGS HERO -->
+        <div class="savings-hero fade-in">
+          <h3>Annual Saving with Neptune X-Eco vs Single-Speed Pump</h3>
+          <div class="savings-amount count-up" id="pp-savings-hero">$0</div>
+          <div class="savings-sub">estimated annual electricity cost saving</div>
+          <div class="savings-meta">
+            <div class="meta-item">
+              <span class="val count-up" id="pp-kwh-saved">0</span>
+              <span class="lbl">kWh Saved / Year</span>
+            </div>
+            <div class="meta-item">
+              <span class="val count-up" id="pp-payback">0 yrs</span>
+              <span class="lbl">Typical Payback</span>
+            </div>
+            <div class="meta-item">
+              <span class="val count-up" id="pp-co2">0 kg</span>
+              <span class="lbl">CO₂ Avoided / Year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPARISON TABLE -->
+        <div class="fade-in">
+          <div class="section-header">
+            <h3>Pool Pump Running Cost Comparison</h3>
+            <span class="badge">Annual Estimate</span>
+          </div>
+          <div class="comparison-wrap">
+            <table class="comparison-table" id="pp-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Energy Rating</th>
+                  <th>Typical Wattage</th>
+                  <th>Annual kWh</th>
+                  <th>Annual Cost</th>
+                  <th>vs Neptune X-Eco</th>
+                </tr>
+              </thead>
+              <tbody id="pp-tbody">
+                <!-- Populated by JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- EFFICIENCY BARS -->
+        <div class="efficiency-section fade-in">
+          <div class="section-header">
+            <h3>Annual Energy Consumption</h3>
+            <span class="badge">Lower is Better</span>
+          </div>
+          <div id="pp-eff-bars"><!-- Populated by JS --></div>
+        </div>
+
+        <!-- ROI CHART -->
+        <div class="roi-section fade-in">
+          <div class="section-header">
+            <h3>Cumulative Savings Over Time</h3>
+            <span class="badge">Neptune X-Eco vs Competitors</span>
+          </div>
+          <div class="roi-chart-wrap">
+            <canvas id="pp-roi-chart"></canvas>
+          </div>
+        </div>
+
+        <!-- PAYBACK CARDS -->
+        <div class="fade-in">
+          <div class="section-header">
+            <h3>Return on Investment</h3>
+            <span class="badge">Payback Period</span>
+          </div>
+          <div class="payback-grid" id="pp-payback-cards"><!-- Populated by JS --></div>
+        </div>
+
+      </div><!-- /tab-pool-pumps -->
+
+    </main>
+  </div>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote" style="margin-top:32px;">
+    <strong>Methodology &amp; Assumptions:</strong> Running costs are calculated using the Melbourne 2025 residential electricity default offer rate. Heat pump COP values are sourced from manufacturer technical datasheets at the specified ambient temperature. Pool pump energy consumption is based on Australian Government Energy Rating label data (AS/NZS 5125.1). Actual savings will vary based on pool insulation, cover usage, climate, installation quality, and individual usage patterns. All figures are indicative estimates only and should not be relied upon as financial advice. Product prices used for payback calculations are indicative retail prices (inc. GST) as at 2025. <strong>Neptune X-Pro heat pump price used: ~$3,800 (13kW). Neptune X-Eco pump price used: ~$850 (1.5HP).</strong>
+  </div>
+</div>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Need Professional <span class="accent">Help</span>?</h2>
+    <p>Our technicians use these same tools daily. If you need hands-on assistance, we&rsquo;re just a call away.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Get a Free Quote</a>
+      <a href="tel:0342317665" class="pp-btn pp-btn-outline">Call 03 4231 7665</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div>
+        <h4>Palatial Pools</h4>
+        <p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne&rsquo;s premium pool and spa service. Expert care across all inner and middle suburbs.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/melbourne-pool-services">Pool Maintenance</a>
+        <a href="/melbourne-pool-spa-leak-detection">Leak Detection</a>
+        <a href="/melbourne-pool-heating">Pool Heating</a>
+        <a href="/naked-freshwater-pools">Freshwater Pools</a>
+        <a href="/melbourne-sand-changes">Sand Changes</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/tools/pool-cost-calculator">Running Cost Calc</a>
+        <a href="/tools/chemical-dosage-calculator">Chemical Dosage</a>
+        <a href="/tools/heating-cost-calculator">Heating Cost Calc</a>
+        <a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a>
+        <a href="/pool-volume-calculator">Volume Calculator</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/guides/">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="/testimonials">Reviews</a>
+        <a href="/palatial-service-area">Service Areas</a>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>&copy; 2026 Palatial Pool Services. All rights reserved.</span>
+      <span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// ============================================================
+// DATA — sourced from manufacturer datasheets
+// ============================================================
+
+// COP at 15°C ambient (typical Melbourne winter) — from spec sheets
+// Power input at 15°C used for running cost calculations
+const HEAT_PUMPS = [
+  {
+    id: 'neptune-xpro',
+    name: 'Neptune X-Pro',
+    brand: 'Neptune (Palatial)',
+    palatial: true,
+    model: 'NHX13 (13.2kW)',
+    cop_27: 15.0,
+    cop_15: 8.5,   // rated at 15°C ambient from spec sheet (conservative mid-range)
+    cop_label: '8.5–15.0',
+    power_input_kw: 1.55, // rated input at 15°C (mid-range)
+    heating_kw: 13.2,
+    stars: null,
+    price: 3800,
+    color: '#00C4CC',
+    notes: 'Mitsubishi DC inverter, TurboSilence®, full stepless inverter'
+  },
+  {
+    id: 'neptune-xeco',
+    name: 'Neptune X-Eco',
+    brand: 'Neptune (Palatial)',
+    palatial: true,
+    model: 'NHE13 (12.5kW)',
+    cop_27: 11.2,
+    cop_15: 7.0,   // from X-Eco spec sheet
+    cop_label: '7.0–11.2',
+    power_input_kw: 1.78,
+    heating_kw: 12.5,
+    stars: null,
+    price: 2800,
+    color: '#33d0d7',
+    notes: 'Mitsubishi DC inverter, full inverter technology'
+  },
+  {
+    id: 'madimack-v4',
+    name: 'InverELITE V4',
+    brand: 'Madimack',
+    palatial: false,
+    model: 'V4-140 (14.2kW)',
+    cop_27: 20.2,
+    cop_15: 8.5,   // from Madimack V4 spec table at 15°C
+    cop_label: '8.5–20.2',
+    power_input_kw: 1.88,
+    heating_kw: 14.2,
+    stars: null,
+    price: 4200,
+    color: '#a78bfa',
+    notes: 'Twin rotary Mitsubishi compressor, COP22 (at 27°C)'
+  },
+  {
+    id: 'pentair-hxi',
+    name: 'UltraTemp HXi',
+    brand: 'Pentair',
+    palatial: false,
+    model: 'HXi 16kW',
+    cop_27: 13.9,
+    cop_15: 5.8,   // from Pentair HXi spec table at 15°C (mid-range 4.6–7.0)
+    cop_label: '4.6–13.9',
+    power_input_kw: 2.73,
+    heating_kw: 12.6,
+    stars: null,
+    price: 4500,
+    color: '#60a5fa',
+    notes: 'Mitsubishi/Panasonic compressor, R32 refrigerant'
+  },
+  {
+    id: 'astral-eco',
+    name: 'ECO Inverter',
+    brand: 'AstralPool',
+    palatial: false,
+    model: 'ECO 12kW',
+    cop_27: 10.0,
+    cop_15: 5.1,   // from Astral ECO spec sheet at 15°C (COP 10.0–4.6 range)
+    cop_label: '4.6–10.0',
+    power_input_kw: 2.35,
+    heating_kw: 10.9,
+    stars: null,
+    price: 3200,
+    color: '#f97316',
+    notes: 'R32 refrigerant, inverter technology'
+  },
+  {
+    id: 'hayward-heatpro',
+    name: 'HeatPro Inverter',
+    brand: 'Hayward',
+    palatial: false,
+    model: 'HP120HA2',
+    cop_27: 7.2,
+    cop_15: 4.5,   // Hayward HeatPro standard inverter at 15°C
+    cop_label: '4.5–7.2',
+    power_input_kw: 3.2,
+    heating_kw: 14.4,
+    stars: null,
+    price: 3900,
+    color: '#fb7185',
+    notes: 'Titanium heat exchanger, scroll compressor'
+  }
+];
+
+// Pool pumps — power at typical filtration speed (low-medium)
+// Annual kWh based on Australian Energy Rating label methodology
+const POOL_PUMPS = [
+  {
+    id: 'neptune-xeco-pump',
+    name: 'X-Eco Inverter',
+    brand: 'Neptune (Palatial)',
+    palatial: true,
+    model: 'NPE1500 (1.5HP)',
+    stars: 6,
+    typical_watt: 180,     // typical filtration speed (inverter ~30–40% speed)
+    max_watt: 1100,
+    annual_kwh_base: 416,  // from Australian Energy Rating label (50,000L/day)
+    price: 850,
+    color: '#00C4CC',
+    notes: 'INVERSilence, DC brushless, FOC, 6-Star'
+  },
+  {
+    id: 'neptune-xpro-pump',
+    name: 'X-Pro Full Inverter',
+    brand: 'Neptune (Palatial)',
+    palatial: true,
+    model: 'NPX1500 (1.5HP)',
+    stars: 6,
+    typical_watt: 160,     // full inverter, slightly more efficient
+    max_watt: 1050,
+    annual_kwh_base: 390,  // full inverter more efficient
+    price: 1050,
+    color: '#33d0d7',
+    notes: 'Full inverter, volute hydraulic, FOC, DC brushless, 6-Star'
+  },
+  {
+    id: 'pentair-intelliflo3',
+    name: 'IntelliFlo3 VSF',
+    brand: 'Pentair',
+    palatial: false,
+    model: '1.5HP VSF',
+    stars: null,
+    typical_watt: 220,     // typical filtration speed
+    max_watt: 1100,
+    annual_kwh_base: 480,  // WEF 9.4, comparable to 6-star
+    price: 1400,
+    color: '#60a5fa',
+    notes: 'Variable speed & flow, ENERGY STAR, Wi-Fi, WEF 9.4'
+  },
+  {
+    id: 'hayward-tristar-vs',
+    name: 'TriStar VS',
+    brand: 'Hayward',
+    palatial: false,
+    model: 'TS540VS (1.5HP)',
+    stars: 6,
+    typical_watt: 250,     // typical filtration speed
+    max_watt: 1100,
+    annual_kwh_base: 547,  // from Australian Energy Rating label
+    price: 1100,
+    color: '#fb7185',
+    notes: '6-Star Energy Rating, variable speed, ENERGY STAR'
+  },
+  {
+    id: 'astral-ctx',
+    name: 'CTX 400C',
+    brand: 'AstralPool',
+    palatial: false,
+    model: 'CTX 400C (1.5HP)',
+    stars: 1,
+    typical_watt: 1650,    // single speed, always full power
+    max_watt: 1650,
+    annual_kwh_base: 1572, // from AstralPool spec sheet
+    price: 650,
+    color: '#f97316',
+    notes: 'Single-speed, 1-Star Energy Rating'
+  },
+  {
+    id: 'generic-single',
+    name: 'Generic Single Speed',
+    brand: 'Standard',
+    palatial: false,
+    model: '1.5HP Single Speed',
+    stars: 1,
+    typical_watt: 1500,
+    max_watt: 1500,
+    annual_kwh_base: 1800, // typical single-speed 1.5HP running 8hrs/day
+    price: 450,
+    color: '#9ca3af',
+    notes: 'Standard single-speed pump (pre-2015 era)'
+  }
+];
+
+// ============================================================
+// STATE
+// ============================================================
+let currentTab = 'heat-pumps';
+let hpChart = null;
+let ppChart = null;
+
+// ============================================================
+// HELPERS
+// ============================================================
+function fmt(n, prefix='$', decimals=0) {
+  if (isNaN(n)) return '—';
+  return prefix + n.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function fmtNum(n, decimals=0) {
+  if (isNaN(n)) return '—';
+  return n.toFixed(decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function getInputs() {
+  const vol = parseFloat(document.getElementById('pool-volume').value);
+  const runHrs = parseFloat(document.getElementById('run-hours').value);
+  const hpMonths = parseFloat(document.getElementById('hp-months').value);
+  const hpHours = parseFloat(document.getElementById('hp-hours').value);
+  const rate = parseFloat(document.getElementById('elec-rate').value) / 100;
+  const targetTemp = parseFloat(document.getElementById('target-temp').value);
+  const ambientTemp = parseFloat(document.getElementById('ambient-temp').value);
+  return { vol, runHrs, hpMonths, hpHours, rate, targetTemp, ambientTemp };
+}
+
+// ============================================================
+// HEAT PUMP CALCULATIONS
+// ============================================================
+function calcHeatPumpCosts(inp) {
+  // Interpolate COP based on ambient temp
+  // At 27°C → cop_27, at 15°C → cop_15, linear interpolation
+  const ambFrac = Math.max(0, Math.min(1, (inp.ambientTemp - 5) / (30 - 5)));
+  const results = HEAT_PUMPS.map(hp => {
+    // Interpolate COP
+    const cop = hp.cop_15 + (hp.cop_27 - hp.cop_15) * ambFrac;
+    // Actual power input = heating capacity / COP
+    const actualPowerKw = hp.heating_kw / cop;
+    // Annual hours = months * avg days/month * hours/day
+    const annualHours = inp.hpMonths * 30.4 * inp.hpHours;
+    // Annual kWh
+    const annualKwh = actualPowerKw * annualHours;
+    // Annual cost
+    const annualCost = annualKwh * inp.rate;
+    return { ...hp, cop: cop.toFixed(1), actualPowerKw, annualKwh, annualCost };
+  });
+  return results;
+}
+
+// ============================================================
+// POOL PUMP CALCULATIONS
+// ============================================================
+function calcPumpCosts(inp) {
+  // Scale annual kWh based on run hours vs baseline (8hrs)
+  const hourScale = inp.runHrs / 8;
+  const results = POOL_PUMPS.map(pp => {
+    const annualKwh = pp.annual_kwh_base * hourScale;
+    const annualCost = annualKwh * inp.rate;
+    return { ...pp, annualKwh, annualCost };
+  });
+  return results;
+}
+
+// ============================================================
+// RENDER HEAT PUMP TABLE
+// ============================================================
+function renderHpTable(results) {
+  const palatial = results.find(r => r.id === 'neptune-xpro');
+  const tbody = document.getElementById('hp-tbody');
+  tbody.innerHTML = '';
+  // Sort: palatial first, then by annual cost
+  const sorted = [
+    ...results.filter(r => r.palatial),
+    ...results.filter(r => !r.palatial).sort((a,b) => a.annualCost - b.annualCost)
+  ];
+  sorted.forEach(r => {
+    const diff = r.annualCost - palatial.annualCost;
+    const isPalatial = r.palatial;
+    const maxCop = 22;
+    const copPct = Math.min(100, (parseFloat(r.cop) / maxCop) * 100);
+    let copColor = r.palatial ? '#00C4CC' : r.color;
+    let costClass = '';
+    if (r.annualCost <= palatial.annualCost * 1.05) costClass = 'best';
+    else if (r.annualCost <= palatial.annualCost * 1.4) costClass = 'mid';
+    else costClass = 'worst';
+    if (isPalatial) costClass = 'best';
+
+    let savingHtml = '';
+    if (isPalatial && r.id === 'neptune-xpro') {
+      savingHtml = '<span class="saving-pill neutral">Benchmark</span>';
+    } else if (isPalatial) {
+      const d = palatial.annualCost - r.annualCost;
+      savingHtml = d >= 0
+        ? `<span class="saving-pill positive">Save ${fmt(d)}/yr</span>`
+        : `<span class="saving-pill negative">+${fmt(Math.abs(d))}/yr</span>`;
+    } else {
+      savingHtml = diff > 0
+        ? `<span class="saving-pill positive">Save ${fmt(diff)}/yr</span>`
+        : `<span class="saving-pill negative">Costs ${fmt(Math.abs(diff))} more</span>`;
+    }
+
+    tbody.innerHTML += `
+      <tr class="${isPalatial ? 'palatial-row' : ''}">
+        <td>
+          <div class="product-name">${r.name}${isPalatial ? '<span class="palatial-badge">Palatial</span>' : ''}</div>
+          <div class="product-brand">${r.brand} &middot; ${r.model}</div>
+        </td>
+        <td>
+          <div class="cop-bar-wrap">
+            <div class="cop-bar"><div class="cop-fill" style="width:${copPct}%;background:${copColor}"></div></div>
+            <span class="cop-val" style="color:${copColor}">${r.cop}</span>
+          </div>
+          <div style="font-size:0.7rem;color:var(--text-muted);margin-top:2px">${r.cop_label}</div>
+        </td>
+        <td>${fmtNum(r.annualKwh)} kWh</td>
+        <td><span class="cost-val ${costClass}">${fmt(r.annualCost)}</span></td>
+        <td>${savingHtml}</td>
+      </tr>`;
+  });
+}
+
+// ============================================================
+// RENDER POOL PUMP TABLE
+// ============================================================
+function renderPpTable(results) {
+  const palatial = results.find(r => r.id === 'neptune-xeco-pump');
+  const tbody = document.getElementById('pp-tbody');
+  tbody.innerHTML = '';
+  const sorted = [
+    ...results.filter(r => r.palatial),
+    ...results.filter(r => !r.palatial).sort((a,b) => a.annualCost - b.annualCost)
+  ];
+  sorted.forEach(r => {
+    const diff = r.annualCost - palatial.annualCost;
+    const isPalatial = r.palatial;
+    let costClass = '';
+    if (r.annualCost <= palatial.annualCost * 1.05) costClass = 'best';
+    else if (r.annualCost <= palatial.annualCost * 1.4) costClass = 'mid';
+    else costClass = 'worst';
+    if (isPalatial) costClass = 'best';
+
+    let starsHtml = r.stars ? '★'.repeat(r.stars) + '☆'.repeat(Math.max(0,6-r.stars)) : '—';
+    let starsColor = r.stars >= 6 ? 'var(--brand-teal)' : r.stars >= 4 ? 'var(--warning)' : 'var(--danger)';
+
+    let savingHtml = '';
+    if (isPalatial && r.id === 'neptune-xeco-pump') {
+      savingHtml = '<span class="saving-pill neutral">Benchmark</span>';
+    } else if (isPalatial) {
+      const d = palatial.annualCost - r.annualCost;
+      savingHtml = d >= 0
+        ? `<span class="saving-pill positive">Save ${fmt(d)}/yr</span>`
+        : `<span class="saving-pill negative">+${fmt(Math.abs(d))}/yr</span>`;
+    } else {
+      savingHtml = diff > 0
+        ? `<span class="saving-pill positive">Save ${fmt(diff)}/yr</span>`
+        : `<span class="saving-pill negative">Costs ${fmt(Math.abs(diff))} more</span>`;
+    }
+
+    tbody.innerHTML += `
+      <tr class="${isPalatial ? 'palatial-row' : ''}">
+        <td>
+          <div class="product-name">${r.name}${isPalatial ? '<span class="palatial-badge">Palatial</span>' : ''}</div>
+          <div class="product-brand">${r.brand} &middot; ${r.model}</div>
+        </td>
+        <td><span class="stars" style="color:${starsColor}">${starsHtml}</span></td>
+        <td>${fmtNum(r.typical_watt)} W</td>
+        <td>${fmtNum(r.annualKwh)} kWh</td>
+        <td><span class="cost-val ${costClass}">${fmt(r.annualCost)}</span></td>
+        <td>${savingHtml}</td>
+      </tr>`;
+  });
+}
+
+// ============================================================
+// RENDER EFFICIENCY BARS — HEAT PUMPS
+// ============================================================
+function renderHpEffBars(results) {
+  const maxCop = Math.max(...results.map(r => parseFloat(r.cop)));
+  const container = document.getElementById('hp-eff-bars');
+  container.innerHTML = '';
+  const sorted = [...results].sort((a,b) => parseFloat(b.cop) - parseFloat(a.cop));
+  sorted.forEach(r => {
+    const pct = (parseFloat(r.cop) / 22) * 100;
+    const color = r.palatial ? 'var(--brand-teal)' : r.color;
+    container.innerHTML += `
+      <div class="eff-row">
+        <div class="eff-label">
+          <div class="name">${r.name}</div>
+          <div class="brand">${r.brand}</div>
+        </div>
+        <div class="eff-track">
+          <div class="eff-bar" style="width:${pct}%;background:${color}">${parseFloat(r.cop).toFixed(1)}</div>
+        </div>
+        <div class="eff-val" style="color:${color}">${r.cop_label}</div>
+      </div>`;
+  });
+}
+
+// ============================================================
+// RENDER EFFICIENCY BARS — POOL PUMPS
+// ============================================================
+function renderPpEffBars(results) {
+  const maxKwh = Math.max(...results.map(r => r.annualKwh));
+  const container = document.getElementById('pp-eff-bars');
+  container.innerHTML = '';
+  const sorted = [...results].sort((a,b) => a.annualKwh - b.annualKwh);
+  sorted.forEach(r => {
+    const pct = (r.annualKwh / maxKwh) * 100;
+    const color = r.palatial ? 'var(--brand-teal)' : r.color;
+    container.innerHTML += `
+      <div class="eff-row">
+        <div class="eff-label">
+          <div class="name">${r.name}</div>
+          <div class="brand">${r.brand}</div>
+        </div>
+        <div class="eff-track">
+          <div class="eff-bar" style="width:${pct}%;background:${color}">${fmtNum(r.annualKwh)} kWh</div>
+        </div>
+        <div class="eff-val" style="color:${color}">${fmtNum(r.annualKwh)} kWh</div>
+      </div>`;
+  });
+}
+
+// ============================================================
+// RENDER ROI CHART
+// ============================================================
+function renderHpRoiChart(results) {
+  const years = Array.from({length: 11}, (_,i) => i);
+  const palatial = results.find(r => r.id === 'neptune-xpro');
+  const competitors = results.filter(r => !r.palatial);
+
+  const datasets = competitors.map(comp => {
+    const annualSaving = comp.annualCost - palatial.annualCost;
+    return {
+      label: comp.brand + ' ' + comp.name,
+      data: years.map(y => -(palatial.price - comp.price) + annualSaving * y),
+      borderColor: comp.color,
+      backgroundColor: comp.color + '22',
+      borderWidth: 2,
+      pointRadius: 3,
+      tension: 0.3,
+      fill: false
+    };
+  });
+
+  // Zero line
+  datasets.unshift({
+    label: 'Break-even',
+    data: years.map(() => 0),
+    borderColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 1,
+    borderDash: [4,4],
+    pointRadius: 0,
+    fill: false
+  });
+
+  const ctx = document.getElementById('hp-roi-chart').getContext('2d');
+  if (hpChart) hpChart.destroy();
+  hpChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: years.map(y => y === 0 ? 'Now' : `Yr ${y}`), datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: '#a0a0c0', font: { size: 11 }, boxWidth: 12 }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}$${ctx.parsed.y.toFixed(0)}`
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#a0a0c0', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: {
+          ticks: { color: '#a0a0c0', font: { size: 11 }, callback: v => '$' + v.toFixed(0) },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+}
+
+function renderPpRoiChart(results) {
+  const years = Array.from({length: 11}, (_,i) => i);
+  const palatial = results.find(r => r.id === 'neptune-xeco-pump');
+  const competitors = results.filter(r => !r.palatial);
+
+  const datasets = competitors.map(comp => {
+    const annualSaving = comp.annualCost - palatial.annualCost;
+    return {
+      label: comp.brand + ' ' + comp.name,
+      data: years.map(y => -(palatial.price - comp.price) + annualSaving * y),
+      borderColor: comp.color,
+      backgroundColor: comp.color + '22',
+      borderWidth: 2,
+      pointRadius: 3,
+      tension: 0.3,
+      fill: false
+    };
+  });
+
+  datasets.unshift({
+    label: 'Break-even',
+    data: years.map(() => 0),
+    borderColor: 'rgba(255,255,255,0.15)',
+    borderWidth: 1,
+    borderDash: [4,4],
+    pointRadius: 0,
+    fill: false
+  });
+
+  const ctx = document.getElementById('pp-roi-chart').getContext('2d');
+  if (ppChart) ppChart.destroy();
+  ppChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: years.map(y => y === 0 ? 'Now' : `Yr ${y}`), datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          labels: { color: '#a0a0c0', font: { size: 11 }, boxWidth: 12 }
+        },
+        tooltip: {
+          callbacks: {
+            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y >= 0 ? '+' : ''}$${ctx.parsed.y.toFixed(0)}`
+          }
+        }
+      },
+      scales: {
+        x: { ticks: { color: '#a0a0c0', font: { size: 11 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: {
+          ticks: { color: '#a0a0c0', font: { size: 11 }, callback: v => '$' + v.toFixed(0) },
+          grid: { color: 'rgba(255,255,255,0.05)' }
+        }
+      }
+    }
+  });
+}
+
+// ============================================================
+// RENDER PAYBACK CARDS
+// ============================================================
+function renderHpPaybackCards(results) {
+  const palatial = results.find(r => r.id === 'neptune-xpro');
+  const container = document.getElementById('hp-payback-cards');
+  container.innerHTML = '';
+  const competitors = results.filter(r => !r.palatial);
+  competitors.forEach(comp => {
+    const annualSaving = comp.annualCost - palatial.annualCost;
+    const priceDiff = palatial.price - comp.price;
+    let payback, paybackDisplay;
+    if (annualSaving <= 0) {
+      paybackDisplay = '—';
+    } else {
+      payback = priceDiff / annualSaving;
+      if (payback < 0) paybackDisplay = 'Instant';
+      else paybackDisplay = payback.toFixed(1);
+    }
+    container.innerHTML += `
+      <div class="payback-card ${palatial.palatial ? 'highlight' : ''}">
+        <div class="product">vs ${comp.brand}</div>
+        <div class="years">${paybackDisplay}</div>
+        <div class="years-label">year payback</div>
+        <div class="annual">${fmt(annualSaving)}</div>
+        <div class="annual-label">saved per year</div>
+      </div>`;
+  });
+}
+
+function renderPpPaybackCards(results) {
+  const palatial = results.find(r => r.id === 'neptune-xeco-pump');
+  const container = document.getElementById('pp-payback-cards');
+  container.innerHTML = '';
+  const competitors = results.filter(r => !r.palatial);
+  competitors.forEach(comp => {
+    const annualSaving = comp.annualCost - palatial.annualCost;
+    const priceDiff = palatial.price - comp.price;
+    let payback, paybackDisplay;
+    if (annualSaving <= 0) {
+      paybackDisplay = '—';
+    } else {
+      payback = priceDiff / annualSaving;
+      if (payback < 0) paybackDisplay = 'Instant';
+      else paybackDisplay = payback.toFixed(1);
+    }
+    container.innerHTML += `
+      <div class="payback-card ${palatial.palatial ? 'highlight' : ''}">
+        <div class="product">vs ${comp.brand}</div>
+        <div class="years">${paybackDisplay}</div>
+        <div class="years-label">year payback</div>
+        <div class="annual">${fmt(annualSaving)}</div>
+        <div class="annual-label">saved per year</div>
+      </div>`;
+  });
+}
+
+// ============================================================
+// UPDATE SAVINGS HERO
+// ============================================================
+function updateHpHero(results, rate) {
+  const palatial = results.find(r => r.id === 'neptune-xpro');
+  const competitors = results.filter(r => !r.palatial);
+  const avgCompCost = competitors.reduce((s,c) => s + c.annualCost, 0) / competitors.length;
+  const saving = avgCompCost - palatial.annualCost;
+  const kwhSaved = (competitors.reduce((s,c) => s + c.annualKwh, 0) / competitors.length) - palatial.annualKwh;
+  const co2 = kwhSaved * 0.79; // Victoria grid emission factor ~0.79 kg CO2/kWh
+
+  document.getElementById('hp-savings-hero').textContent = fmt(Math.max(0, saving));
+  document.getElementById('hp-kwh-saved').textContent = fmtNum(Math.max(0, kwhSaved)) + ' kWh';
+  document.getElementById('hp-payback').textContent = saving > 0 ? ((palatial.price - competitors[0].price) / saving).toFixed(1) + ' yrs' : '—';
+  document.getElementById('hp-co2').textContent = fmtNum(Math.max(0, co2)) + ' kg';
+}
+
+function updatePpHero(results, rate) {
+  const palatial = results.find(r => r.id === 'neptune-xeco-pump');
+  const singleSpeed = results.find(r => r.id === 'astral-ctx');
+  const saving = singleSpeed.annualCost - palatial.annualCost;
+  const kwhSaved = singleSpeed.annualKwh - palatial.annualKwh;
+  const co2 = kwhSaved * 0.79;
+
+  document.getElementById('pp-savings-hero').textContent = fmt(Math.max(0, saving));
+  document.getElementById('pp-kwh-saved').textContent = fmtNum(Math.max(0, kwhSaved)) + ' kWh';
+  const payback = (palatial.price - singleSpeed.price) / saving;
+  document.getElementById('pp-payback').textContent = payback > 0 ? payback.toFixed(1) + ' yrs' : 'Instant';
+  document.getElementById('pp-co2').textContent = fmtNum(Math.max(0, co2)) + ' kg';
+}
+
+// ============================================================
+// MAIN UPDATE
+// ============================================================
+function updateDisplay() {
+  const inp = getInputs();
+
+  // Update slider labels
+  document.getElementById('vol-display').textContent = (inp.vol/1000).toFixed(0) + ',000 L';
+  document.getElementById('run-display').textContent = inp.runHrs + ' hrs';
+  document.getElementById('hp-months-display').textContent = inp.hpMonths + ' months';
+  document.getElementById('hp-hours-display').textContent = inp.hpHours + ' hrs';
+  document.getElementById('temp-display').textContent = inp.targetTemp + '°C';
+  document.getElementById('ambient-display').textContent = inp.ambientTemp + '°C';
+
+  // Heat pump calculations
+  const hpResults = calcHeatPumpCosts(inp);
+  renderHpTable(hpResults);
+  renderHpEffBars(hpResults);
+  renderHpRoiChart(hpResults);
+  renderHpPaybackCards(hpResults);
+  updateHpHero(hpResults, inp.rate);
+
+  // Pool pump calculations
+  const ppResults = calcPumpCosts(inp);
+  renderPpTable(ppResults);
+  renderPpEffBars(ppResults);
+  renderPpRoiChart(ppResults);
+  renderPpPaybackCards(ppResults);
+  updatePpHero(ppResults, inp.rate);
+}
+
+// ============================================================
+// TAB SWITCHING
+// ============================================================
+function switchTab(tab, btn) {
+  currentTab = tab;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+
+  // Show/hide heat pump specific inputs
+  const hpGroups = ['heat-pump-usage-group', 'heat-pump-daily-group'];
+  hpGroups.forEach(id => {
+    document.getElementById(id).style.display = tab === 'heat-pumps' ? '' : 'none';
+  });
+
+  // Re-render charts after tab switch (canvas needs to be visible)
+  setTimeout(updateDisplay, 50);
+}
+
+// ============================================================
+// INTERSECTION OBSERVER FOR FADE-IN
+// ============================================================
+function initFadeIn() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  initFadeIn();
+  updateDisplay();
+});
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+</body>
+</html>

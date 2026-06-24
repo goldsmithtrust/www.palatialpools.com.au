@@ -1,0 +1,462 @@
+html, body { margin: 0 !important; padding: 0 !important; }
+/* ============================================================
+   PALATIAL POOLS — BRAND OVERRIDE v4
+   Aqua/Teal #00C4CC / Deep Purple #1a0533 / Mid Purple #2D2252
+   Applied globally over the React bundle
+   ============================================================ */
+
+/* === TYPOGRAPHY === */
+h1, h2, h3, h4, h5, h6 { line-height: 1 !important; }
+li, p { text-wrap: pretty; overflow-wrap: break-word; }
+li { text-wrap: balance; }
+
+/* === TOP INFO BAR === */
+[class*="bg-[#1e1740]"] {
+  background: linear-gradient(90deg, #1a0533 0%, #2d1a4a 100%) !important;
+  border-bottom: none !important;
+}
+
+/* === MAIN NAV BAR === */
+nav[class*="bg-[#2D2252]"],
+nav[class*="bg-[#2D2252]/98"],
+nav[class*="bg-[#2D2252]/95"] {
+  background: linear-gradient(90deg, #1a0533 0%, #2a0e4a 60%, #1a0533 100%) !important;
+  border-bottom: 2px solid #00C4CC !important;
+  box-shadow: 0 2px 24px rgba(0,196,204,0.15) !important;
+}
+nav a:hover { color: #00C4CC !important; }
+
+/* === HERO SECTION === */
+section[class*="relative"][class*="min-h"] {
+  background: linear-gradient(160deg, #1a0533 0%, #2D2252 40%, #1a0533 100%) !important;
+}
+
+/* === LIGHT CREAM SECTIONS → DEEP PURPLE === */
+section[class*="bg-[#f5f2ec]"],
+section[class*="bg-[#f8f7f4]"],
+div[class*="bg-[#f5f2ec]"],
+div[class*="bg-[#f8f7f4]"] {
+  background: linear-gradient(180deg, #1a0533 0%, #2D2252 50%, #1a0533 100%) !important;
+  color: #f1f5f9 !important;
+}
+
+/* Fix text colors inside converted sections */
+section[class*="bg-[#f5f2ec]"] h1,
+section[class*="bg-[#f5f2ec]"] h2,
+section[class*="bg-[#f5f2ec]"] h3,
+section[class*="bg-[#f5f2ec]"] h4,
+section[class*="bg-[#f5f2ec]"] p,
+section[class*="bg-[#f8f7f4]"] h1,
+section[class*="bg-[#f8f7f4]"] h2,
+section[class*="bg-[#f8f7f4]"] h3,
+section[class*="bg-[#f8f7f4]"] h4,
+section[class*="bg-[#f8f7f4]"] p,
+div[class*="bg-[#f5f2ec]"] h1,
+div[class*="bg-[#f5f2ec]"] h2,
+div[class*="bg-[#f5f2ec]"] h3,
+div[class*="bg-[#f5f2ec]"] h4,
+div[class*="bg-[#f5f2ec]"] p,
+div[class*="bg-[#f8f7f4]"] h1,
+div[class*="bg-[#f8f7f4]"] h2,
+div[class*="bg-[#f8f7f4]"] h3,
+div[class*="bg-[#f8f7f4]"] h4,
+div[class*="bg-[#f8f7f4]"] p {
+  color: #f1f5f9 !important;
+}
+
+/* Sub-text in converted sections */
+section[class*="bg-[#f5f2ec]"] [class*="text-gray"],
+section[class*="bg-[#f5f2ec]"] [class*="text-slate"],
+section[class*="bg-[#f8f7f4]"] [class*="text-gray"],
+section[class*="bg-[#f8f7f4]"] [class*="text-slate"],
+div[class*="bg-[#f5f2ec]"] [class*="text-gray"],
+div[class*="bg-[#f5f2ec]"] [class*="text-slate"],
+div[class*="bg-[#f8f7f4]"] [class*="text-gray"],
+div[class*="bg-[#f8f7f4]"] [class*="text-slate"] {
+  color: rgba(241,245,249,0.65) !important;
+}
+
+/* === CARDS IN LIGHT SECTIONS → DARK GLASS === */
+section[class*="bg-[#f5f2ec]"] [class*="bg-white"],
+section[class*="bg-[#f8f7f4]"] [class*="bg-white"],
+div[class*="bg-[#f5f2ec]"] [class*="bg-white"],
+div[class*="bg-[#f8f7f4]"] [class*="bg-white"] {
+  background: rgba(255,255,255,0.05) !important;
+  border: 1px solid rgba(0,196,204,0.15) !important;
+  color: #f1f5f9 !important;
+}
+
+/* === STANDALONE WHITE CARDS (anywhere) === */
+[class*="bg-white"][class*="rounded"] {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(0,196,204,0.12) !important;
+}
+[class*="bg-white"][class*="rounded"] h1,
+[class*="bg-white"][class*="rounded"] h2,
+[class*="bg-white"][class*="rounded"] h3,
+[class*="bg-white"][class*="rounded"] p {
+  color: #f1f5f9 !important;
+}
+[class*="bg-white"][class*="rounded"] [class*="text-gray"],
+[class*="bg-white"][class*="rounded"] [class*="text-slate"] {
+  color: rgba(241,245,249,0.6) !important;
+}
+
+/* === FORM INPUTS IN LIGHT SECTIONS === */
+section[class*="bg-[#f5f2ec]"] input,
+section[class*="bg-[#f5f2ec]"] textarea,
+section[class*="bg-[#f5f2ec]"] select,
+section[class*="bg-[#f8f7f4]"] input,
+section[class*="bg-[#f8f7f4]"] textarea,
+section[class*="bg-[#f8f7f4]"] select,
+div[class*="bg-[#f5f2ec]"] input,
+div[class*="bg-[#f5f2ec]"] textarea,
+div[class*="bg-[#f5f2ec]"] select,
+div[class*="bg-[#f8f7f4]"] input,
+div[class*="bg-[#f8f7f4]"] textarea,
+div[class*="bg-[#f8f7f4]"] select {
+  background: rgba(255,255,255,0.06) !important;
+  border-color: rgba(0,196,204,0.25) !important;
+  color: #f1f5f9 !important;
+}
+section[class*="bg-[#f5f2ec]"] input::placeholder,
+section[class*="bg-[#f8f7f4]"] input::placeholder,
+div[class*="bg-[#f5f2ec]"] input::placeholder,
+div[class*="bg-[#f8f7f4]"] input::placeholder {
+  color: rgba(241,245,249,0.35) !important;
+}
+
+/* === SECTION LABELS / BADGES === */
+[class*="text-[#2D2252]"] {
+  color: #00C4CC !important;
+}
+[class*="bg-[#2D2252]"][class*="rounded"] {
+  background: rgba(0,196,204,0.12) !important;
+  border: 1px solid rgba(0,196,204,0.25) !important;
+  color: #00C4CC !important;
+}
+
+/* === BUTTONS === */
+[class*="bg-[#C4A84D]"],
+[class*="bg-[#d4b85d]"],
+[class*="bg-[#C5A55A]"] {
+  background: linear-gradient(135deg, #00C4CC, #007A80) !important;
+  color: #050d1a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 20px rgba(0,196,204,0.25) !important;
+}
+[class*="bg-[#C4A84D]"]:hover,
+[class*="bg-[#d4b85d]"]:hover,
+[class*="bg-[#C5A55A]"]:hover {
+  background: linear-gradient(135deg, #00d8e0, #00C4CC) !important;
+  box-shadow: 0 4px 24px rgba(0,196,204,0.45) !important;
+}
+
+/* === FOOTER === */
+footer,
+[class*="bg-[#1e1740]"][class*="py"] {
+  background: linear-gradient(180deg, #0d0118 0%, #1a0533 100%) !important;
+  border-top: 1px solid rgba(0,196,204,0.2) !important;
+}
+
+/* === TESTIMONIALS SECTION === */
+section[class*="bg-[#2D2252]"] {
+  background: linear-gradient(180deg, #1a0533 0%, #2D2252 50%, #1a0533 100%) !important;
+}
+
+/* === ABOUT SECTION GAP FIX === */
+section[class*="bg-[#2D2252]"][class*="py-14"] {
+  padding-bottom: 0.5rem !important;
+}
+section[class*="bg-gradient"][class*="py-16"] {
+  padding-top: 1rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* === SERVICE TAGS GRID ON MOBILE === */
+@media (max-width: 768px) {
+  [class*="flex-wrap"][class*="gap-2"] {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+  [class*="flex-wrap"][class*="gap-2"] > span {
+    text-align: center !important;
+    white-space: nowrap !important;
+    padding: 6px 8px !important;
+    font-size: 11px !important;
+  }
+}
+
+/* === LOGO TEXT HIDE === */
+a[href="/"] span:not([class*="sr-only"]):not([class*="text-[#C4A84D]"]):not([class*="text-[#C5A55A]"]):not([class*="text-[#00C4CC]"]) {
+  display: none !important;
+}
+
+/* === TRUST BADGE STRIP — keep dark if it ever reappears === */
+section[style*="background: #f4f4f4"],
+section[style*="background:#f4f4f4"] {
+  display: none !important;
+}
+
+/* === GLOBAL BODY BACKGROUND === */
+body {
+  background: #0d0118 !important;
+}
+
+/* ============================================================
+   TECH SHOWCASE PRODUCT CARDS — PREMIUM STYLING v4
+   Removes orange box highlight, applies glass morphism
+   ============================================================ */
+
+/* Kill the gold border on selected tech cards */
+button[class*="rounded-2xl"][class*="border-[#C4A84D]"],
+button[class*="rounded-2xl"].border-\[\#C4A84D\] {
+  border-color: rgba(0,196,204,0.22) !important;
+}
+
+/* Kill the gold shadow glow */
+button[class*="rounded-2xl"][class*="shadow-[#C4A84D]"],
+button[class*="rounded-2xl"][class*="shadow-lg"] {
+  box-shadow: 0 0 25px rgba(0,196,204,0.06), 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05) !important;
+}
+
+/* Selected card - subtle aqua accent */
+button[class*="rounded-2xl"][class*="bg-white/15"] {
+  background: rgba(0,196,204,0.05) !important;
+  border: 1px solid rgba(0,196,204,0.22) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+/* Unselected cards - clean dark glass */
+button[class*="rounded-2xl"][class*="bg-white/5"] {
+  background: rgba(255,255,255,0.025) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* Hover on unselected */
+button[class*="rounded-2xl"][class*="bg-white/5"]:hover {
+  background: rgba(255,255,255,0.05) !important;
+  border-color: rgba(0,196,204,0.15) !important;
+  box-shadow: 0 0 15px rgba(0,196,204,0.04) !important;
+  transform: translateY(-1px);
+}
+
+/* All tech cards - smooth transitions */
+button[class*="rounded-2xl"][class*="border"][class*="transition-all"] {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-radius: 16px !important;
+}
+
+/* ============================================================
+   URGENT 2026-04-21 DARK POOL THEME ENFORCEMENT
+   Remove white/light card surfaces across the beta site.
+   ============================================================ */
+
+:root {
+  --pp-dark-bg: #081321;
+  --pp-dark-bg-2: #0c1830;
+  --pp-dark-surface: linear-gradient(180deg, rgba(11, 23, 41, 0.96), rgba(17, 27, 48, 0.94));
+  --pp-dark-surface-soft: linear-gradient(180deg, rgba(16, 29, 52, 0.92), rgba(10, 21, 40, 0.90));
+  --pp-dark-border: rgba(90, 228, 233, 0.18);
+  --pp-dark-text: #eafcff;
+  --pp-dark-muted: rgba(222, 245, 249, 0.76);
+  --pp-dark-heading: #f5feff;
+  --pp-dark-shadow: 0 18px 42px rgba(2, 10, 22, 0.34);
+}
+
+html, body {
+  background: linear-gradient(180deg, var(--pp-dark-bg) 0%, var(--pp-dark-bg-2) 100%) !important;
+  color: var(--pp-dark-text) !important;
+}
+
+.product-card,
+.card-body,
+.panel,
+.panel:not(.dark),
+.stat-card,
+.system-card,
+.compute-card,
+.ops-card,
+.flow-card,
+.footer-card,
+.pipeline-row,
+.graphic-node,
+.graphic-shell,
+.hero-card,
+.spec-line,
+article[class*="card"],
+div[class*="card"],
+section[class*="card"] {
+  background: var(--pp-dark-surface) !important;
+  color: var(--pp-dark-text) !important;
+  border-color: var(--pp-dark-border) !important;
+  box-shadow: var(--pp-dark-shadow) !important;
+}
+
+.product-card,
+.card-body,
+.graphic-shell,
+.graphic-node,
+.spec-line,
+.pipeline-row {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.product-card p,
+.card-body p,
+.panel p,
+.stat-card p,
+.system-card p,
+.compute-card p,
+.ops-card p,
+.flow-card p,
+.footer-card p,
+.graphic-node p,
+.graphic-shell p,
+.spec-line span,
+.pipeline-row p,
+.card-benefits li,
+.card-description,
+.spec-line span:first-child {
+  color: var(--pp-dark-muted) !important;
+}
+
+.product-card h1,
+.product-card h2,
+.product-card h3,
+.card-body h1,
+.card-body h2,
+.card-body h3,
+.panel h1,
+.panel h2,
+.panel h3,
+.stat-card h1,
+.stat-card h2,
+.stat-card h3,
+.system-card h1,
+.system-card h2,
+.system-card h3,
+.compute-card h1,
+.compute-card h2,
+.compute-card h3,
+.ops-card h1,
+.ops-card h2,
+.ops-card h3,
+.flow-card h1,
+.flow-card h2,
+.flow-card h3,
+.footer-card h1,
+.footer-card h2,
+.footer-card h3,
+.graphic-node h1,
+.graphic-node h2,
+.graphic-node h3,
+.graphic-shell h1,
+.graphic-shell h2,
+.graphic-shell h3,
+.card-benefits h3,
+.graphic-label,
+.icon-chip,
+strong {
+  color: var(--pp-dark-heading) !important;
+}
+
+[class*="bg-white"],
+[class*="bg-gray-50"],
+[class*="bg-slate-50"],
+[class*="bg-neutral-50"],
+[class*="bg-stone-50"],
+[class*="bg-zinc-50"],
+[class*="bg-[#f5f2ec]"],
+[class*="bg-[#f8f7f4]"],
+[class*="bg-[#ffffff]"],
+.bg-white,
+.bg-gray-50,
+.bg-slate-50,
+.bg-neutral-50 {
+  background: var(--pp-dark-surface-soft) !important;
+  color: var(--pp-dark-text) !important;
+  border-color: var(--pp-dark-border) !important;
+}
+
+[class*="text-gray"],
+[class*="text-slate"],
+[class*="text-stone"],
+[class*="text-neutral"],
+.text-gray-500,
+.text-gray-600,
+.text-slate-600,
+.text-slate-700 {
+  color: var(--pp-dark-muted) !important;
+}
+
+table,
+th,
+td {
+  background-color: transparent !important;
+  color: var(--pp-dark-text) !important;
+  border-color: rgba(255,255,255,0.10) !important;
+}
+
+th {
+  background: rgba(55, 230, 224, 0.10) !important;
+}
+
+input,
+textarea,
+select {
+  background: rgba(11, 23, 41, 0.82) !important;
+  color: var(--pp-dark-text) !important;
+  border-color: rgba(90, 228, 233, 0.18) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(222, 245, 249, 0.52) !important;
+}
+
+.agent-stack .graphic-node,
+.architecture-graphic .graphic-node {
+  background: linear-gradient(180deg, rgba(13, 24, 44, 0.96), rgba(20, 31, 56, 0.94)) !important;
+  border: 1px solid rgba(55, 230, 224, 0.18) !important;
+  box-shadow: 0 18px 44px rgba(2, 10, 22, 0.36) !important;
+}
+
+.agent-stack .graphic-node h3,
+.architecture-graphic .graphic-node h3,
+.agent-stack .graphic-node .graphic-label,
+.architecture-graphic .graphic-node .graphic-label {
+  color: #f5feff !important;
+}
+
+.agent-stack .graphic-node p,
+.architecture-graphic .graphic-node p {
+  color: rgba(222, 245, 249, 0.76) !important;
+}
+
+/* NUCLEAR GAP FIX - remove any possible gap at top of page */
+#root > *:first-child:empty,
+#root > section:first-child:empty,
+.min-h-screen > *:first-child:empty {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  line-height: 0 !important;
+  font-size: 0 !important;
+}
+#root > *:first-child,
+.min-h-screen > *:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+}
+
+/* Fix nav overflow for dropdowns */
+nav { overflow: visible !important; }

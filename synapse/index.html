@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Synapse | Palatial Pools</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-deep: #0a0118;
+            --bg-navy: #0a1628;
+            --purple: #6366f1;
+            --purple-light: #818cf8;
+            --cyan: #00C4CC;
+            --cyan-light: #22d3ee;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --card-bg: rgba(15, 10, 40, 0.6);
+            --card-border: rgba(99, 102, 241, 0.15);
+            --glass-bg: rgba(15, 10, 40, 0.4);
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ===================== ANIMATED BACKGROUND ===================== */
+        #neural-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(0, 196, 204, 0.06) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(99, 102, 241, 0.04) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ===================== LOGIN SCREEN ===================== */
+        #login-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-deep);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        #login-screen.hidden {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        .login-container {
+            text-align: center;
+            padding: 3rem;
+            max-width: 420px;
+            width: 90%;
+        }
+
+        .login-logo {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .login-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.4));
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes logoPulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3)) drop-shadow(0 0 40px rgba(0, 196, 204, 0.1)); }
+            50% { filter: drop-shadow(0 0 35px rgba(99, 102, 241, 0.5)) drop-shadow(0 0 60px rgba(0, 196, 204, 0.25)); }
+        }
+
+        .login-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 2.5rem;
+        }
+
+        .login-form {
+            position: relative;
+        }
+
+        .login-input-wrapper {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            background: rgba(15, 10, 40, 0.6);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .login-input:focus {
+            border-color: var(--purple);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.15);
+        }
+
+        .login-input::placeholder {
+            color: rgba(160, 160, 184, 0.5);
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--purple), #4f46e5);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .login-btn:active { transform: translateY(0); }
+
+        .login-error {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .login-error.show { opacity: 1; }
+
+        /* ===================== MAIN HUB ===================== */
+        #hub {
+            position: relative;
+            z-index: 1;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        #hub.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        .hub-header {
+            text-align: center;
+            padding: 3rem 2rem 1rem;
+            position: relative;
+        }
+
+        .hub-logo-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hub-logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            animation: logoPulse 3s ease-in-out infinite;
+        }
+
+        .logo-glow {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px; height: 250px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 196, 204, 0.05) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: glowPulse 4s ease-in-out infinite;
+            z-index: 1;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
+
+        .hub-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem;
+            font-weight: 600;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--purple-light), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+        }
+
+        .hub-tagline {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .hub-divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple), var(--cyan), transparent);
+            margin: 1.5rem auto;
+        }
+
+        /* Status bar */
+        .status-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0.8rem 0;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+
+        .status-dot.warning { background: #f59e0b; box-shadow: 0 0 8px rgba(245, 158, 11, 0.5); }
+
+        @keyframes statusPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ===================== TOOL CARDS GRID ===================== */
+        .cards-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem 4rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(0, 196, 204, 0.03));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .tool-card::after {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            right: -1px; bottom: -1px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--purple), var(--cyan));
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15), 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .tool-card:hover::before { opacity: 1; }
+        .tool-card:hover::after { opacity: 0.3; }
+
+        .tool-card:hover .card-icon {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.5));
+        }
+
+        .tool-card:hover .card-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(0, 196, 204, 0.1));
+            transition: all 0.4s ease;
+            flex-shrink: 0;
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--cyan);
+            fill: none;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .card-badge {
+            font-size: 0.65rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 20px;
+            background: rgba(99, 102, 241, 0.15);
+            color: var(--purple-light);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .card-badge.external {
+            background: rgba(0, 196, 204, 0.12);
+            color: var(--cyan);
+        }
+
+        .card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-path {
+            font-size: 0.75rem;
+            color: rgba(160, 160, 184, 0.6);
+            font-family: 'Outfit', monospace;
+        }
+
+        .card-arrow {
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+            color: var(--cyan);
+        }
+
+        .card-arrow svg {
+            width: 20px;
+            height: 20px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ===================== FOOTER ===================== */
+        .hub-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(99, 102, 241, 0.08);
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: rgba(160, 160, 184, 0.4);
+            letter-spacing: 0.1em;
+        }
+
+        .logout-btn {
+            background: none;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .logout-btn:hover {
+            border-color: var(--purple);
+            color: var(--purple-light);
+        }
+
+        /* ===================== CANVAS NEURAL NETWORK ===================== */
+        #neural-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 768px) {
+            .hub-title { font-size: 2rem; letter-spacing: 0.2em; }
+            .login-title { font-size: 1.8rem; }
+            .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .cards-section { padding: 1rem 1rem 3rem; }
+            .hub-header { padding: 2rem 1rem 0.5rem; }
+            .hub-logo-container { width: 140px; height: 140px; }
+            .status-bar { gap: 1rem; }
+            .tool-card { padding: 1.4rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hub-title { font-size: 1.6rem; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ===================== ANIMATIONS ===================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .animate-in:nth-child(1) { animation-delay: 0.1s; }
+        .animate-in:nth-child(2) { animation-delay: 0.2s; }
+        .animate-in:nth-child(3) { animation-delay: 0.3s; }
+        .animate-in:nth-child(4) { animation-delay: 0.4s; }
+        .animate-in:nth-child(5) { animation-delay: 0.5s; }
+        .animate-in:nth-child(6) { animation-delay: 0.6s; }
+        .animate-in:nth-child(7) { animation-delay: 0.7s; }
+    </style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+</head>
+<body>
+
+<!-- Neural Network Canvas Background -->
+<canvas id="neural-canvas"></canvas>
+<div class="bg-gradient"></div>
+
+<!-- ==================== LOGIN SCREEN ==================== -->
+<div id="login-screen">
+    <div class="login-container">
+        <div class="login-logo">
+            <img src="assets/synapse-logo-web.png" alt="Synapse">
+        </div>
+        <h1 class="login-title">Synapse</h1>
+        <p class="login-subtitle">Palatial Pools Command Centre</p>
+        <form class="login-form" id="login-form">
+            <div class="login-input-wrapper">
+                <input type="password" class="login-input" id="login-password" placeholder="Enter access code" autocomplete="off" autofocus>
+            </div>
+            <button type="submit" class="login-btn">Authenticate</button>
+            <p class="login-error" id="login-error">Access denied. Invalid credentials.</p>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== MAIN HUB ==================== -->
+<div id="hub">
+    <header class="hub-header">
+        <div class="hub-logo-container">
+            <div class="logo-glow"></div>
+            <img src="assets/synapse-logo-web.png" alt="Synapse">
+        </div>
+        <h1 class="hub-title">Synapse</h1>
+        <p class="hub-tagline">Admin Orchestration Hub</p>
+        <div class="hub-divider"></div>
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>Systems Online</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot"></div>
+                <span>VPS Active</span>
+            </div>
+            <div class="status-item">
+                <div class="status-dot" id="time-dot"></div>
+                <span id="live-time"></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="cards-section">
+        <div class="cards-grid">
+
+            <!-- 1. Synapse Dashboard -->
+            <a href="/admin" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"/>
+                            <circle cx="12" cy="12" r="4"/>
+                            <line x1="12" y1="2" x2="12" y2="6"/>
+                            <line x1="12" y1="18" x2="12" y2="22"/>
+                            <line x1="2" y1="12" x2="6" y2="12"/>
+                            <line x1="18" y1="12" x2="22" y2="12"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge">Internal</span>
+                </div>
+                <h3 class="card-title">Synapse Dashboard</h3>
+                <p class="card-desc">Business intelligence command centre. Real-time analytics, customer data, job tracking, and financial reporting across all operations.</p>
+                <div class="card-footer">
+                    <span class="card-path">/admin</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 2. OpenHands -->
+            <a href="https://autopilot.palatialpools.com.au" target="_blank" rel="noopener" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge external">External</span>
+                </div>
+                <h3 class="card-title">OpenHands</h3>
+                <p class="card-desc">Multi-step code orchestration platform. Privately hosted development environment for automated coding, file operations, and system management.</p>
+                <div class="card-footer">
+                    <span class="card-path">autopilot.palatialpools.com.au</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 3. OpenManus -->
+            <a href="https://openmanus.palatialpools.com.au" target="_blank" rel="noopener" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge external">External</span>
+                </div>
+                <h3 class="card-title">OpenManus</h3>
+                <p class="card-desc">Autonomous agent framework for complex task execution. Planning, web browsing, file operations, and multi-step workflow automation.</p>
+                <div class="card-footer">
+                    <span class="card-path">openmanus.palatialpools.com.au</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 4. Voice AI -->
+            <a href="https://voice.palatialpools.com.au" target="_blank" rel="noopener" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                            <line x1="12" y1="19" x2="12" y2="23"/>
+                            <line x1="8" y1="23" x2="16" y2="23"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge external">External</span>
+                </div>
+                <h3 class="card-title">Voice AI</h3>
+                <p class="card-desc">Real-time voice assistant powered by privately trained models. Natural language interaction with server-class GPU inference hosted in Sydney.</p>
+                <div class="card-footer">
+                    <span class="card-path">voice.palatialpools.com.au</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 5. Dustin Chat -->
+            <a href="/admin" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            <line x1="9" y1="10" x2="9" y2="10"/>
+                            <line x1="12" y1="10" x2="12" y2="10"/>
+                            <line x1="15" y1="10" x2="15" y2="10"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge">Internal</span>
+                </div>
+                <h3 class="card-title">Dustin Chat</h3>
+                <p class="card-desc">Operations assistant for business intelligence queries. Natural language interface to customer data, job history, and financial analytics.</p>
+                <div class="card-footer">
+                    <span class="card-path">/admin</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 6. System Map -->
+            <a href="/system-map/" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            <line x1="10" y1="6.5" x2="14" y2="6.5"/>
+                            <line x1="6.5" y1="10" x2="6.5" y2="14"/>
+                            <line x1="17.5" y1="10" x2="17.5" y2="14"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge">Internal</span>
+                </div>
+                <h3 class="card-title">System Map</h3>
+                <p class="card-desc">Visual architecture map of all Palatial systems. Infrastructure topology, service dependencies, and real-time connection status.</p>
+                <div class="card-footer">
+                    <span class="card-path">/system-map/</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+            <!-- 7. Palatial Link -->
+            <a href="/palatial-link/" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge">Portal</span>
+                </div>
+                <h3 class="card-title">Palatial Link</h3>
+                <p class="card-desc">Customer-facing portal for service history and pool data. Secure access to job records, chemical logs, and maintenance schedules.</p>
+                <div class="card-footer">
+                    <span class="card-path">/palatial-link/</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+            <!-- 8. Recurrent Service Management -->
+            <a href="/admin/recurrent" class="tool-card animate-in">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 8v4l3 3"/>
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M4.93 4.93l2.83 2.83"/>
+                            <path d="M16.24 16.24l2.83 2.83"/>
+                        </svg>
+                    </div>
+                    <span class="card-badge">Internal</span>
+                </div>
+                <h3 class="card-title">Recurrent Services</h3>
+                <p class="card-desc">Recurring client management dashboard. Risk tiers, overdue tracking, profitability analysis, and service schedule intelligence from PoolTrackr data.</p>
+                <div class="card-footer">
+                    <span class="card-path">/admin/recurrent</span>
+                    <span class="card-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                </div>
+            </a>
+
+    <footer class="hub-footer">
+        <p class="footer-text">SYNAPSE v1.0 &middot; Palatial Pools Internal Systems</p>
+        <button class="logout-btn" id="logout-btn">Sign Out</button>
+    </footer>
+</div>
+
+<script>
+    // ==================== NEURAL NETWORK CANVAS ====================
+    const canvas = document.getElementById('neural-canvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [];
+    let connections = [];
+    let animFrame;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+
+    function initNodes() {
+        nodes = [];
+        connections = [];
+        const count = Math.floor((canvas.width * canvas.height) / 25000);
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                radius: Math.random() * 2 + 1,
+                pulse: Math.random() * Math.PI * 2,
+                pulseSpeed: 0.01 + Math.random() * 0.02
+            });
+        }
+    }
+
+    function drawNeural() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Update and draw nodes
+        nodes.forEach((node, i) => {
+            node.x += node.vx;
+            node.y += node.vy;
+            node.pulse += node.pulseSpeed;
+
+            // Wrap around
+            if (node.x < 0) node.x = canvas.width;
+            if (node.x > canvas.width) node.x = 0;
+            if (node.y < 0) node.y = canvas.height;
+            if (node.y > canvas.height) node.y = 0;
+
+            const pulseAlpha = 0.3 + Math.sin(node.pulse) * 0.2;
+
+            // Draw connections
+            for (let j = i + 1; j < nodes.length; j++) {
+                const dx = nodes[j].x - node.x;
+                const dy = nodes[j].y - node.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 150) {
+                    const alpha = (1 - dist / 150) * 0.15;
+                    ctx.beginPath();
+                    ctx.moveTo(node.x, node.y);
+                    ctx.lineTo(nodes[j].x, nodes[j].y);
+                    ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                    ctx.lineWidth = 0.5;
+                    ctx.stroke();
+                }
+            }
+
+            // Draw node
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(0, 196, 204, ${pulseAlpha})`;
+            ctx.fill();
+
+            // Glow
+            ctx.beginPath();
+            ctx.arc(node.x, node.y, node.radius * 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(99, 102, 241, ${pulseAlpha * 0.15})`;
+            ctx.fill();
+        });
+
+        animFrame = requestAnimationFrame(drawNeural);
+    }
+
+    resizeCanvas();
+    initNodes();
+    drawNeural();
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initNodes();
+    });
+
+    // ==================== AUTHENTICATION ====================
+    const SESSION_KEY = 'synapse_auth';
+    const loginScreen = document.getElementById('login-screen');
+    const hub = document.getElementById('hub');
+    const loginForm = document.getElementById('login-form');
+    const loginPassword = document.getElementById('login-password');
+    const loginError = document.getElementById('login-error');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    function checkAuth() {
+        localStorage.removeItem(SESSION_KEY);
+    }
+
+    function showHub() {
+        loginScreen.classList.add('hidden');
+        hub.classList.add('visible');
+        setTimeout(() => {
+            loginScreen.style.display = 'none';
+        }, 600);
+    }
+
+    function authenticate(password) {
+        loginError.textContent = 'Synapse staff access is available only through the secured staff dashboard.';
+        return false;
+    }
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pw = loginPassword.value;
+        if (!authenticate(pw)) {
+            loginError.classList.add('show');
+            loginPassword.value = '';
+            loginPassword.focus();
+            setTimeout(() => loginError.classList.remove('show'), 3000);
+        }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+        localStorage.removeItem(SESSION_KEY);
+        location.reload();
+    });
+
+    // Check session on load
+    checkAuth();
+
+    // ==================== LIVE TIME ====================
+    function updateTime() {
+        const now = new Date();
+        const options = { timeZone: 'Australia/Melbourne', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        document.getElementById('live-time').textContent = 'AEST ' + now.toLocaleTimeString('en-AU', options);
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // ==================== SYNAPTIC FIRE EFFECT ON CARDS ====================
+    document.querySelectorAll('.tool-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+            card.style.background = `radial-gradient(circle 200px at ${x}px ${y}px, rgba(99, 102, 241, 0.08), var(--card-bg))`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.background = 'var(--card-bg)';
+        });
+    });
+</script>
+
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

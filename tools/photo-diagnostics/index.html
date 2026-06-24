@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pool Photo Diagnostics | Palatial Pools</title>
+  <meta name="description" content="Upload a photo of your pool and get a quick assessment of visible water, equipment, and surface issues, with practical next-step advice from Palatial Pools.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://palatialpools.com.au/tools/photo-diagnostics">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Pool Photo Diagnostics | Palatial Pools">
+  <meta property="og:description" content="Upload a photo of your pool and get a quick assessment of visible water, equipment, and surface issues, with practical next-step advice from Palatial Pools.">
+  <meta property="og:url" content="https://palatialpools.com.au/tools/photo-diagnostics">
+  <meta property="og:site_name" content="Palatial Pools">
+  <meta property="og:locale" content="en_AU">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Pool Photo Diagnostics | Palatial Pools">
+  <meta name="twitter:description" content="Upload a photo of your pool and get a quick assessment of visible water, equipment, and surface issues, with practical next-step advice from Palatial Pools.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/pp-luxury.css">
+  <link rel="stylesheet" href="/assets/palatial-animations.css">
+  <style>
+    :root {
+      --off-white: rgba(11,23,41,0.92);
+      --white: rgba(16,29,52,0.9);
+      --purple: var(--pp-teal);
+      --text-light: var(--pp-muted-soft);
+      --text: var(--pp-muted);
+      --gold: var(--pp-teal);
+      --gold-dark: var(--pp-teal-dark);
+      --gold-light: var(--pp-teal-light);
+      --gray: rgba(255,255,255,0.05);
+    }
+    .upload-area {
+      border: 2px dashed rgba(0,196,204,0.4);
+      padding: 3rem;
+      text-align: center;
+      border-radius: var(--pp-radius);
+      background: var(--pp-card-bg);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: var(--pp-shadow);
+    }
+    .upload-area:hover { border-color: var(--pp-teal); }
+    .upload-area h3 { color: var(--pp-white); margin-bottom: 0.5rem; }
+    .upload-area p { color: var(--pp-muted-soft); font-size: 0.9rem; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+    .feature-grid .pp-card { text-align: center; }
+    .feature-grid .pp-card h4 { color: var(--pp-white); margin-bottom: 0.5rem; }
+    .feature-grid .pp-card p { font-size: 0.85rem; color: var(--pp-muted-soft); }
+    .privacy-note {
+      margin-top: 2rem;
+      padding: 1.25rem;
+      background: var(--pp-card-bg);
+      border: 1px solid var(--pp-border);
+      border-radius: var(--pp-radius-sm);
+      font-size: 0.82rem;
+      color: var(--pp-muted-soft);
+    }
+    .privacy-note strong { color: var(--pp-white); }
+    #preview img { border-radius: var(--pp-radius-sm); box-shadow: 0 4px 20px rgba(2,10,22,0.4); border: 1px solid var(--pp-border); }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .pp-section, .pp-cta-band, .pp-footer { opacity: 1 !important; transform: none !important; }
+  </style>
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/naked-freshwater-pools">Naked Pools</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+  <span class="pp-trust-item">&#10003; Mon&ndash;Sat Service</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>Photo Diagnostics</span>
+  </div>
+</div>
+
+<section class="pp-hero">
+  <div class="pp-hero-content">
+    <span class="label">Smart Pool Tool</span>
+    <h1>Pool Photo <span>Diagnostics</span></h1>
+    <p class="pp-hero-sub">Upload a photo of your pool water or equipment. We will review the image and suggest the most suitable next step from Palatial Pools.</p>
+    <div class="pp-hero-line"></div>
+  </div>
+</section>
+
+<section class="pp-section">
+  <div class="container-narrow">
+    <div style="max-width:600px;margin:0 auto">
+      <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()" ondragover="event.preventDefault();this.style.borderColor='var(--pp-teal)'" ondrop="handleDrop(event)">
+        <div style="font-size:3.5rem;margin-bottom:1rem">📸</div>
+        <h3>Upload Your Pool Photo</h3>
+        <p>Click to browse or drag and drop<br>Supports JPG, PNG, HEIC · Max 10MB</p>
+        <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFile(this.files[0])">
+      </div>
+
+      <div id="preview" style="display:none;margin-top:1.5rem;text-align:center">
+        <img id="previewImg" style="max-width:100%;max-height:300px">
+        <div style="margin-top:1rem">
+          <button class="pp-btn pp-btn-primary" onclick="analysePhoto()" id="analyseBtn">Check My Pool Photo →</button>
+        </div>
+      </div>
+
+      <div id="loading" style="display:none;text-align:center;padding:2rem">
+        <div style="font-size:2rem;animation:spin 1s linear infinite;display:inline-block">⚙️</div>
+        <p style="margin-top:1rem;color:var(--pp-muted-soft)">Reviewing your pool photo…</p>
+      </div>
+
+      <div id="result" style="display:none;margin-top:2rem"></div>
+
+      <div class="privacy-note">
+        <strong>Privacy:</strong> Your photo is sent securely for analysis and is not stored or used for any other purpose. Results are for guidance only — always consult a licensed pool technician for diagnosis and repair.
+      </div>
+    </div>
+
+    <div style="margin-top:4rem">
+      <h2 style="text-align:center;margin-bottom:2rem">What Can We Pick Up From a Photo?</h2>
+      <div class="feature-grid">
+        <div class="pp-card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">🟢</div>
+          <h4>Algae &amp; Water Colour</h4>
+          <p>Green, yellow, black algae identification and treatment recommendations</p>
+        </div>
+        <div class="pp-card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">🔧</div>
+          <h4>Equipment Issues</h4>
+          <p>Pump, filter, and chlorinator visual inspection guidance</p>
+        </div>
+        <div class="pp-card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">💧</div>
+          <h4>Water Clarity</h4>
+          <p>Cloudy, foamy, or discoloured water checks</p>
+        </div>
+        <div class="pp-card" style="text-align:center">
+          <div style="font-size:2rem;margin-bottom:0.75rem">🏊</div>
+          <h4>Surface &amp; Shell</h4>
+          <p>Staining, scaling, cracks, and tile issues</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Prefer to Talk to an Expert?</h2>
+    <p>This tool is a helpful starting point, but some issues still need a professional assessment. Call Palatial Pools for a free phone consultation.</p>
+    <a href="tel:0342317665" style="font-size:1.5rem;font-weight:700;color:var(--pp-teal-light);text-decoration:none;display:block;margin:0.5rem 0">03 4231 7665</a>
+    <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary" style="margin-top:1rem">Book a Service Visit</a>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div>
+        <h4>Palatial Pools</h4>
+        <p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne's premium pool and spa service. Expert care across all inner and middle suburbs.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/melbourne-pool-services">Pool Maintenance</a>
+        <a href="/melbourne-pool-spa-leak-detection">Leak Detection</a>
+        <a href="/melbourne-pool-heating">Pool Heating</a>
+        <a href="/naked-freshwater-pools">Freshwater Pools</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/tools/pool-cost-calculator">Running Cost Calc</a>
+        <a href="/tools/chemical-dosage-calculator">Chemical Dosage</a>
+        <a href="/tools/heating-cost-calculator">Heating Cost Calc</a>
+        <a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a>
+        <a href="/pool-volume-calculator">Volume Calculator</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/guides/">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="/testimonials">Reviews</a>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>&copy; 2026 Palatial Pool Services. All rights reserved.</span>
+      <span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var selectedFile = null;
+
+function handleDrop(e) {
+  e.preventDefault();
+  var file = e.dataTransfer.files[0];
+  if (file && file.type.startsWith('image/')) handleFile(file);
+}
+
+function handleFile(file) {
+  if (!file) return;
+  selectedFile = file;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    document.getElementById('previewImg').src = e.target.result;
+    document.getElementById('preview').style.display = 'block';
+    document.getElementById('result').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function analysePhoto() {
+  if (!selectedFile) return;
+  document.getElementById('analyseBtn').disabled = true;
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('result').style.display = 'none';
+
+  // Read image as base64 and send as JSON
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var base64Data = e.target.result;
+    fetch('/api/analyse-pool', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64Data, pool_type: 'chlorine', pool_size: 'medium' })
+    })
+    .then(function(r) {
+      if (!r.ok) throw new Error('API error ' + r.status);
+      return r.json();
+    })
+    .then(function(data) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('analyseBtn').disabled = false;
+      showResult(data);
+    })
+    .catch(function(err) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('analyseBtn').disabled = false;
+      showResult({
+        condition_label: 'Analysis Unavailable',
+        water_clarity_label: 'Unknown',
+        issues_found: ['Please contact Palatial Pools for a professional assessment'],
+        recommended_services: [
+          { service: 'Professional Water Test', priority: 'recommended', description: 'Our technicians will test and balance your pool on-site', url: '/melbourne-pool-services/' }
+        ],
+        summary: 'We were unable to analyse your photo at this time. Please call us on 03 4231 7665 or book a service visit.',
+        urgency: 'routine'
+      });
+    });
+  };
+  reader.readAsDataURL(selectedFile);
+}
+
+function showResult(data) {
+  // Handle both old format and new API format
+  var conditionColors = { excellent:'#28a745', good:'#5cb85c', fair:'#fd7e14', poor:'#dc3545', critical:'#8b0000' };
+  var urgencyColors = { all_good:'#28a745', routine:'#5cb85c', within_week:'#fd7e14', immediate:'#dc3545' };
+  var condLabel = data.condition_label | data.condition | 'Pool Assessed';
+  var clarityLabel = data.water_clarity_label | '';
+  var condColor = conditionColors[data.condition] | urgencyColors[data.urgency] | '#fd7e14';
+
+  // Build issues list
+  var issues = (data.issues_found | data.recommendations | []).map(function(i){ return '<li>' + i + '</li>'; }).join('');
+
+  // Build services list (new format)
+  var services = '';
+  if (data.recommended_services && data.recommended_services.length) {
+    services = data.recommended_services.map(function(s) {
+      var priorityBadge = s.priority === 'urgent' ? '<span style="background:#dc3545;color:white;font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:3px;margin-left:0.5rem">URGENT</span>' :
+                          s.priority === 'recommended' ? '<span style="background:var(--gold-dark);color:white;font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:3px;margin-left:0.5rem">RECOMMENDED</span>' : '';
+      return '<div style="margin:0.5rem 0;padding:0.75rem 1rem;background:var(--white);border:1px solid rgba(0,196,204,0.3);border-radius:8px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem">' +
+             '<div><strong>' + s.service + '</strong>' + priorityBadge + '<br><span style="font-size:0.85rem;color:var(--text-light)">' + (s.description | '') + '</span></div>' +
+             '<a href="' + (s.url | '/contact-palatial-pool-services') + '" class="pp-btn pp-btn-primary" style="padding:0.5rem 1rem;font-size:0.85rem">Book Now</a>' +
+             '</div>';
+    }).join('');
+  } else if (data.services) {
+    services = (data.services | []).map(function(s, i){
+      var link = (data.service_links | [])[i] | '/contact-palatial-pool-services';
+      return '<a href="' + link + '" style="background:var(--white);border:1px solid rgba(0,196,204,0.3);color:var(--pp-teal);padding:0.5rem 1rem;border-radius:20px;text-decoration:none;font-size:0.85rem;font-weight:500;display:inline-block;margin:0.25rem">' + s + '</a>';
+    }).join('');
+  }
+
+  document.getElementById('result').innerHTML =
+    '<div style="background:var(--off-white);border-radius:12px;padding:2rem;border:1px solid rgba(0,196,204,0.2)">' +
+    '<div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">' +
+    '<div style="width:14px;height:14px;border-radius:50%;background:' + condColor + ';flex-shrink:0;box-shadow:0 0 8px ' + condColor + '"></div>' +
+    '<h3 style="margin:0;color:var(--pp-white)">Pool Analysis Complete</h3></div>' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem">' +
+    '<div style="background:var(--white);padding:1rem;border-radius:8px;border:1px solid rgba(0,196,204,0.2)">' +
+    '<div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:0.25rem">Overall Condition</div>' +
+    '<div style="font-size:1.1rem;font-weight:700;color:' + condColor + '">' + condLabel + '</div></div>' +
+    (clarityLabel ? '<div style="background:var(--white);padding:1rem;border-radius:8px;border:1px solid rgba(0,196,204,0.2)"><div style="font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-light);margin-bottom:0.25rem">Water Clarity</div><div style="font-size:1.1rem;font-weight:700;color:var(--pp-white)">' + clarityLabel + '</div></div>' : '') +
+    '</div>' +
+    (data.summary ? '<p style="font-size:1rem;color:var(--text);margin-bottom:1.5rem;line-height:1.8;padding:1rem;background:var(--white);border-left:3px solid var(--gold);border-radius:0 8px 8px 0">' + data.summary + '</p>' : '') +
+    (issues ? '<h4 style="color:var(--pp-white);margin-bottom:0.75rem">Issues Identified</h4><ul style="color:var(--text-light);line-height:2;margin-left:1.25rem;margin-bottom:1.5rem">' + issues + '</ul>' : '') +
+    (data.chemical_assessment ? '<div style="background:var(--white);padding:1rem;border-radius:8px;border:1px solid rgba(0,196,204,0.2);margin-bottom:1.5rem"><strong>Water Chemistry:</strong> ' + data.chemical_assessment + '</div>' : '') +
+    (data.equipment_notes ? '<div style="background:var(--white);padding:1rem;border-radius:8px;border:1px solid rgba(0,196,204,0.2);margin-bottom:1.5rem"><strong>Equipment Notes:</strong> ' + data.equipment_notes + '</div>' : '') +
+    '<h4 style="color:var(--pp-white);margin:1.5rem 0 0.75rem">Recommended Palatial Pools Services</h4>' +
+    '<div>' + services + '</div>' +
+    '<div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--gray);text-align:center">' +
+    '<a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Book a Professional Assessment</a>' +
+    '</div></div>';
+  document.getElementById('result').style.display = 'block';
+}
+</script>
+
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

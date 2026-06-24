@@ -1,0 +1,41 @@
+# Palatial Pools Website — Cursor Agent Rules
+
+## Project context
+This is the public website for Palatial Pool Services in Melbourne. It is primarily static HTML/CSS/JavaScript with many suburb landing pages, customer-facing service pages, tools, public documents, blog content, images, audio, and SEO assets.
+
+## Tech stack
+- Static HTML, CSS, and JavaScript for all public marketing pages.
+- Thin Next.js App Router shell (`src/app/route.ts`, `[...legacy]/route.ts`) serves static files and redirects `/shop` and `/store` to `https://palatial.store`.
+- Static assets live mostly in `assets/`, `images/`, `documents/`, `pool-images/`, and page-specific folders.
+
+## Critical rules
+- Use Australian English throughout.
+- Preserve public URL paths unless a redirect plan is part of the task.
+- Do not expose staff-only admin data, credentials, private tokens, API keys, customer records, or internal operational notes.
+- `/palatial-link/` is customer-facing. Keep it separate from staff-only systems.
+- `/admin/`, `private/`, and `access/` require extra caution before editing.
+- Use “Palatial Link” for the customer portal. Use “Dustin” for the chat assistant. Use “Synapse” for staff/admin naming where public copy requires it.
+- Do not deploy to manus.space. Changes should flow through GitHub and the established production pipeline.
+
+## Working pattern
+For a page edit, inspect the target HTML file, any referenced scripts/styles, and one comparable page before changing code. For brand-wide work, update shared assets first and then sample at least the homepage, one suburb page, one tool page, and one blog page.
+
+## Verification
+Run a local static server with `python3 -m http.server 8080`, then inspect the edited pages in a browser. Check console errors after JavaScript changes. Update `sitemap.xml` when adding or removing public pages.
+
+## ABSOLUTE PROHIBITION — No e-commerce in this repo
+NEVER add e-commerce, product pages, cart, checkout, order processing, payment, or shop modules to this codebase. ALL store activity belongs ONLY at **https://palatial.store** (separate app, separate domain).
+
+This website (palatialpools.com.au) is PURELY informational and marketing:
+- Service pages, suburb pages, calculators, tools, guides, blog, FAQ, gallery
+- Contact forms, booking forms, lead capture
+- SEO content and structured data
+
+Any `/shop` or `/store` URL on this domain MUST redirect externally to `https://palatial.store`. No floating cart buttons, product cards, checkout flows, or localStorage cart state.
+
+## CRITICAL ARCHITECTURE RULE — Store Separation
+**The online store (palatial.store) is COMPLETELY SEPARATE from this website.** They are connected ONLY by navigation links — NOT by direct code integration, shared routing, or serving from the same application.
+
+- Cross-references are external links only (e.g. Shop → `https://palatial.store`)
+- Do NOT merge store code into this repo or serve store pages from this codebase
+- Legacy `cursor/store-*` branches must not be used

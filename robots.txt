@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /synapse/
+Disallow: /palatial-link/
+Disallow: /access/
+Disallow: /system-map/
+Disallow: /private/
+
+Sitemap: https://www.palatialpools.com.au/sitemap.xml
+Sitemap: https://www.palatialpools.com.au/store/sitemap.xml

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core pages -->
+  <url><loc>https://www.palatialpools.com.au/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://www.palatialpools.com.au/faq/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/testimonials/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/contact-palatial-pool-services/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/privacy-policy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+
+  <!-- Service pages -->
+  <url><loc>https://www.palatialpools.com.au/melbourne-pool-services/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-regular-pool-cleaning/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-pool-spa-leak-detection/</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-pool-heating/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/naked-freshwater-pools/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-sand-changes/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/melbourne-pool-contracting/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/pool-area-shield/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/productinformation/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Shop -->
+  <url><loc>https://www.palatialpools.com.au/store/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/shop/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/online-pool-shop-melbourne/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/mont-albert-pool-shop/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Tools -->
+  <url><loc>https://www.palatialpools.com.au/cartridge-finder/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/pool-cost-calculator/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/energy-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/photo-diagnostics/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/ar-visualizer/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/pool-calculators/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/pool-volume-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/pool-diagnostics/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/chemical-dosage-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/salt-chlorinator-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/tools/heating-cost-calculator/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Gallery -->
+  <url><loc>https://www.palatialpools.com.au/palatial-project-gallery/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/palatial-service-area/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- Guides -->
+  <url><loc>https://www.palatialpools.com.au/guides/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/how-salt-chlorinator-works/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/pool-media-filter-change/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/pool-pump-guide/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/green-pool-recovery/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/pool-leak-detection/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/guides/pool-heating-options/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
+  <!-- Blog -->
+  <url><loc>https://www.palatialpools.com.au/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/blog/pool-pump-costs-melbourne/</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-04-16</lastmod></url>
+  <url><loc>https://www.palatialpools.com.au/blog/signs-pool-leak/</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-04-14</lastmod></url>
+  <url><loc>https://www.palatialpools.com.au/blog/fix-green-pool-fast/</loc><changefreq>monthly</changefreq><priority>0.8</priority><lastmod>2026-04-10</lastmod></url>
+
+  <!-- Suburb landing pages -->
+  <url><loc>https://www.palatialpools.com.au/abbotsford-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/alphington-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/balwyn-north-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/balwyn-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/box-hill-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/bulleen-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/burwood-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/camberwell-pool-cleaning/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/camberwell-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/carlton-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/coburg-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/deepdene-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/docklands-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/doncaster-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/eaglemont-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/east-melbourne-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/fitzroy-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/greensborough-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/hawthorn-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/heidelberg-pool-cleaning/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/heidelberg-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/ivanhoe-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/kew-east-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/kew-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/macleod-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/malvern-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/northcote-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/oakleigh-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/prahran-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/preston-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/richmond-leak-detection/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/richmond-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/rosanna-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/south-yarra-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/st-kilda-pool-servicing/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/surrey-hills-pool-service/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/templestowe-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.palatialpools.com.au/toorak-pool-maintenance/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+
+  <!-- Online Store -->
+  <url><loc>https://www.palatialpools.com.au/store/</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.palatialpools.com.au/store/chemicals/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/store/equipment/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.palatialpools.com.au/store/accessories/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.palatialpools.com.au/store/water-testing/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- Public transparency documents -->
+  <url><loc>https://www.palatialpools.com.au/store/transparency/</loc><changefreq>yearly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://www.palatialpools.com.au/documents/predictive-pool-care-technical-brief.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://www.palatialpools.com.au/documents/palatial-public-release-security-notes.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>

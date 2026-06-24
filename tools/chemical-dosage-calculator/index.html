@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pool Chemical Dosage Calculator | Palatial Pools Melbourne</title>
+<meta name="description" content="Calculate exact chemical dosages for your pool. Enter current readings and pool volume to get precise amounts of chlorine, acid, alkalinity increaser, and stabiliser needed.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://palatialpools.com.au/tools/chemical-dosage-calculator">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pool Chemical Dosage Calculator | Palatial Pools Melbourne">
+<meta property="og:description" content="Calculate exact chemical dosages for your pool based on current readings and volume. Professional-grade accuracy.">
+<meta property="og:url" content="https://palatialpools.com.au/tools/chemical-dosage-calculator">
+<meta property="og:site_name" content="Palatial Pools">
+<meta property="og:locale" content="en_AU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pp-luxury.css">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-purple: #1a0533;
+    --brand-purple-mid: #2d0a52;
+    --brand-purple-light: #3d1468;
+    --brand-teal: #00C4CC;
+    --brand-teal-dark: #009aa0;
+    --brand-teal-light: #33d0d7;
+    --brand-teal-glow: rgba(0,196,204,0.15);
+    --text-light: #f0f0f8;
+    --text-muted: #a0a0c0;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(0,196,204,0.2);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--brand-purple);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(180deg, var(--brand-purple-mid) 0%, var(--brand-purple) 100%);
+    text-align: center;
+    padding: 56px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(0,196,204,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero h2 {
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .hero h2 span { color: var(--brand-teal); }
+  .hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 560px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .main-wrap {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 32px 24px 64px;
+  }
+  .calculator-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== INPUTS PANEL ===== */
+  .inputs-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    position: sticky;
+    top: 90px;
+    box-shadow: var(--shadow);
+  }
+  .panel-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-title::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 16px;
+    background: var(--brand-teal);
+    border-radius: 2px;
+  }
+  .form-group { margin-bottom: 18px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .form-group label span {
+    color: var(--brand-teal);
+    font-weight: 700;
+    font-size: 0.9rem;
+  }
+  input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--brand-teal);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0,196,204,0.5);
+    transition: transform 0.15s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+  input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--brand-teal);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 0 8px rgba(0,196,204,0.5);
+  }
+  select, input[type="number"] {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  select:focus, input[type="number"]:focus { border-color: var(--brand-teal); }
+  select option { background: var(--brand-purple-mid); }
+  .divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin: 20px 0;
+  }
+  .rate-note {
+    background: rgba(0,196,204,0.08);
+    border: 1px solid rgba(0,196,204,0.2);
+    border-radius: var(--radius-sm);
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .rate-note strong { color: var(--brand-teal); }
+
+  /* ===== RESULTS PANEL ===== */
+  .results-panel { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ===== HEALTH HERO CARD ===== */
+  .savings-hero {
+    background: linear-gradient(135deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border: 1px solid var(--brand-teal);
+    border-radius: var(--radius);
+    padding: 28px;
+    text-align: center;
+    box-shadow: 0 0 32px rgba(0,196,204,0.15), var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.4s, box-shadow 0.4s;
+  }
+  .savings-hero::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(0,196,204,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .savings-hero h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--brand-teal);
+    margin-bottom: 8px;
+  }
+  .savings-amount {
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    font-weight: 900;
+    color: var(--brand-teal);
+    line-height: 1;
+    margin-bottom: 4px;
+    text-shadow: 0 0 24px rgba(0,196,204,0.4);
+    transition: color 0.4s;
+  }
+  .savings-sub {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+  .savings-meta {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item { text-align: center; }
+  .meta-item .val {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text-light);
+    display: block;
+  }
+  .meta-item .lbl {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+  .section-header .badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 12px;
+    padding: 2px 10px;
+    font-size: 0.72rem;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== COMPARISON TABLE ===== */
+  .comparison-wrap {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  .comparison-table thead tr {
+    background: linear-gradient(90deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border-bottom: 2px solid var(--brand-teal);
+  }
+  .comparison-table thead th {
+    padding: 14px 16px;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .comparison-table thead th:first-child { color: var(--brand-teal); }
+  .comparison-table tbody tr {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: background 0.15s;
+  }
+  .comparison-table tbody tr:hover { background: rgba(0,196,204,0.04); }
+  .comparison-table tbody tr.highlight-row {
+    background: rgba(0,196,204,0.06);
+    border-left: 3px solid var(--brand-teal);
+  }
+  .comparison-table tbody tr.highlight-row:hover { background: rgba(0,196,204,0.1); }
+  .comparison-table td {
+    padding: 13px 16px;
+    vertical-align: middle;
+  }
+  .param-name { font-weight: 700; color: var(--text-light); }
+  .param-detail { font-size: 0.75rem; color: var(--text-muted); }
+  .status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+  .status-pill.good { background: rgba(34,197,94,0.15); color: var(--success); }
+  .status-pill.warn { background: rgba(245,158,11,0.15); color: var(--warning); }
+  .status-pill.bad { background: rgba(239,68,68,0.15); color: var(--danger); }
+  .cost-val { font-weight: 700; font-size: 0.95rem; }
+  .cost-val.best { color: var(--success); }
+  .cost-val.mid { color: var(--warning); }
+  .cost-val.worst { color: var(--danger); }
+
+  /* ===== EFFICIENCY BARS ===== */
+  .efficiency-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .eff-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .eff-row:last-child { margin-bottom: 0; }
+  .eff-label { width: 140px; flex-shrink: 0; }
+  .eff-label .name { font-size: 0.82rem; font-weight: 600; color: var(--text-light); }
+  .eff-label .brand { font-size: 0.72rem; color: var(--text-muted); }
+  .eff-track {
+    flex: 1;
+    height: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+  .eff-bar {
+    height: 100%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brand-purple);
+    transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+    white-space: nowrap;
+  }
+  .eff-val { font-size: 0.82rem; font-weight: 700; width: 90px; text-align: right; color: var(--text-light); }
+
+  /* ===== RANGE GAUGE ===== */
+  .gauge-section {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .gauge-row {
+    margin-bottom: 20px;
+  }
+  .gauge-row:last-child { margin-bottom: 0; }
+  .gauge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .gauge-name { font-size: 0.85rem; font-weight: 600; color: var(--text-light); }
+  .gauge-reading { font-size: 0.85rem; font-weight: 700; }
+  .gauge-track {
+    position: relative;
+    height: 10px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 5px;
+    overflow: visible;
+  }
+  .gauge-ideal {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: rgba(0,196,204,0.18);
+    border-radius: 5px;
+    border: 1px solid rgba(0,196,204,0.3);
+  }
+  .gauge-marker {
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px currentColor;
+    border: 2px solid rgba(255,255,255,0.9);
+    transition: left 0.6s cubic-bezier(0.4,0,0.2,1), background 0.4s, color 0.4s;
+    z-index: 2;
+  }
+  .gauge-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+  }
+
+  /* ===== DOSAGE CARDS (PAYBACK STYLE) ===== */
+  .payback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .payback-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .payback-card:hover { border-color: var(--brand-teal); transform: translateY(-2px); }
+  .payback-card.card-ok {
+    border-color: rgba(34,197,94,0.4);
+    background: rgba(34,197,94,0.04);
+  }
+  .payback-card.card-adjust {
+    border-color: rgba(245,158,11,0.4);
+    background: rgba(245,158,11,0.04);
+  }
+  .payback-card.card-critical {
+    border-color: rgba(239,68,68,0.4);
+    background: rgba(239,68,68,0.04);
+    box-shadow: 0 0 20px rgba(239,68,68,0.1), var(--shadow);
+  }
+  .payback-card .product {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .payback-card .years {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: var(--brand-teal);
+    line-height: 1.1;
+    margin-bottom: 2px;
+    word-break: break-word;
+  }
+  .payback-card .years-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .payback-card .annual {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+  .payback-card .annual-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ===== FOOTNOTE ===== */
+  .footnote {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .footnote strong { color: var(--text-light); }
+
+  /* ===== TOOLS CROSSLINKS ===== */
+  .tools-crosslink {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .tools-crosslink a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .tools-crosslink a:hover {
+    background: rgba(0,196,204,0.06);
+    border-color: var(--brand-teal);
+    color: var(--brand-teal);
+    transform: translateX(3px);
+  }
+  .tools-crosslink .tool-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ===== SCROLL FADE ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 700px) {
+    .comparison-table { font-size: 0.78rem; }
+    .comparison-table td, .comparison-table th { padding: 10px 10px; }
+    .savings-meta { gap: 16px; }
+    .eff-label { width: 110px; }
+    .payback-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .payback-grid { grid-template-columns: 1fr; }
+  }
+  @media print {
+    .inputs-panel { position: static; }
+    .calculator-grid { grid-template-columns: 1fr; }
+  }
+
+  .pp-section, .pp-cta-band, .pp-footer { opacity: 1 !important; transform: none !important; }
+</style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+  <span class="pp-trust-item">&#10003; Mon&ndash;Sat Service</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>Chemical Dosage Calculator</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h2>Pool Chemical <span>Dosage</span> Calculator</h2>
+  <p>Enter your current water test readings and pool volume for precise chemical dosages to bring your water into perfect balance.</p>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+  <div class="calculator-grid">
+
+    <!-- INPUTS PANEL -->
+    <aside class="inputs-panel fade-in">
+      <div class="panel-title">Your Pool Details</div>
+
+      <div class="form-group">
+        <label>Pool Volume &nbsp;<span id="vol-display">50,000 L</span></label>
+        <input type="range" id="pool-volume" min="10000" max="120000" step="1000" value="50000" oninput="updateAll()">
+        <input type="number" id="pool-volume-num" min="10000" max="200000" step="1000" value="50000" style="margin-top:6px;" oninput="document.getElementById('pool-volume').value=this.value;updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Sanitiser Type</label>
+        <select id="sanitiser" onchange="updateAll()">
+          <option value="chlorine" selected>Chlorine (liquid/granular)</option>
+          <option value="salt">Salt Chlorinator</option>
+        </select>
+      </div>
+
+      <hr class="divider">
+      <div class="panel-title">Current Readings</div>
+
+      <div class="form-group">
+        <label>Free Chlorine (ppm) &nbsp;<span id="fc-display">0.5</span></label>
+        <input type="range" id="freeChlorine" min="0" max="10" step="0.1" value="0.5" oninput="updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>pH Level &nbsp;<span id="ph-display">7.8</span></label>
+        <input type="range" id="ph" min="6.0" max="8.5" step="0.1" value="7.8" oninput="updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Total Alkalinity (ppm) &nbsp;<span id="alk-display">60</span></label>
+        <input type="range" id="alkalinity" min="0" max="300" step="5" value="60" oninput="updateAll()">
+      </div>
+
+      <div class="form-group">
+        <label>Cyanuric Acid / CYA (ppm) &nbsp;<span id="cya-display">20</span></label>
+        <input type="range" id="cya" min="0" max="200" step="5" value="20" oninput="updateAll()">
+      </div>
+
+      <hr class="divider">
+      <div class="rate-note">
+        <strong>Tip:</strong> Use a quality test kit or take a water sample to your local pool shop for accurate readings. Adjust sliders to match your results.
+      </div>
+    </aside>
+
+    <!-- RESULTS AREA -->
+    <main class="results-panel">
+
+      <!-- WATER HEALTH SCORE HERO -->
+      <div class="savings-hero fade-in" id="health-hero">
+        <h3>Overall Water Health Score</h3>
+        <div class="savings-amount" id="health-score">0%</div>
+        <div class="savings-sub" id="health-grade">Calculating&hellip;</div>
+        <div class="savings-meta">
+          <div class="meta-item">
+            <span class="val" id="meta-in-range">0 / 4</span>
+            <span class="lbl">In Range</span>
+          </div>
+          <div class="meta-item">
+            <span class="val" id="meta-attention">0</span>
+            <span class="lbl">Need Attention</span>
+          </div>
+          <div class="meta-item">
+            <span class="val" id="meta-grade">—</span>
+            <span class="lbl">Grade</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARAMETER RANGE GAUGES -->
+      <div class="gauge-section fade-in">
+        <div class="section-header">
+          <h3>Parameter Status</h3>
+          <span class="badge">Current vs Ideal</span>
+        </div>
+        <div id="gauge-bars"></div>
+      </div>
+
+      <!-- EFFICIENCY HEALTH BARS -->
+      <div class="efficiency-section fade-in">
+        <div class="section-header">
+          <h3>Parameter Health</h3>
+          <span class="badge">Higher is Better</span>
+        </div>
+        <div id="eff-bars"></div>
+      </div>
+
+      <!-- DOSAGE RESULT CARDS -->
+      <div class="fade-in">
+        <div class="section-header">
+          <h3>Chemical Dosages</h3>
+          <span class="badge">Recommended</span>
+        </div>
+        <div class="payback-grid" id="dosage-cards"></div>
+      </div>
+
+      <!-- IDEAL RANGES TABLE -->
+      <div class="fade-in">
+        <div class="section-header">
+          <h3>Ideal Water Chemistry Ranges</h3>
+          <span class="badge">Reference</span>
+        </div>
+        <div class="comparison-wrap">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Parameter</th>
+                <th>Ideal Range</th>
+                <th>Action if Low</th>
+                <th>Action if High</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="highlight-row">
+                <td><span class="param-name">Free Chlorine</span><br><span class="param-detail">Sanitiser level</span></td>
+                <td><span class="cost-val best">1.0 &ndash; 3.0 ppm</span></td>
+                <td>Add liquid chlorine or granular</td>
+                <td>Let dissipate or add sodium thiosulphate</td>
+              </tr>
+              <tr>
+                <td><span class="param-name">pH</span><br><span class="param-detail">Acidity / alkalinity balance</span></td>
+                <td><span class="cost-val best">7.2 &ndash; 7.6</span></td>
+                <td>Add soda ash (sodium carbonate)</td>
+                <td>Add hydrochloric acid</td>
+              </tr>
+              <tr>
+                <td><span class="param-name">Total Alkalinity</span><br><span class="param-detail">pH buffer</span></td>
+                <td><span class="cost-val best">80 &ndash; 120 ppm</span></td>
+                <td>Add sodium bicarbonate</td>
+                <td>Add hydrochloric acid</td>
+              </tr>
+              <tr>
+                <td><span class="param-name">Cyanuric Acid</span><br><span class="param-detail">UV stabiliser</span></td>
+                <td><span class="cost-val best">30 &ndash; 50 ppm</span></td>
+                <td>Add stabiliser (cyanuric acid)</td>
+                <td>Dilute (partial drain &amp; refill)</td>
+              </tr>
+              <tr>
+                <td><span class="param-name">Calcium Hardness</span><br><span class="param-detail">Surface protection</span></td>
+                <td><span class="cost-val best">200 &ndash; 400 ppm</span></td>
+                <td>Add calcium chloride</td>
+                <td>Dilute or use sequestrant</td>
+              </tr>
+              <tr>
+                <td><span class="param-name">Salt Level</span><br><span class="param-detail">Chlorinator feed</span></td>
+                <td><span class="cost-val best">3,000 &ndash; 5,000 ppm</span></td>
+                <td>Add pool salt</td>
+                <td>Dilute (partial drain &amp; refill)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTNOTE -->
+  <div class="footnote" style="margin-top:32px;">
+    <strong>Methodology &amp; Disclaimer:</strong> Dosages are calculated using industry-standard formulas for Australian pool conditions. Actual results may vary based on water temperature, bather load, sunlight exposure, and chemical product concentration. All figures are approximate &mdash; always retest 4&ndash;6 hours after adding chemicals. <strong>Never add more than one chemical at a time.</strong> Wait at least 4 hours between adjustments. For salt chlorinator pools, maintain salt at manufacturer-recommended levels (typically 3,000&ndash;5,000 ppm).
+  </div>
+
+  <!-- TOOLS CROSSLINKS -->
+  <div class="tools-crosslink">
+    <a href="/tools/pool-cost-calculator">
+      <span class="tool-icon">&#9881;</span>
+      <span>Running Cost Calculator</span>
+    </a>
+    <a href="/tools/energy-calculator">
+      <span class="tool-icon">&#9889;</span>
+      <span>Energy Savings Calculator</span>
+    </a>
+    <a href="/tools/heating-cost-calculator">
+      <span class="tool-icon">&#9832;</span>
+      <span>Heating Cost Calculator</span>
+    </a>
+    <a href="/tools/salt-chlorinator-calculator">
+      <span class="tool-icon">&#9889;</span>
+      <span>Salt Chlorinator Sizing</span>
+    </a>
+    <a href="/pool-volume-calculator">
+      <span class="tool-icon">&#9906;</span>
+      <span>Pool Volume Calculator</span>
+    </a>
+    <a href="/guides/green-pool-recovery">
+      <span class="tool-icon">&#127795;</span>
+      <span>Green Pool Recovery Guide</span>
+    </a>
+  </div>
+</div>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Need Help Balancing <span class="accent">Your Pool</span>?</h2>
+    <p>Our technicians carry professional-grade test kits and can balance your water chemistry in a single visit.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Book a Water Test</a>
+      <a href="tel:0342317665" class="pp-btn pp-btn-outline">Call 03 4231 7665</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div>
+        <h4>Palatial Pools</h4>
+        <p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne&rsquo;s premium pool and spa service. Expert care across all inner and middle suburbs.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/melbourne-pool-services">Pool Maintenance</a>
+        <a href="/melbourne-pool-spa-leak-detection">Leak Detection</a>
+        <a href="/melbourne-pool-heating">Pool Heating</a>
+        <a href="/naked-freshwater-pools">Freshwater Pools</a>
+        <a href="/melbourne-sand-changes">Sand Changes</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/tools/pool-cost-calculator">Running Cost Calc</a>
+        <a href="/tools/chemical-dosage-calculator">Chemical Dosage</a>
+        <a href="/tools/heating-cost-calculator">Heating Cost Calc</a>
+        <a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a>
+        <a href="/pool-volume-calculator">Volume Calculator</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/guides/">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="/testimonials">Reviews</a>
+        <a href="/palatial-service-area">Service Areas</a>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>&copy; 2026 Palatial Pool Services. All rights reserved.</span>
+      <span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// PARAMETER DEFINITIONS
+// ============================================================
+const PARAMS = [
+  { id: 'fc',  inputId: 'freeChlorine', label: 'Free Chlorine', unit: 'ppm', idealLow: 1.0, idealHigh: 3.0, scaleMin: 0, scaleMax: 10 },
+  { id: 'ph',  inputId: 'ph',           label: 'pH Level',      unit: '',    idealLow: 7.2, idealHigh: 7.6, scaleMin: 6.0, scaleMax: 8.5 },
+  { id: 'alk', inputId: 'alkalinity',   label: 'Total Alkalinity', unit: 'ppm', idealLow: 80, idealHigh: 120, scaleMin: 0, scaleMax: 300 },
+  { id: 'cya', inputId: 'cya',          label: 'Cyanuric Acid', unit: 'ppm', idealLow: 30, idealHigh: 50, scaleMin: 0, scaleMax: 200 }
+];
+
+// ============================================================
+// HELPERS
+// ============================================================
+function getVal(id) { return parseFloat(document.getElementById(id).value); }
+function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+function fmtNum(n) { return n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+function getStatus(val, idealLow, idealHigh, critLowThreshold, critHighThreshold) {
+  if (val >= idealLow && val <= idealHigh) return 'ok';
+  if (val < critLowThreshold || val > critHighThreshold) return 'critical';
+  return 'adjust';
+}
+
+function getHealthScore(val, p) {
+  if (val >= p.idealLow && val <= p.idealHigh) return 100;
+  const range = p.idealHigh - p.idealLow;
+  if (val < p.idealLow) {
+    const dist = p.idealLow - val;
+    const maxDist = p.idealLow - p.scaleMin;
+    return Math.max(0, Math.round(100 - (dist / maxDist) * 100));
+  }
+  const dist = val - p.idealHigh;
+  const maxDist = p.scaleMax - p.idealHigh;
+  return Math.max(0, Math.round(100 - (dist / maxDist) * 100));
+}
+
+function getGrade(score) {
+  if (score >= 95) return 'A+';
+  if (score >= 85) return 'A';
+  if (score >= 75) return 'B';
+  if (score >= 60) return 'C';
+  if (score >= 40) return 'D';
+  return 'F';
+}
+
+function getScoreColor(score) {
+  if (score >= 80) return 'var(--success)';
+  if (score >= 60) return 'var(--warning)';
+  return 'var(--danger)';
+}
+
+function statusColor(status) {
+  if (status === 'ok') return 'var(--success)';
+  if (status === 'adjust') return 'var(--warning)';
+  return 'var(--danger)';
+}
+
+// ============================================================
+// CHEMICAL DOSAGE CALCULATIONS (preserved from original)
+// ============================================================
+function calcDosages(vol, fc, ph, alk, cya) {
+  const litres10k = vol / 10000;
+  const results = [];
+
+  // FREE CHLORINE
+  const targetCl = 2.0;
+  const clDiff = targetCl - fc;
+  if (clDiff <= 0) {
+    results.push({ param: 'Free Chlorine', status: 'ok', dosage: 'No addition needed', chemical: 'Chlorine level is adequate', note: 'Current: ' + fc + ' ppm. Target: 1\u20133 ppm.' });
+  } else {
+    const status = clDiff > 2 ? 'critical' : 'adjust';
+    const liquidCl = (clDiff * litres10k * 0.1).toFixed(0);
+    const granCl = (clDiff * litres10k * 18).toFixed(0);
+    results.push({ param: 'Free Chlorine', status: status, dosage: liquidCl + ' mL', chemical: 'Liquid chlorine (12.5%)', altDosage: 'Or ' + granCl + 'g cal hypo (65%)', note: 'Raises FC from ' + fc + ' to ~' + targetCl + ' ppm. Add in evening.' });
+  }
+
+  // pH
+  if (ph >= 7.2 && ph <= 7.6) {
+    results.push({ param: 'pH Level', status: 'ok', dosage: 'No adjustment needed', chemical: 'pH is in ideal range', note: 'Current pH: ' + ph + '. Perfect for chlorine efficacy.' });
+  } else if (ph > 7.6) {
+    const status = ph > 8.0 ? 'critical' : 'adjust';
+    const acidMl = ((ph - 7.4) * litres10k * 100).toFixed(0);
+    results.push({ param: 'pH Level', status: status, dosage: acidMl + ' mL', chemical: 'Hydrochloric acid (32%)', note: 'Lowers pH from ' + ph + ' to ~7.4. Add near return jet with pump running.' });
+  } else {
+    const status = ph < 6.8 ? 'critical' : 'adjust';
+    const sodaG = ((7.4 - ph) * litres10k * 150).toFixed(0);
+    results.push({ param: 'pH Level', status: status, dosage: sodaG + ' g', chemical: 'Soda ash (sodium carbonate)', note: 'Raises pH from ' + ph + ' to ~7.4. Pre-dissolve in bucket first.' });
+  }
+
+  // TOTAL ALKALINITY
+  if (alk >= 80 && alk <= 120) {
+    results.push({ param: 'Total Alkalinity', status: 'ok', dosage: 'No adjustment needed', chemical: 'Alkalinity is in ideal range', note: 'Current TA: ' + alk + ' ppm. Good pH buffer.' });
+  } else if (alk < 80) {
+    const status = alk < 50 ? 'critical' : 'adjust';
+    const bicarb = ((80 - alk) * litres10k * 18).toFixed(0);
+    results.push({ param: 'Total Alkalinity', status: status, dosage: bicarb + ' g', chemical: 'Sodium bicarbonate (buffer)', note: 'Raises TA from ' + alk + ' to ~80 ppm. Max 500g per 10,000L per day.' });
+  } else {
+    const status = alk > 180 ? 'critical' : 'adjust';
+    const acidMl = ((alk - 100) * litres10k * 25).toFixed(0);
+    results.push({ param: 'Total Alkalinity', status: status, dosage: acidMl + ' mL', chemical: 'Hydrochloric acid \u2014 retest after 4 hrs', note: 'Lowers TA from ' + alk + ' towards 100 ppm. Aerate to restore pH.' });
+  }
+
+  // CYANURIC ACID
+  if (cya >= 30 && cya <= 50) {
+    results.push({ param: 'Cyanuric Acid', status: 'ok', dosage: 'No addition needed', chemical: 'Stabiliser level is ideal', note: 'Current CYA: ' + cya + ' ppm. Good UV protection.' });
+  } else if (cya < 30) {
+    const status = cya < 10 ? 'critical' : 'adjust';
+    const stabG = ((30 - cya) * litres10k * 10).toFixed(0);
+    results.push({ param: 'Cyanuric Acid', status: status, dosage: stabG + ' g', chemical: 'Pool stabiliser (cyanuric acid)', note: 'Raises CYA from ' + cya + ' to ~30 ppm. Takes 48h to register.' });
+  } else {
+    const status = cya > 100 ? 'critical' : 'adjust';
+    const drainPct = Math.min(Math.round((1 - 50 / cya) * 100), 75);
+    results.push({ param: 'Cyanuric Acid', status: status, dosage: 'Drain ~' + drainPct + '%', chemical: 'Partial drain & refill', note: 'CYA at ' + cya + ' ppm reduces chlorine effectiveness. Dilution is the only fix.' });
+  }
+
+  return results;
+}
+
+// ============================================================
+// RENDER HEALTH HERO
+// ============================================================
+function renderHealthHero(scores) {
+  const avg = scores.reduce((s, v) => s + v, 0) / scores.length;
+  const inRange = scores.filter(s => s === 100).length;
+  const needAttention = scores.length - inRange;
+  const grade = getGrade(avg);
+  const color = getScoreColor(avg);
+
+  document.getElementById('health-score').textContent = Math.round(avg) + '%';
+  document.getElementById('health-score').style.color = color;
+  document.getElementById('health-score').style.textShadow = '0 0 24px ' + color;
+  document.getElementById('health-grade').textContent = 'Grade: ' + grade + ' \u2014 ' + (avg >= 80 ? 'Your water is looking great' : avg >= 60 ? 'Some parameters need attention' : 'Immediate action recommended');
+  document.getElementById('meta-in-range').textContent = inRange + ' / ' + scores.length;
+  document.getElementById('meta-attention').textContent = needAttention;
+  document.getElementById('meta-attention').style.color = needAttention === 0 ? 'var(--success)' : needAttention <= 2 ? 'var(--warning)' : 'var(--danger)';
+  document.getElementById('meta-grade').textContent = grade;
+  document.getElementById('meta-grade').style.color = color;
+
+  const hero = document.getElementById('health-hero');
+  if (avg >= 80) {
+    hero.style.borderColor = 'var(--success)';
+    hero.style.boxShadow = '0 0 32px rgba(34,197,94,0.2), var(--shadow)';
+  } else if (avg >= 60) {
+    hero.style.borderColor = 'var(--warning)';
+    hero.style.boxShadow = '0 0 32px rgba(245,158,11,0.2), var(--shadow)';
+  } else {
+    hero.style.borderColor = 'var(--danger)';
+    hero.style.boxShadow = '0 0 32px rgba(239,68,68,0.2), var(--shadow)';
+  }
+}
+
+// ============================================================
+// RENDER RANGE GAUGES
+// ============================================================
+function renderGauges(values) {
+  const container = document.getElementById('gauge-bars');
+  container.innerHTML = '';
+  PARAMS.forEach((p, i) => {
+    const val = values[i];
+    const score = getHealthScore(val, p);
+    const inRange = val >= p.idealLow && val <= p.idealHigh;
+    const status = inRange ? 'ok' : (score < 40 ? 'critical' : 'adjust');
+    const color = statusColor(status);
+    const totalRange = p.scaleMax - p.scaleMin;
+    const idealLeftPct = ((p.idealLow - p.scaleMin) / totalRange * 100).toFixed(1);
+    const idealWidthPct = ((p.idealHigh - p.idealLow) / totalRange * 100).toFixed(1);
+    const markerPct = clamp(((val - p.scaleMin) / totalRange * 100), 1, 99).toFixed(1);
+    const displayVal = p.id === 'ph' ? val.toFixed(1) : val.toFixed(0);
+    const statusLabel = inRange ? 'In Range' : (val < p.idealLow ? 'Low' : 'High');
+
+    container.innerHTML += '<div class="gauge-row">' +
+      '<div class="gauge-header">' +
+        '<span class="gauge-name">' + p.label + '</span>' +
+        '<span class="gauge-reading" style="color:' + color + '">' + displayVal + (p.unit ? ' ' + p.unit : '') + ' &mdash; ' + statusLabel + '</span>' +
+      '</div>' +
+      '<div class="gauge-track">' +
+        '<div class="gauge-ideal" style="left:' + idealLeftPct + '%;width:' + idealWidthPct + '%"></div>' +
+        '<div class="gauge-marker" style="left:' + markerPct + '%;background:' + color + ';color:' + color + '"></div>' +
+      '</div>' +
+      '<div class="gauge-labels">' +
+        '<span>' + p.scaleMin + '</span>' +
+        '<span style="color:var(--brand-teal)">Ideal: ' + p.idealLow + '\u2013' + p.idealHigh + '</span>' +
+        '<span>' + p.scaleMax + '</span>' +
+      '</div>' +
+    '</div>';
+  });
+}
+
+// ============================================================
+// RENDER EFFICIENCY HEALTH BARS
+// ============================================================
+function renderEffBars(values) {
+  const container = document.getElementById('eff-bars');
+  container.innerHTML = '';
+  PARAMS.forEach((p, i) => {
+    const val = values[i];
+    const score = getHealthScore(val, p);
+    const displayVal = p.id === 'ph' ? val.toFixed(1) : val.toFixed(0);
+    let barColor;
+    if (score >= 80) barColor = 'var(--success)';
+    else if (score >= 50) barColor = 'var(--warning)';
+    else barColor = 'var(--danger)';
+
+    container.innerHTML += '<div class="eff-row">' +
+      '<div class="eff-label">' +
+        '<div class="name">' + p.label + '</div>' +
+        '<div class="brand">Current: ' + displayVal + (p.unit ? ' ' + p.unit : '') + '</div>' +
+      '</div>' +
+      '<div class="eff-track">' +
+        '<div class="eff-bar" style="width:' + score + '%;background:' + barColor + '">' + (score > 15 ? score + '%' : '') + '</div>' +
+      '</div>' +
+      '<div class="eff-val" style="color:' + barColor + '">Ideal: ' + p.idealLow + '\u2013' + p.idealHigh + '</div>' +
+    '</div>';
+  });
+}
+
+// ============================================================
+// RENDER DOSAGE CARDS
+// ============================================================
+function renderDosageCards(dosages) {
+  const container = document.getElementById('dosage-cards');
+  container.innerHTML = '';
+  dosages.forEach(d => {
+    let cardClass = 'card-' + d.status;
+    let statusLabel, statusColor;
+    if (d.status === 'ok') { statusLabel = '&#10003; In Range'; statusColor = 'var(--success)'; }
+    else if (d.status === 'adjust') { statusLabel = '&#9888; Adjust'; statusColor = 'var(--warning)'; }
+    else { statusLabel = '&#10007; Critical'; statusColor = 'var(--danger)'; }
+
+    const dosageColor = d.status === 'ok' ? 'var(--success)' : 'var(--brand-teal)';
+    container.innerHTML += '<div class="payback-card ' + cardClass + '">' +
+      '<div class="product">' + d.param + '</div>' +
+      '<div class="years" style="color:' + dosageColor + '">' + d.dosage + '</div>' +
+      '<div class="years-label">' + d.chemical + '</div>' +
+      '<div class="annual" style="color:' + statusColor + '">' + statusLabel + '</div>' +
+      (d.altDosage ? '<div class="annual-label">' + d.altDosage + '</div>' : '') +
+      '<div class="annual-label">' + d.note + '</div>' +
+    '</div>';
+  });
+}
+
+// ============================================================
+// MAIN UPDATE
+// ============================================================
+function updateAll() {
+  const vol = getVal('pool-volume');
+  const fc = getVal('freeChlorine');
+  const ph = getVal('ph');
+  const alk = getVal('alkalinity');
+  const cya = getVal('cya');
+
+  // Update slider labels
+  document.getElementById('vol-display').textContent = fmtNum(vol) + ' L';
+  document.getElementById('pool-volume-num').value = vol;
+  document.getElementById('fc-display').textContent = fc.toFixed(1);
+  document.getElementById('ph-display').textContent = ph.toFixed(1);
+  document.getElementById('alk-display').textContent = alk.toFixed(0);
+  document.getElementById('cya-display').textContent = cya.toFixed(0);
+
+  const values = [fc, ph, alk, cya];
+
+  // Health scores
+  const scores = PARAMS.map((p, i) => getHealthScore(values[i], p));
+  renderHealthHero(scores);
+
+  // Range gauges
+  renderGauges(values);
+
+  // Efficiency bars
+  renderEffBars(values);
+
+  // Chemical dosages
+  const dosages = calcDosages(vol, fc, ph, alk, cya);
+  renderDosageCards(dosages);
+}
+
+// ============================================================
+// INTERSECTION OBSERVER FOR FADE-IN
+// ============================================================
+function initFadeIn() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+}
+
+// ============================================================
+// INIT
+// ============================================================
+document.addEventListener('DOMContentLoaded', function() {
+  initFadeIn();
+  updateAll();
+});
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="nx-bg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#2e0a52"/>
+      <stop offset="100%" style="stop-color:#0d0118"/>
+    </radialGradient>
+    <linearGradient id="nx-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffe085"/>
+      <stop offset="50%" style="stop-color:#C5A55A"/>
+      <stop offset="100%" style="stop-color:#a07830"/>
+    </linearGradient>
+    <filter id="nx-glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="nx-glow-strong">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep dark background -->
+  <circle cx="256" cy="256" r="256" fill="url(#nx-bg)"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#C5A55A" stroke-width="8"/>
+
+  <!-- Pulse rings — visible but not distracting -->
+  <circle cx="256" cy="256" r="100" fill="none" stroke="#C5A55A" stroke-width="3" opacity="0.25"/>
+  <circle cx="256" cy="256" r="158" fill="none" stroke="#C5A55A" stroke-width="2" opacity="0.16"/>
+  <circle cx="256" cy="256" r="214" fill="none" stroke="#C5A55A" stroke-width="2" opacity="0.10"/>
+
+  <!-- Connection lines — thick bold -->
+  <line x1="256" y1="196" x2="256" y2="90"   stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+  <line x1="301" y1="211" x2="406" y2="156"  stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+  <line x1="301" y1="301" x2="406" y2="356"  stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+  <line x1="256" y1="316" x2="256" y2="422"  stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+  <line x1="211" y1="301" x2="106" y2="356"  stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+  <line x1="211" y1="211" x2="106" y2="156"  stroke="#C5A55A" stroke-width="5" opacity="0.55"/>
+
+  <!-- Mid-point connector dots — bold -->
+  <circle cx="256" cy="143" r="7" fill="#C5A55A" opacity="0.65"/>
+  <circle cx="353" cy="183" r="7" fill="#C5A55A" opacity="0.65"/>
+  <circle cx="353" cy="329" r="7" fill="#C5A55A" opacity="0.65"/>
+  <circle cx="256" cy="369" r="7" fill="#C5A55A" opacity="0.65"/>
+  <circle cx="159" cy="329" r="7" fill="#C5A55A" opacity="0.65"/>
+  <circle cx="159" cy="183" r="7" fill="#C5A55A" opacity="0.65"/>
+
+  <!-- Outer nodes — large, vivid, glowing -->
+  <circle cx="256" cy="68"  r="28" fill="#C5A55A" filter="url(#nx-glow-strong)"/>
+  <circle cx="422" cy="144" r="26" fill="#C5A55A" filter="url(#nx-glow)"/>
+  <circle cx="422" cy="368" r="26" fill="#C5A55A" filter="url(#nx-glow)"/>
+  <circle cx="256" cy="444" r="28" fill="#C5A55A" filter="url(#nx-glow-strong)"/>
+  <circle cx="90"  cy="368" r="26" fill="#C5A55A" filter="url(#nx-glow)"/>
+  <circle cx="90"  cy="144" r="26" fill="#C5A55A" filter="url(#nx-glow)"/>
+
+  <!-- Node inner dots — dark contrast -->
+  <circle cx="256" cy="68"  r="10" fill="#0d0118"/>
+  <circle cx="422" cy="144" r="9"  fill="#0d0118"/>
+  <circle cx="422" cy="368" r="9"  fill="#0d0118"/>
+  <circle cx="256" cy="444" r="10" fill="#0d0118"/>
+  <circle cx="90"  cy="368" r="9"  fill="#0d0118"/>
+  <circle cx="90"  cy="144" r="9"  fill="#0d0118"/>
+
+  <!-- Central hub glow -->
+  <circle cx="256" cy="256" r="80" fill="rgba(197,165,90,0.20)" filter="url(#nx-glow-strong)"/>
+  <!-- Central hub ring — thick -->
+  <circle cx="256" cy="256" r="76" fill="rgba(13,1,24,0.85)" stroke="#ffe085" stroke-width="7"/>
+
+  <!-- Chat bubble — bold, solid gold -->
+  <path d="M 204 228 L 308 228 Q 324 228 324 244 L 324 272 Q 324 288 308 288 L 272 288 L 256 310 L 240 288 L 204 288 Q 188 288 188 272 L 188 244 Q 188 228 204 228 Z"
+        fill="#C5A55A"/>
+  <!-- Chat dots — large, dark -->
+  <circle cx="228" cy="258" r="8" fill="#0d0118"/>
+  <circle cx="256" cy="258" r="8" fill="#0d0118"/>
+  <circle cx="284" cy="258" r="8" fill="#0d0118"/>
+</svg>

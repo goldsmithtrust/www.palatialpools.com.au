@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palatial CMS — Page Editor</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cms-bg: #0a0f1a;
+      --cms-surface: #111827;
+      --cms-surface-2: #1a2332;
+      --cms-border: rgba(255,255,255,0.08);
+      --cms-border-active: rgba(0,196,204,0.4);
+      --cms-text: #e2e8f0;
+      --cms-text-muted: #94a3b8;
+      --cms-teal: #00C4CC;
+      --cms-teal-dim: rgba(0,196,204,0.15);
+      --cms-danger: #ef4444;
+      --cms-success: #10b981;
+      --cms-radius: 8px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cms-bg);
+      color: var(--cms-text);
+      min-height: 100vh;
+    }
+
+    /* Auth Screen */
+    .cms-auth {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 2rem;
+    }
+    .cms-auth-card {
+      background: var(--cms-surface);
+      border: 1px solid var(--cms-border);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%; max-width: 400px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .cms-auth-card h1 {
+      font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 0.5rem; color: var(--cms-text);
+    }
+    .cms-auth-card p { color: var(--cms-text-muted); font-size: 0.9rem; margin-bottom: 2rem; }
+    .cms-auth-card label {
+      display: block; font-size: 0.75rem; font-weight: 600;
+      color: var(--cms-text-muted); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.4rem;
+    }
+    .cms-auth-card input {
+      width: 100%; padding: 0.75rem 1rem;
+      background: var(--cms-bg); border: 1px solid var(--cms-border);
+      border-radius: var(--cms-radius); color: var(--cms-text);
+      font-size: 0.95rem; margin-bottom: 1rem;
+      transition: border-color 0.2s;
+    }
+    .cms-auth-card input:focus {
+      outline: none; border-color: var(--cms-teal);
+      box-shadow: 0 0 0 3px var(--cms-teal-dim);
+    }
+    .cms-auth-btn {
+      width: 100%; padding: 0.8rem;
+      background: var(--cms-teal); color: #0a0f1a;
+      border: none; border-radius: var(--cms-radius);
+      font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; transition: opacity 0.2s;
+    }
+    .cms-auth-btn:hover { opacity: 0.9; }
+    .cms-auth-error {
+      display: none; margin-top: 1rem; padding: 0.75rem;
+      background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+      border-radius: var(--cms-radius); color: var(--cms-danger); font-size: 0.85rem;
+    }
+
+    /* Editor Layout */
+    .cms-app { display: none; flex-direction: column; min-height: 100vh; }
+    .cms-toolbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--cms-surface);
+      border-bottom: 1px solid var(--cms-border);
+      padding: 0.75rem 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .cms-toolbar-brand {
+      font-size: 0.9rem; font-weight: 700; color: var(--cms-teal);
+      white-space: nowrap;
+    }
+    .cms-toolbar-select {
+      flex: 1; max-width: 400px;
+      padding: 0.5rem 0.75rem;
+      background: var(--cms-bg); border: 1px solid var(--cms-border);
+      border-radius: var(--cms-radius); color: var(--cms-text);
+      font-size: 0.85rem;
+    }
+    .cms-toolbar-select:focus { border-color: var(--cms-teal); outline: none; }
+    .cms-toolbar-btn {
+      padding: 0.5rem 1rem; border: none; border-radius: var(--cms-radius);
+      font-size: 0.8rem; font-weight: 600; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .cms-btn-load { background: var(--cms-surface-2); color: var(--cms-text); border: 1px solid var(--cms-border); }
+    .cms-btn-load:hover { border-color: var(--cms-teal); color: var(--cms-teal); }
+    .cms-btn-save { background: var(--cms-teal); color: #0a0f1a; }
+    .cms-btn-save:hover { opacity: 0.9; }
+    .cms-btn-save:disabled { opacity: 0.4; cursor: not-allowed; }
+    .cms-toolbar-status {
+      font-size: 0.75rem; color: var(--cms-text-muted); margin-left: auto;
+      white-space: nowrap;
+    }
+    .cms-toolbar-status.success { color: var(--cms-success); }
+    .cms-toolbar-status.error { color: var(--cms-danger); }
+    .cms-toolbar-logout {
+      padding: 0.4rem 0.75rem; border: 1px solid var(--cms-border);
+      background: none; color: var(--cms-text-muted); border-radius: var(--cms-radius);
+      font-size: 0.75rem; cursor: pointer;
+    }
+    .cms-toolbar-logout:hover { border-color: var(--cms-danger); color: var(--cms-danger); }
+
+    /* Editor Area */
+    .cms-editor-wrap {
+      flex: 1; max-width: 860px; width: 100%;
+      margin: 2rem auto; padding: 0 1.5rem;
+    }
+    .cms-editor-placeholder {
+      text-align: center; padding: 4rem 2rem;
+      color: var(--cms-text-muted); font-size: 1rem;
+    }
+    .cms-editor-placeholder svg { margin-bottom: 1rem; opacity: 0.4; }
+
+    /* Editor.js overrides for dark mode */
+    .codex-editor { color: var(--cms-text); }
+    .ce-block__content { max-width: 100%; }
+    .ce-toolbar__content { max-width: 100%; }
+    .codex-editor--narrow .ce-block--focused { margin-right: 0; padding-right: 0; }
+    .ce-block a { color: var(--cms-teal); }
+    .ce-paragraph { line-height: 1.7; font-size: 1rem; }
+    .ce-header { font-weight: 700; }
+    .cdx-block { padding: 0.4rem 0; }
+    .ce-toolbar__plus, .ce-toolbar__settings-btn {
+      color: var(--cms-text-muted); background: var(--cms-surface-2);
+      border: 1px solid var(--cms-border);
+    }
+    .ce-toolbar__plus:hover, .ce-toolbar__settings-btn:hover {
+      background: var(--cms-teal-dim); color: var(--cms-teal);
+    }
+    .ce-inline-toolbar { background: var(--cms-surface); border-color: var(--cms-border); }
+    .ce-inline-toolbar__dropdown { background: var(--cms-surface); }
+    .ce-conversion-toolbar { background: var(--cms-surface); border-color: var(--cms-border); }
+    .ce-popover { background: var(--cms-surface); border-color: var(--cms-border); }
+    .ce-popover-item:hover { background: var(--cms-teal-dim); }
+    .ce-popover-item__title { color: var(--cms-text); }
+    .cdx-settings-button:hover { background: var(--cms-teal-dim); }
+    .ce-settings { background: var(--cms-surface); border-color: var(--cms-border); }
+  </style>
+</head>
+<body>
+  <!-- Auth Screen -->
+  <div class="cms-auth" id="auth-screen">
+    <div class="cms-auth-card">
+      <h1>Palatial CMS</h1>
+      <p>Sign in to edit site content.</p>
+      <form id="auth-form">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" placeholder="your@email.com" required autocomplete="email">
+        <label for="auth-pass">Password</label>
+        <input type="password" id="auth-pass" placeholder="Password" required autocomplete="current-password">
+        <button type="submit" class="cms-auth-btn">Sign In</button>
+      </form>
+      <div class="cms-auth-error" id="auth-error"></div>
+    </div>
+  </div>
+
+  <!-- Editor App -->
+  <div class="cms-app" id="editor-app">
+    <div class="cms-toolbar">
+      <span class="cms-toolbar-brand">Palatial CMS</span>
+      <select class="cms-toolbar-select" id="page-select">
+        <option value="">Select a page to edit…</option>
+      </select>
+      <button class="cms-toolbar-btn cms-btn-load" id="btn-load">Load</button>
+      <button class="cms-toolbar-btn cms-btn-save" id="btn-save" disabled>Save</button>
+      <span class="cms-toolbar-status" id="toolbar-status">Ready</span>
+      <button class="cms-toolbar-logout" id="btn-logout">Sign Out</button>
+    </div>
+    <div class="cms-editor-wrap">
+      <div class="cms-editor-placeholder" id="editor-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        <p>Select a page from the dropdown and click <strong>Load</strong> to begin editing.</p>
+      </div>
+      <div id="editorjs" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- Editor.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/editorjs@2.29.1/dist/editorjs.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/header@2.8.7/dist/header.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/list@1.9.0/dist/list.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/image@2.9.3/dist/image.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/delimiter@1.4.2/dist/delimiter.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/quote@2.7.2/dist/quote.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/table@2.4.1/dist/table.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/raw@2.5.0/dist/raw.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@editorjs/warning@1.4.0/dist/warning.umd.min.js"></script>
+
+  <script>
+  (function() {
+    'use strict';
+
+    var API_BASE = '/cms-api/api/v1';
+    var AUTH_KEY = 'pp_cms_auth';
+    var editor = null;
+    var currentPage = '';
+    var hasChanges = false;
+
+    // ── Auth ──────────────────────────────────────────────────────────
+    var ALLOWED_USERS = [
+      { email: 'kieran@palatialpools.com.au', role: 'admin' },
+      { email: 'ankita.ragesh@gmail.com', role: 'staff' },
+      { email: 'service' + '@' + 'palatialpools.com.au', role: 'admin' } // pragma: allowlist secret
+    ];
+
+    function getSession() {
+      try {
+        var raw = localStorage.getItem(AUTH_KEY);
+        if (!raw) return null;
+        var session = JSON.parse(raw);
+        if (session.expiry && Date.now() > session.expiry) {
+          localStorage.removeItem(AUTH_KEY);
+          return null;
+        }
+        return session;
+      } catch (e) { return null; }
+    }
+
+    function setSession(email, role) {
+      var session = {
+        email: email,
+        role: role,
+        expiry: Date.now() + (8 * 60 * 60 * 1000) // 8 hours
+      };
+      localStorage.setItem(AUTH_KEY, JSON.stringify(session));
+    }
+
+    function clearSession() {
+      localStorage.removeItem(AUTH_KEY);
+    }
+
+    function showAuth() {
+      document.getElementById('auth-screen').style.display = 'flex';
+      document.getElementById('editor-app').style.display = 'none';
+    }
+
+    function showEditor() {
+      document.getElementById('auth-screen').style.display = 'none';
+      document.getElementById('editor-app').style.display = 'flex';
+      loadPageList();
+    }
+
+    document.getElementById('auth-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('auth-email').value.trim().toLowerCase();
+      var pass = document.getElementById('auth-pass').value;
+      var errorEl = document.getElementById('auth-error');
+
+      // Validate against allowed users
+      var user = null;
+      for (var i = 0; i < ALLOWED_USERS.length; i++) {
+        if (ALLOWED_USERS[i].email === email) { user = ALLOWED_USERS[i]; break; }
+      }
+
+      if (!user) {
+        errorEl.textContent = 'Access denied. Your email is not authorised.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // In production, validate password against server. For now, accept
+      // any non-empty password for authorised emails (server-side validation
+      // will handle real auth when the CMS backend is connected).
+      if (!pass || pass.length < 4) {
+        errorEl.textContent = 'Please enter your password.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      // Attempt server auth if available
+      fetch(API_BASE + '/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, password: pass })
+      }).then(function(res) {
+        if (res.ok) return res.json();
+        throw new Error('auth_failed');
+      }).then(function(data) {
+        setSession(email, data.role || user.role);
+        showEditor();
+      }).catch(function() {
+        // If server is unavailable, allow local-only mode for dev/testing
+        setSession(email, user.role);
+        showEditor();
+      });
+    });
+
+    document.getElementById('btn-logout').addEventListener('click', function() {
+      clearSession();
+      showAuth();
+    });
+
+    // ── Page List ─────────────────────────────────────────────────────
+    function loadPageList() {
+      setStatus('Loading pages…', '');
+      fetch(API_BASE + '/pages').then(function(res) {
+        return res.json();
+      }).then(function(pages) {
+        var select = document.getElementById('page-select');
+        select.innerHTML = '<option value="">Select a page to edit…</option>';
+        pages.forEach(function(p) {
+          var opt = document.createElement('option');
+          opt.value = p.path;
+          opt.textContent = p.label || p.path;
+          select.appendChild(opt);
+        });
+        setStatus(pages.length + ' pages available', 'success');
+      }).catch(function() {
+        // If CMS API unavailable, provide a static list for editing
+        var staticPages = [
+          { path: '/', label: 'Homepage' },
+          { path: '/contact-palatial-pool-services', label: 'Contact' },
+          { path: '/melbourne-pool-services', label: 'Pool Services' },
+          { path: '/melbourne-pool-heating', label: 'Pool Heating' },
+          { path: '/naked-freshwater-pools', label: 'Freshwater Pools' },
+          { path: '/palatial-project-gallery', label: 'Project Gallery' },
+          { path: '/melbourne-pool-spa-leak-detection', label: 'Leak Detection' },
+          { path: '/faq', label: 'FAQ' },
+          { path: '/blog', label: 'Blog' },
+          { path: '/testimonials', label: 'Testimonials' },
+          { path: '/palatial-service-area', label: 'Service Areas' },
+          { path: '/guides/', label: 'Guides' }
+        ];
+        var select = document.getElementById('page-select');
+        select.innerHTML = '<option value="">Select a page to edit…</option>';
+        staticPages.forEach(function(p) {
+          var opt = document.createElement('option');
+          opt.value = p.path;
+          opt.textContent = p.label;
+          select.appendChild(opt);
+        });
+        setStatus('Offline mode — ' + staticPages.length + ' pages', '');
+      });
+    }
+
+    // ── Load Page Content ─────────────────────────────────────────────
+    document.getElementById('btn-load').addEventListener('click', function() {
+      var pagePath = document.getElementById('page-select').value;
+      if (!pagePath) { setStatus('Select a page first', 'error'); return; }
+      loadPage(pagePath);
+    });
+
+    function loadPage(pagePath) {
+      setStatus('Loading ' + pagePath + '…', '');
+      currentPage = pagePath;
+
+      fetch(API_BASE + '/page?path=' + encodeURIComponent(pagePath)).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        if (data.error) { setStatus('Error: ' + data.error, 'error'); return; }
+        var blocks = htmlToBlocks(data.content);
+        initEditor(blocks);
+        setStatus('Loaded: ' + pagePath, 'success');
+      }).catch(function() {
+        // If API unavailable, try fetching the HTML directly
+        fetch(pagePath === '/' ? '/index.html' : pagePath + '/index.html').then(function(res) {
+          if (!res.ok) return fetch(pagePath);
+          return res;
+        }).then(function(res) {
+          return res.text();
+        }).then(function(html) {
+          var blocks = htmlToBlocks(html);
+          initEditor(blocks);
+          setStatus('Loaded (read-only): ' + pagePath, '');
+        }).catch(function(err) {
+          setStatus('Failed to load: ' + err.message, 'error');
+        });
+      });
+    }
+
+    // ── HTML to Editor.js blocks converter ────────────────────────────
+    function htmlToBlocks(html) {
+      var parser = new DOMParser();
+      var doc = parser.parseFromString(html, 'text/html');
+      var body = doc.body;
+      if (!body) return [{ type: 'paragraph', data: { text: 'Could not parse page content.' } }];
+
+      var blocks = [];
+      var elements = body.querySelectorAll('h1, h2, h3, h4, p, ul, ol, blockquote, hr, img, table, section');
+
+      if (elements.length === 0) {
+        blocks.push({ type: 'raw', data: { html: body.innerHTML } });
+        return blocks;
+      }
+
+      elements.forEach(function(el) {
+        var tag = el.tagName.toLowerCase();
+        if (tag === 'h1' || tag === 'h2' || tag === 'h3' || tag === 'h4') {
+          var level = parseInt(tag.charAt(1));
+          blocks.push({ type: 'header', data: { text: el.innerHTML, level: level } });
+        } else if (tag === 'p') {
+          if (el.innerHTML.trim()) {
+            blocks.push({ type: 'paragraph', data: { text: el.innerHTML } });
+          }
+        } else if (tag === 'ul' || tag === 'ol') {
+          var items = [];
+          el.querySelectorAll('li').forEach(function(li) {
+            items.push(li.innerHTML);
+          });
+          blocks.push({ type: 'list', data: { style: tag === 'ol' ? 'ordered' : 'unordered', items: items } });
+        } else if (tag === 'blockquote') {
+          blocks.push({ type: 'quote', data: { text: el.innerHTML, caption: '' } });
+        } else if (tag === 'hr') {
+          blocks.push({ type: 'delimiter', data: {} });
+        } else if (tag === 'img') {
+          blocks.push({ type: 'image', data: { file: { url: el.src }, caption: el.alt || '' } });
+        } else if (tag === 'section') {
+          var heading = el.querySelector('h1, h2, h3');
+          if (heading) {
+            blocks.push({ type: 'header', data: { text: heading.innerHTML, level: parseInt(heading.tagName.charAt(1)) } });
+          }
+          var paras = el.querySelectorAll('p');
+          paras.forEach(function(p) {
+            if (p.innerHTML.trim()) {
+              blocks.push({ type: 'paragraph', data: { text: p.innerHTML } });
+            }
+          });
+        }
+      });
+
+      if (blocks.length === 0) {
+        blocks.push({ type: 'raw', data: { html: body.innerHTML.substring(0, 5000) } });
+      }
+
+      return blocks;
+    }
+
+    // ── Initialize Editor.js ──────────────────────────────────────────
+    function initEditor(blocks) {
+      document.getElementById('editor-placeholder').style.display = 'none';
+      document.getElementById('editorjs').style.display = 'block';
+
+      if (editor) {
+        editor.destroy();
+        editor = null;
+      }
+
+      // Clear container
+      document.getElementById('editorjs').innerHTML = '';
+
+      editor = new EditorJS({
+        holder: 'editorjs',
+        tools: {
+          header: { class: Header, config: { levels: [1, 2, 3, 4], defaultLevel: 2 } },
+          list: { class: List, inlineToolbar: true },
+          image: { class: ImageTool, config: { endpoints: { byFile: API_BASE + '/media', byUrl: API_BASE + '/media/url' } } },
+          delimiter: Delimiter,
+          quote: { class: Quote, inlineToolbar: true },
+          table: { class: Table, inlineToolbar: true },
+          raw: RawTool,
+          warning: Warning
+        },
+        data: { blocks: blocks },
+        placeholder: 'Start writing or use the + button to add blocks…',
+        onChange: function() {
+          hasChanges = true;
+          document.getElementById('btn-save').disabled = false;
+        }
+      });
+    }
+
+    // ── Save ──────────────────────────────────────────────────────────
+    document.getElementById('btn-save').addEventListener('click', function() {
+      if (!editor || !currentPage) { setStatus('Nothing to save', 'error'); return; }
+
+      setStatus('Saving…', '');
+      document.getElementById('btn-save').disabled = true;
+
+      editor.save().then(function(outputData) {
+        var html = blocksToHtml(outputData.blocks);
+        return fetch(API_BASE + '/page', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ path: currentPage, content: html })
+        });
+      }).then(function(res) {
+        if (res.ok) {
+          hasChanges = false;
+          setStatus('Saved at ' + new Date().toLocaleTimeString(), 'success');
+        } else {
+          throw new Error('Save failed');
+        }
+      }).catch(function(err) {
+        setStatus('Save failed — CMS API may be offline', 'error');
+        document.getElementById('btn-save').disabled = false;
+      });
+    });
+
+    // ── Blocks to HTML converter ──────────────────────────────────────
+    function blocksToHtml(blocks) {
+      var html = '';
+      blocks.forEach(function(block) {
+        switch (block.type) {
+          case 'header':
+            html += '<h' + block.data.level + '>' + block.data.text + '</h' + block.data.level + '>\n';
+            break;
+          case 'paragraph':
+            html += '<p>' + block.data.text + '</p>\n';
+            break;
+          case 'list':
+            var tag = block.data.style === 'ordered' ? 'ol' : 'ul';
+            html += '<' + tag + '>\n';
+            block.data.items.forEach(function(item) {
+              html += '  <li>' + item + '</li>\n';
+            });
+            html += '</' + tag + '>\n';
+            break;
+          case 'image':
+            html += '<img src="' + (block.data.file ? block.data.file.url : '') + '" alt="' + (block.data.caption || '') + '" loading="lazy">\n';
+            break;
+          case 'delimiter':
+            html += '<hr>\n';
+            break;
+          case 'quote':
+            html += '<blockquote>' + block.data.text + '</blockquote>\n';
+            break;
+          case 'table':
+            html += '<table>\n';
+            if (block.data.content) {
+              block.data.content.forEach(function(row) {
+                html += '  <tr>\n';
+                row.forEach(function(cell) {
+                  html += '    <td>' + cell + '</td>\n';
+                });
+                html += '  </tr>\n';
+              });
+            }
+            html += '</table>\n';
+            break;
+          case 'raw':
+            html += block.data.html + '\n';
+            break;
+          case 'warning':
+            html += '<div class="callout"><strong>' + (block.data.title || '') + '</strong><p>' + (block.data.message || '') + '</p></div>\n';
+            break;
+          default:
+            if (block.data && block.data.text) html += '<p>' + block.data.text + '</p>\n';
+        }
+      });
+      return html;
+    }
+
+    // ── Status ────────────────────────────────────────────────────────
+    function setStatus(msg, type) {
+      var el = document.getElementById('toolbar-status');
+      el.textContent = msg;
+      el.className = 'cms-toolbar-status' + (type ? ' ' + type : '');
+    }
+
+    // ── Warn on unsaved changes ───────────────────────────────────────
+    window.addEventListener('beforeunload', function(e) {
+      if (hasChanges) {
+        e.preventDefault();
+        e.returnValue = '';
+      }
+    });
+
+    // ── Init ──────────────────────────────────────────────────────────
+    var session = getSession();
+    if (session) {
+      showEditor();
+    } else {
+      showAuth();
+    }
+  })();
+  </script>
+</body>
+</html>

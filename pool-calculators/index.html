@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Pool Calculators Melbourne | Palatial Pools</title>
+<meta name="description" content="Free enterprise-grade pool calculators. Chemical dosage, running costs, heating comparison, salt chlorinator sizing, and pool volume. Professional accuracy for Melbourne pool owners.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://palatialpools.com.au/pool-calculators">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Pool Calculators | Palatial Pools Melbourne">
+<meta property="og:description" content="Enterprise-grade pool calculators: chemical dosage, running costs, heating costs, chlorinator sizing. Professional accuracy, free to use.">
+<meta property="og:url" content="https://palatialpools.com.au/pool-calculators">
+<meta property="og:site_name" content="Palatial Pools">
+<meta property="og:locale" content="en_AU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/pp-luxury.css">
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand-purple: #1a0533;
+    --brand-purple-mid: #2d0a52;
+    --brand-purple-light: #3d1468;
+    --brand-teal: #00C4CC;
+    --brand-teal-dark: #009aa0;
+    --brand-teal-light: #33d0d7;
+    --brand-teal-glow: rgba(0,196,204,0.15);
+    --text-light: #f0f0f8;
+    --text-muted: #a0a0c0;
+    --card-bg: rgba(255,255,255,0.04);
+    --card-border: rgba(0,196,204,0.2);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--brand-purple);
+    color: var(--text-light);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ===== HERO ===== */
+  .hub-hero {
+    background: linear-gradient(180deg, var(--brand-purple-mid) 0%, var(--brand-purple) 100%);
+    text-align: center;
+    padding: 64px 24px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hub-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 400px;
+    background: radial-gradient(ellipse, rgba(0,196,204,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hub-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0,196,204,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hub-hero .hero-badge {
+    display: inline-block;
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    position: relative;
+  }
+  .hub-hero h1 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 14px;
+    position: relative;
+    line-height: 1.2;
+  }
+  .hub-hero h1 span { color: var(--brand-teal); }
+  .hub-hero p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto 28px;
+    position: relative;
+    line-height: 1.7;
+  }
+
+  /* ===== TAB NAVIGATION ===== */
+  .hero-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .tab-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 10px 22px;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.3px;
+  }
+  .tab-btn:hover { border-color: var(--brand-teal); color: var(--brand-teal); }
+  .tab-btn.active {
+    background: var(--brand-teal);
+    border-color: var(--brand-teal);
+    color: var(--brand-purple);
+    box-shadow: 0 0 16px rgba(0,196,204,0.4);
+  }
+
+  /* ===== MAIN WRAP ===== */
+  .main-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px 64px;
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .section-header::before {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 20px;
+    background: var(--brand-teal);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .section-header h2 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-light);
+  }
+  .section-header .badge {
+    background: var(--brand-teal-glow);
+    border: 1px solid var(--brand-teal);
+    border-radius: 12px;
+    padding: 3px 12px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== FEATURED HERO CARD ===== */
+  .featured-card {
+    background: linear-gradient(135deg, var(--brand-purple-mid), var(--brand-purple-light));
+    border: 1px solid var(--brand-teal);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    box-shadow: 0 0 32px rgba(0,196,204,0.12), var(--shadow);
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .featured-card:hover { transform: translateY(-3px); box-shadow: 0 0 40px rgba(0,196,204,0.2), var(--shadow); }
+  .featured-card::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(0,196,204,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .featured-card::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(0,196,204,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .featured-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(0,196,204,0.1);
+    border: 2px solid rgba(0,196,204,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 24px rgba(0,196,204,0.15);
+    position: relative;
+  }
+  .featured-body { flex: 1; position: relative; }
+  .featured-body .feat-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--brand-teal);
+    margin-bottom: 6px;
+  }
+  .featured-body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+  .featured-body p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+  .featured-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    color: var(--brand-purple);
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+  }
+  @media(max-width: 640px) {
+    .featured-card { flex-direction: column; text-align: center; padding: 28px 20px; }
+  }
+
+  /* ===== CALCULATOR CARD GRID ===== */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 18px;
+    margin-bottom: 48px;
+  }
+  @media(max-width: 700px) { .calc-grid { grid-template-columns: 1fr; } }
+
+  /* ===== CALCULATOR CARD (payback-card style) ===== */
+  .calc-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  }
+  .calc-card:hover {
+    border-color: var(--brand-teal);
+    transform: translateY(-3px);
+    box-shadow: 0 0 24px rgba(0,196,204,0.15), 0 8px 32px rgba(0,0,0,0.5);
+  }
+  .calc-card::after {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0,196,204,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    transition: opacity 0.3s;
+    opacity: 0;
+  }
+  .calc-card:hover::after { opacity: 1; }
+
+  .calc-card-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: rgba(0,196,204,0.08);
+    border: 1px solid rgba(0,196,204,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    transition: box-shadow 0.3s, background 0.3s;
+  }
+  .calc-card:hover .calc-card-icon {
+    background: rgba(0,196,204,0.14);
+    box-shadow: 0 0 18px rgba(0,196,204,0.2);
+  }
+  .calc-card-body { flex: 1; min-width: 0; }
+  .calc-card-body h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .calc-card-body p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  .card-pill {
+    display: inline-block;
+    background: var(--brand-teal-glow);
+    border: 1px solid rgba(0,196,204,0.25);
+    border-radius: 12px;
+    padding: 3px 12px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--brand-teal);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+  .new-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-dark));
+    color: var(--brand-purple);
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 0 8px rgba(0,196,204,0.3);
+  }
+
+  /* ===== EXPLORE LINKS ===== */
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+    margin-bottom: 48px;
+  }
+  .explore-link {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .explore-link:hover {
+    border-color: var(--card-border);
+    color: var(--brand-teal);
+    background: rgba(0,196,204,0.04);
+  }
+  .explore-link::before {
+    content: '\2192\00a0';
+    color: var(--brand-teal);
+    opacity: 0.5;
+    transition: opacity 0.2s;
+  }
+  .explore-link:hover::before { opacity: 1; }
+
+  /* ===== FOOTNOTE / NOTE BAR ===== */
+  .info-bar {
+    background: rgba(0,196,204,0.06);
+    border: 1px solid rgba(0,196,204,0.18);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 48px;
+  }
+  .info-bar strong { color: var(--brand-teal); }
+
+  /* ===== SCROLL FADE ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width: 480px) {
+    .calc-card { flex-direction: column; text-align: center; align-items: center; }
+    .calc-card-icon { margin-bottom: 4px; }
+    .featured-icon { width: 60px; height: 60px; font-size: 1.6rem; }
+  }
+</style>
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/naked-freshwater-pools">Naked Pools</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; 10+ Years Experience</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+  <span class="pp-trust-item">&#10003; Mon&ndash;Sat Service</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <span>Calculators &amp; Tools</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hub-hero">
+  <span class="hero-badge">Enterprise-Grade Tools</span>
+  <h1>Pool Calculators <span>&amp; Tools</span></h1>
+  <p>The same professional-grade calculations our technicians use in the field. Free, instant, and accurate for Melbourne pool owners.</p>
+  <div class="hero-tabs">
+    <button class="tab-btn active" data-filter="all">All</button>
+    <button class="tab-btn" data-filter="calculator">Calculators</button>
+    <button class="tab-btn" data-filter="ai">AI Tools</button>
+    <button class="tab-btn" data-filter="measurement">Measurement</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-wrap">
+
+  <!-- FEATURED CARD -->
+  <a href="/tools/chemical-dosage-calculator" class="featured-card fade-in" data-category="calculator">
+    <span class="featured-badge">Most Popular</span>
+    <div class="featured-icon">&#9883;</div>
+    <div class="featured-body">
+      <div class="feat-label">Featured Calculator</div>
+      <h3>Chemical Dosage Calculator</h3>
+      <p>Enter your water test readings and get exact chemical amounts to bring your pool into perfect balance. Covers chlorine, pH, alkalinity, and stabiliser.</p>
+    </div>
+  </a>
+
+  <!-- CALCULATOR CARDS -->
+  <div class="section-header fade-in">
+    <h2>Pool Calculators</h2>
+    <span class="badge">6 Tools</span>
+  </div>
+
+  <div class="calc-grid" id="calc-grid">
+
+    <a href="/tools/chemical-dosage-calculator" class="calc-card fade-in" data-category="calculator">
+      <span class="new-badge">New</span>
+      <div class="calc-card-icon">&#9883;</div>
+      <div class="calc-card-body">
+        <h3>Chemical Dosage Calculator</h3>
+        <p>Exact chemical amounts for chlorine, pH, alkalinity, and stabiliser based on your water readings.</p>
+        <span class="card-pill">Water Chemistry</span>
+      </div>
+    </a>
+
+    <a href="/tools/pool-cost-calculator" class="calc-card fade-in" data-category="calculator">
+      <div class="calc-card-icon">&#9881;</div>
+      <div class="calc-card-body">
+        <h3>Running Cost Calculator</h3>
+        <p>Calculate pump electricity costs and see savings with a Neptune inverter upgrade. Real product specs.</p>
+        <span class="card-pill">Energy &amp; Savings</span>
+      </div>
+    </a>
+
+    <a href="/tools/heating-cost-calculator" class="calc-card fade-in" data-category="calculator">
+      <span class="new-badge">New</span>
+      <div class="calc-card-icon">&#9832;</div>
+      <div class="calc-card-body">
+        <h3>Heating Cost Comparison</h3>
+        <p>Compare monthly running costs for heat pumps, gas, solar, and electric using Melbourne climate data.</p>
+        <span class="card-pill">Heating</span>
+      </div>
+    </a>
+
+    <a href="/tools/salt-chlorinator-calculator" class="calc-card fade-in" data-category="calculator">
+      <span class="new-badge">New</span>
+      <div class="calc-card-icon">&#9889;</div>
+      <div class="calc-card-body">
+        <h3>Salt Chlorinator Sizing</h3>
+        <p>Find the ideal chlorinator capacity based on volume, bather load, and sun exposure with product recommendations.</p>
+        <span class="card-pill">Equipment</span>
+      </div>
+    </a>
+
+    <a href="/pool-volume-calculator" class="calc-card fade-in" data-category="measurement">
+      <div class="calc-card-icon">&#9906;</div>
+      <div class="calc-card-body">
+        <h3>Pool Volume Calculator</h3>
+        <p>Trace your pool outline on satellite imagery for instant volume, surface area, and dosage calculations.</p>
+        <span class="card-pill">Measurement</span>
+      </div>
+    </a>
+
+    <a href="/tools/energy-calculator" class="calc-card fade-in" data-category="calculator">
+      <div class="calc-card-icon">&#9889;</div>
+      <div class="calc-card-body">
+        <h3>Energy Comparison Tool</h3>
+        <p>Side-by-side comparison of pool equipment energy consumption. Pumps, heaters, and lighting options.</p>
+        <span class="card-pill">Energy</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- AI & DIAGNOSTIC TOOLS -->
+  <div class="section-header fade-in">
+    <h2>AI &amp; Diagnostic Tools</h2>
+    <span class="badge">3 Tools</span>
+  </div>
+
+  <div class="calc-grid" id="ai-grid">
+
+    <a href="/tools/photo-diagnostics" class="calc-card fade-in" data-category="ai">
+      <div class="calc-card-icon">&#128247;</div>
+      <div class="calc-card-body">
+        <h3>AI Photo Diagnostics</h3>
+        <p>Upload a photo and get instant AI analysis of water clarity, algae, equipment condition, and actions.</p>
+        <span class="card-pill">AI Powered</span>
+      </div>
+    </a>
+
+    <a href="/tools/ar-visualizer" class="calc-card fade-in" data-category="ai">
+      <div class="calc-card-icon">&#127912;</div>
+      <div class="calc-card-body">
+        <h3>AR Equipment Visualiser</h3>
+        <p>See how new pool equipment would look installed at your property using augmented reality.</p>
+        <span class="card-pill">AR Preview</span>
+      </div>
+    </a>
+
+    <a href="/pool-diagnostics" class="calc-card fade-in" data-category="ai">
+      <div class="calc-card-icon">&#128172;</div>
+      <div class="calc-card-body">
+        <h3>Dustin &mdash; AI Pool Assistant</h3>
+        <p>Chat with our AI about pool problems, maintenance schedules, equipment, and troubleshooting.</p>
+        <span class="card-pill">AI Chat</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- INFO BAR -->
+  <div class="info-bar fade-in">
+    <strong>Melbourne-Specific Accuracy:</strong> All calculators use real product data, current Victorian energy prices, and Melbourne climate parameters. Results are indicative estimates &mdash; for a professional assessment, <a href="/contact-palatial-pool-services" style="color:var(--brand-teal)">contact our team</a>.
+  </div>
+
+  <!-- RELATED GUIDES -->
+  <div class="section-header fade-in">
+    <h2>Related Guides</h2>
+    <span class="badge">Explore</span>
+  </div>
+
+  <div class="explore-grid fade-in">
+    <a href="/guides/how-salt-chlorinator-works" class="explore-link">How Salt Chlorinators Work</a>
+    <a href="/guides/pool-heating-options" class="explore-link">Pool Heating Options Guide</a>
+    <a href="/guides/pool-pump-guide" class="explore-link">Pool Pump Buyers Guide</a>
+    <a href="/guides/green-pool-recovery" class="explore-link">Green Pool Recovery</a>
+    <a href="/guides/pool-leak-detection" class="explore-link">Leak Detection Guide</a>
+    <a href="/guides/pool-media-filter-change" class="explore-link">Media Filter Guide</a>
+    <a href="/blog/pool-pump-costs-melbourne" class="explore-link">Pool Pump Costs 2025</a>
+    <a href="/blog/fix-green-pool-fast" class="explore-link">Fix a Green Pool Fast</a>
+    <a href="/faq" class="explore-link">FAQ &mdash; Common Questions</a>
+  </div>
+
+</div>
+
+<section class="pp-cta-band">
+  <div class="container">
+    <h2>Need Professional <span class="accent">Help</span>?</h2>
+    <p>Our technicians use these same tools daily. If you need hands-on assistance, we&rsquo;re just a call away.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+      <a href="/contact-palatial-pool-services" class="pp-btn pp-btn-primary">Get a Free Quote</a>
+      <a href="tel:0342317665" class="pp-btn pp-btn-outline">Call 03 4231 7665</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pp-footer">
+  <div class="container">
+    <div class="pp-footer-grid">
+      <div>
+        <h4>Palatial Pools</h4>
+        <p style="font-size:0.85rem;color:var(--pp-muted-soft);line-height:1.7">Melbourne&rsquo;s premium pool and spa service. Expert care across all inner and middle suburbs.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="/melbourne-pool-services">Pool Maintenance</a>
+        <a href="/melbourne-pool-spa-leak-detection">Leak Detection</a>
+        <a href="/melbourne-pool-heating">Pool Heating</a>
+        <a href="/naked-freshwater-pools">Freshwater Pools</a>
+        <a href="/melbourne-sand-changes">Sand Changes</a>
+      </div>
+      <div>
+        <h4>Tools</h4>
+        <a href="/tools/pool-cost-calculator">Running Cost Calc</a>
+        <a href="/tools/chemical-dosage-calculator">Chemical Dosage</a>
+        <a href="/tools/heating-cost-calculator">Heating Cost Calc</a>
+        <a href="/tools/salt-chlorinator-calculator">Chlorinator Sizing</a>
+        <a href="/pool-volume-calculator">Volume Calculator</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/guides/">Guides</a>
+        <a href="/faq">FAQ</a>
+        <a href="/testimonials">Reviews</a>
+        <a href="/palatial-service-area">Service Areas</a>
+      </div>
+    </div>
+    <div class="pp-footer-bottom">
+      <span>&copy; 2026 Palatial Pool Services. All rights reserved.</span>
+      <span><a href="/privacy-policy">Privacy</a> &nbsp;|&nbsp; <a href="/sitemap.xml">Sitemap</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  /* Tab filtering */
+  var tabs = document.querySelectorAll('.tab-btn');
+  var allCards = document.querySelectorAll('.calc-card, .featured-card');
+  var sectionHeaders = document.querySelectorAll('.section-header');
+  var calcGridEl = document.getElementById('calc-grid');
+  var aiGridEl = document.getElementById('ai-grid');
+  var calcHeader = sectionHeaders[0];
+  var aiHeader = sectionHeaders[1];
+
+  tabs.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      tabs.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var filter = btn.getAttribute('data-filter');
+
+      if (filter === 'all') {
+        allCards.forEach(function(c){ c.style.display = ''; });
+        calcHeader.style.display = '';
+        calcGridEl.style.display = '';
+        aiHeader.style.display = '';
+        aiGridEl.style.display = '';
+        return;
+      }
+
+      allCards.forEach(function(c){
+        c.style.display = c.getAttribute('data-category') === filter ? '' : 'none';
+      });
+
+      var hasCalc = false, hasAi = false;
+      calcGridEl.querySelectorAll('.calc-card').forEach(function(c){
+        if (c.style.display !== 'none') hasCalc = true;
+      });
+      aiGridEl.querySelectorAll('.calc-card').forEach(function(c){
+        if (c.style.display !== 'none') hasAi = true;
+      });
+      calcHeader.style.display = hasCalc ? '' : 'none';
+      calcGridEl.style.display = hasCalc ? '' : 'none';
+      aiHeader.style.display = hasAi ? '' : 'none';
+      aiGridEl.style.display = hasAi ? '' : 'none';
+    });
+  });
+
+  /* Fade-in observer */
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(function(el){ obs.observe(el); });
+
+  /* Mobile nav toggle */
+  var toggle = document.querySelector('.pp-nav-toggle');
+  if (toggle) toggle.addEventListener('click', function(){ document.querySelector('.pp-nav-links').classList.toggle('open'); });
+})();
+</script>
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

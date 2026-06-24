@@ -1,0 +1,4 @@
+Contact: mailto:info@palatialpools.com.au
+Preferred-Languages: en-AU
+Canonical: https://www.palatialpools.com.au/.well-known/security.txt
+Policy: https://www.palatialpools.com.au/store/transparency/

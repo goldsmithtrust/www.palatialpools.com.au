@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satellite Pool Volume Calculator | Palatial Pools Melbourne</title>
+  <meta name="description" content="Use satellite imagery to trace your pool outline and instantly calculate volume, surface area, and chemical dosage. Free tool from Palatial Pools Melbourne." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://palatialpools.com.au/pool-volume-calculator" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <meta property="og:title" content="Satellite Pool Volume Calculator | Palatial Pools" />
+  <meta property="og:description" content="Trace your pool on satellite imagery and get instant volume, area, and chemical dosage calculations." />
+  <meta property="og:url" content="https://palatialpools.com.au/pool-volume-calculator" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/pp-luxury.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #1a0533;
+      --bg2: #120425;
+      --bg3: #2D2252;
+      --card: rgba(45, 34, 82, 0.5);
+      --border: rgba(196, 168, 77, 0.15);
+      --border2: rgba(255,255,255,0.08);
+      --gold: #C4A84D;
+      --gold2: #d4b85d;
+      --teal: #00C4CC;
+      --white: #f1f5f9;
+      --gray: rgba(241,245,249,0.65);
+      --gray2: rgba(241,245,249,0.4);
+      --purple: #3a2d6b;
+      --green: #22c55e;
+      --red: #ef4444;
+      --amber: #f59e0b;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4 { font-family: 'Cormorant Garamond', Georgia, serif; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV - compact */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: linear-gradient(90deg, var(--bg2) 0%, var(--bg3) 50%, var(--bg2) 100%);
+      border-bottom: 1px solid var(--border);
+      height: 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 1.5rem;
+    }
+    .nav-brand { font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; font-family: 'Cormorant Garamond', Georgia, serif; text-decoration: none; text-transform: uppercase; }
+    .nav-brand:hover { text-decoration: none; }
+    .nav-links { display: flex; gap: 1.2rem; align-items: center; }
+    .nav-links a { color: rgba(255,255,255,0.7); font-weight: 600; text-transform: uppercase; font-size: 0.68rem; letter-spacing: 0.05em; transition: color 0.2s; text-decoration: none; }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); text-decoration: none; }
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--gold); font-size: 1.3rem; cursor: pointer; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 48px; left: 0; right: 0; background: var(--bg2); padding: 0.75rem 1.5rem; gap: 0.6rem; border-bottom: 1px solid var(--border); }
+      .nav-links.open { display: flex; }
+      .mobile-menu-btn { display: block; }
+    }
+
+    /* HERO - compact */
+    .hero {
+      padding: 64px 1.5rem 20px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg3) 0%, var(--bg) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(0, 196, 204, 0.04) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(0, 196, 204, 0.1); border: 1px solid rgba(0, 196, 204, 0.25);
+      color: var(--teal); padding: 0.25rem 0.75rem; border-radius: 100px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem); font-weight: 800; line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 span { color: var(--teal); }
+    .hero p { color: var(--gray); font-size: 0.85rem; max-width: 560px; margin: 0 auto; }
+
+    /* MAIN - compact */
+    .main { max-width: 800px; margin: 0 auto; padding: 1.25rem 1.25rem 2rem; }
+
+    /* STEPS */
+    .steps-bar {
+      display: flex; justify-content: center; gap: 0; margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .step-item {
+      display: flex; align-items: center; gap: 0.35rem;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.7rem; font-weight: 600; color: var(--gray2);
+    }
+    .step-item.active { color: var(--teal); }
+    .step-item.completed { color: var(--green); }
+    .step-num {
+      width: 22px; height: 22px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 800;
+      border: 2px solid var(--border2);
+      color: var(--gray2); flex-shrink: 0;
+    }
+    .step-item.active .step-num { border-color: var(--teal); color: var(--teal); background: rgba(0, 196, 204, 0.1); }
+    .step-item.completed .step-num { border-color: var(--green); color: #fff; background: var(--green); }
+    .step-connector { width: 28px; height: 2px; background: var(--border2); align-self: center; }
+
+    /* CARD - compact */
+    .calc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+    .calc-card h2 {
+      font-size: 1.1rem; font-weight: 800; margin-bottom: 0.35rem;
+    }
+    .calc-card h2 span { color: var(--teal); }
+    .calc-card p.desc { color: var(--gray); font-size: 0.78rem; margin-bottom: 1rem; line-height: 1.6; }
+
+    /* FORM - compact */
+    .form-group { margin-bottom: 0.85rem; }
+    .form-group label {
+      display: block; font-size: 0.7rem; font-weight: 700;
+      color: rgba(241,245,249,0.85); margin-bottom: 0.3rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .form-group input, .form-group select {
+      width: 100%; padding: 0.55rem 0.75rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px; color: var(--white);
+      font-size: 0.85rem; outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 2px rgba(0, 196, 204, 0.12);
+    }
+    .form-group input::placeholder { color: var(--gray2); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* BUTTONS - compact */
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.6rem 1.4rem;
+      background: linear-gradient(135deg, var(--teal) 0%, #00a8b0 100%);
+      color: #fff; font-weight: 700; font-size: 0.78rem;
+      border: none; border-radius: 8px; cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-transform: uppercase; letter-spacing: 0.04em;
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0, 196, 204, 0.3); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--teal);
+      color: var(--teal);
+    }
+    .btn-outline:hover { background: rgba(0, 196, 204, 0.08); }
+    .btn-sm { padding: 0.45rem 0.9rem; font-size: 0.7rem; }
+    .btn-danger { background: linear-gradient(135deg, var(--red) 0%, #dc2626 100%); color: #fff; }
+    .btn-gold { background: linear-gradient(135deg, var(--gold) 0%, var(--gold2) 100%); color: var(--bg2); }
+
+    /* MAP - compact */
+    #map-container {
+      width: 100%; height: 320px;
+      border-radius: 10px; overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 0.75rem;
+      position: relative;
+      background: rgba(255,255,255,0.03);
+    }
+    #map { width: 100%; height: 100%; }
+    .map-toolbar {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .map-instructions {
+      background: rgba(0, 196, 204, 0.05);
+      border: 1px solid rgba(0, 196, 204, 0.15);
+      border-radius: 8px;
+      padding: 0.6rem 0.85rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.72rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    .map-instructions strong { color: var(--teal); }
+    @media (max-width: 600px) {
+      #map-container { height: 250px; }
+    }
+
+    /* AUTO-DETECT BANNER */
+    .auto-detect-banner {
+      background: linear-gradient(135deg, rgba(0, 196, 204, 0.08), rgba(196, 168, 77, 0.05));
+      border: 1px solid rgba(0, 196, 204, 0.2);
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1rem;
+      display: none;
+    }
+    .auto-detect-banner.active { display: block; }
+    .auto-detect-banner h4 {
+      font-size: 0.85rem; color: var(--teal); margin-bottom: 0.4rem;
+      font-family: 'Outfit', sans-serif; font-weight: 700;
+    }
+    .auto-detect-banner p {
+      font-size: 0.72rem; color: var(--gray); line-height: 1.5; margin-bottom: 0.6rem;
+    }
+    .auto-detect-banner .confidence {
+      display: inline-flex; align-items: center; gap: 0.3rem;
+      background: rgba(0, 196, 204, 0.1);
+      border: 1px solid rgba(0, 196, 204, 0.2);
+      padding: 0.2rem 0.6rem; border-radius: 6px;
+      font-size: 0.65rem; font-weight: 700; color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+    .auto-detect-banner .actions {
+      display: flex; gap: 0.5rem; flex-wrap: wrap;
+    }
+    .detecting-status {
+      display: none; align-items: center; gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: rgba(0, 196, 204, 0.05);
+      border: 1px solid rgba(0, 196, 204, 0.12);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      font-size: 0.72rem; color: var(--teal);
+    }
+    .detecting-status.active { display: flex; }
+    .detecting-status .mini-spinner {
+      width: 14px; height: 14px;
+      border: 2px solid rgba(0, 196, 204, 0.2);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* RESULTS - compact */
+    .results-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    @media (max-width: 700px) { .results-grid { grid-template-columns: 1fr; } }
+    .result-card {
+      background: rgba(0, 196, 204, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+    }
+    .result-card .label {
+      font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--gray2); margin-bottom: 0.3rem;
+    }
+    .result-card .value {
+      font-size: 1.5rem; font-weight: 800; color: var(--teal);
+      line-height: 1.2;
+    }
+    .result-card .unit {
+      font-size: 0.7rem; color: var(--gray); margin-top: 0.15rem;
+    }
+
+    /* CHEMICAL TABLE - compact */
+    .chem-section { margin-top: 1.25rem; }
+    .chem-section h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .chem-section h3 span { color: var(--teal); }
+    .chem-table {
+      width: 100%; border-collapse: collapse;
+      font-size: 0.72rem;
+    }
+    .chem-table th {
+      text-align: left; padding: 0.5rem 0.6rem;
+      background: rgba(0, 196, 204, 0.06);
+      border-bottom: 2px solid var(--border);
+      font-weight: 700; font-size: 0.65rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--teal);
+    }
+    .chem-table td {
+      padding: 0.5rem 0.6rem;
+      border-bottom: 1px solid var(--border2);
+      color: var(--gray);
+    }
+    .chem-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .chem-note {
+      margin-top: 0.75rem; padding: 0.6rem 0.85rem;
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.15);
+      border-radius: 8px;
+      font-size: 0.68rem; color: var(--gray);
+      line-height: 1.6;
+    }
+    .chem-note strong { color: var(--amber); }
+
+    /* CTA - compact */
+    .cta-section {
+      margin-top: 1.5rem;
+      background: linear-gradient(135deg, rgba(45, 34, 82, 0.7) 0%, rgba(58, 45, 107, 0.5) 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem 1.25rem;
+      text-align: center;
+    }
+    .cta-section h2 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cta-section h2 span { color: var(--gold); }
+    .cta-section p { color: var(--gray); font-size: 0.78rem; margin-bottom: 1rem; max-width: 420px; margin-left: auto; margin-right: auto; }
+    .cta-phone {
+      font-size: 1.3rem; font-weight: 800; color: var(--gold);
+      display: block; margin-bottom: 0.85rem; text-decoration: none;
+    }
+    .cta-phone:hover { text-decoration: none; opacity: 0.9; }
+    .cta-buttons { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+
+    /* FOOTER */
+    footer {
+      text-align: center; padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.68rem; color: var(--gray2);
+    }
+
+    .hidden { display: none !important; }
+
+    .map-loading {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: rgba(26, 5, 51, 0.85);
+      z-index: 10;
+      color: var(--gray);
+      font-size: 0.78rem;
+    }
+    .map-loading .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--border);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 0.75rem;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .area-live {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(0, 196, 204, 0.08);
+      border: 1px solid rgba(0, 196, 204, 0.2);
+      border-radius: 8px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.75rem;
+    }
+    .area-live .num { font-weight: 800; font-size: 0.9rem; }
+
+    .info-tip {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: rgba(0, 196, 204, 0.12);
+      color: var(--teal); font-size: 0.6rem; font-weight: 800;
+      cursor: help; margin-left: 0.25rem; position: relative;
+    }
+    .info-tip:hover::after {
+      content: attr(data-tip);
+      position: absolute; bottom: 130%; left: 50%; transform: translateX(-50%);
+      background: var(--bg3); border: 1px solid var(--border);
+      padding: 0.4rem 0.6rem; border-radius: 6px;
+      font-size: 0.65rem; font-weight: 500; color: var(--gray);
+      white-space: nowrap; z-index: 10; pointer-events: none;
+    }
+  </style>
+<link rel="stylesheet" href="/assets/palatial-animations.css">
+    <link rel="stylesheet" href="/assets/pp-mobile.css">
+    <script src="/assets/pp-nav.js" defer></script>
+  </head>
+<body>
+
+<div class="pp-ambient"><div class="pp-orb pp-orb-1"></div><div class="pp-orb pp-orb-2"></div><div class="pp-orb pp-orb-3"></div></div>
+
+<nav class="pp-nav" style="position:sticky;top:0;z-index:1000;">
+  <div class="container">
+    <a href="/" class="pp-nav-logo"><img src="/images/palatial-logo-white.png" alt="Palatial Pools"></a>
+    <div class="pp-nav-links">
+      <a href="/">Home</a>
+      <a href="/melbourne-pool-services">Services</a>
+      <a href="/melbourne-pool-heating">Heating</a>
+      <a href="/pool-calculators">Calculators</a>
+      <a href="/guides/">Guides</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact-palatial-pool-services" class="pp-nav-cta">Contact</a>
+    </div>
+    <button class="pp-nav-toggle" aria-label="Menu">&#9776;</button>
+  </div>
+</nav>
+
+<div class="pp-trust-bar" style="background:rgba(8,19,33,0.5);">
+  <span class="pp-trust-item">&#10003; Licensed &amp; Insured</span>
+  <span class="pp-trust-item">&#10003; AI Pool Detection</span>
+  <span class="pp-trust-item">&#10003; Melbourne-Wide</span>
+</div>
+
+<div class="pp-breadcrumb">
+  <div class="container" style="max-width:800px;">
+    <a href="/">Home</a> <span>&rsaquo;</span>
+    <a href="/pool-calculators">Calculators &amp; Tools</a> <span>&rsaquo;</span>
+    <span>Pool Volume Calculator</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">&#127758; Satellite Calculator</div>
+  <h1>Pool Volume <span>Calculator</span></h1>
+  <p>Find your address, trace your pool on satellite imagery, and instantly calculate volume, surface area, and chemical dosage recommendations.</p>
+</section>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- STEPS -->
+  <div class="steps-bar">
+    <div class="step-item active" id="step-1">
+      <div class="step-num">1</div>
+      <span>Find Address</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step-2">
+      <div class="step-num">2</div>
+      <span>Trace Pool</span>
+    </div>
+    <div class="step-connector"></div>
+    <div class="step-item" id="step-3">
+      <div class="step-num">3</div>
+      <span>Results</span>
+    </div>
+  </div>
+
+  <!-- STEP 1: ADDRESS -->
+  <div class="calc-card" id="card-address">
+    <h2>Step 1: <span>Find Your Pool</span></h2>
+    <p class="desc">Enter your address below to load satellite imagery of your property. We will zoom in so you can see your pool clearly.</p>
+    <div class="form-group">
+      <label for="address-input">Property Address</label>
+      <input type="text" id="address-input" placeholder="e.g. 42 Smith Street, Hawthorn VIC 3122" autocomplete="off" />
+    </div>
+    <button class="btn" id="btn-find" onclick="findAddress()">
+      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      Find My Pool
+    </button>
+  </div>
+
+  <!-- STEP 2: MAP + DRAW -->
+  <div class="calc-card hidden" id="card-map">
+    <h2>Step 2: <span>Trace Your Pool</span></h2>
+
+    <!-- Auto-detect status -->
+    <div class="detecting-status" id="detectingStatus">
+      <div class="mini-spinner"></div>
+      <span>Scanning satellite imagery for your pool...</span>
+    </div>
+
+    <!-- Auto-detect result banner -->
+    <div class="auto-detect-banner" id="autoDetectBanner">
+      <h4>Pool Detected</h4>
+      <div class="confidence" id="detectConfidence">Confidence: ---%</div>
+      <p id="detectMessage">If this doesn't sound right, plot the surface of your pool below to fine-tune.</p>
+      <div class="actions">
+        <button class="btn btn-sm" onclick="acceptAutoDetect()">Accept Detection</button>
+        <button class="btn btn-sm btn-outline" onclick="clearAutoDetect()">Trace Manually Instead</button>
+      </div>
+    </div>
+
+    <p class="desc">Click around the edge of your pool to trace its outline. The more points you place, the more accurate the measurement.</p>
+    <div class="map-instructions">
+      <strong>How to trace:</strong> Click on the pool edge to place points. When finished, click <strong>"Complete Outline"</strong> to close the shape.
+    </div>
+    <div class="map-toolbar">
+      <button class="btn btn-sm" id="btn-complete" onclick="completePolygon()" disabled>&#10004; Complete</button>
+      <button class="btn btn-sm btn-outline" onclick="undoLastPoint()">&#8630; Undo</button>
+      <button class="btn btn-sm btn-danger" onclick="clearDrawing()">&#10006; Clear</button>
+    </div>
+    <div id="map-container">
+      <div id="map"></div>
+      <div class="map-loading hidden" id="map-loading">
+        <div class="spinner"></div>
+        <span>Loading satellite imagery...</span>
+      </div>
+    </div>
+    <div class="area-live hidden" id="area-live">
+      Traced area: <span class="num" id="live-area">0</span> m&sup2;
+    </div>
+    <button class="btn btn-outline btn-sm" onclick="goBackToAddress()" style="margin-top:0.4rem;">&#8592; Change Address</button>
+  </div>
+
+  <!-- STEP 3: DEPTH + RESULTS -->
+  <div class="calc-card hidden" id="card-results">
+    <h2>Step 3: <span>Calculate Volume</span></h2>
+    <p class="desc">Enter your pool's average depth to calculate the total volume. Most residential pools in Melbourne are between 1.2m and 1.8m deep.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Surface Area (m&sup2;)</label>
+        <input type="text" id="res-area" readonly style="opacity:0.7;cursor:default;" />
+      </div>
+      <div class="form-group">
+        <label>Average Depth (m) <span class="info-tip" data-tip="Measure deepest + shallowest, divide by 2">?</span></label>
+        <input type="number" id="input-depth" placeholder="e.g. 1.5" step="0.1" min="0.3" max="5" value="1.5" />
+      </div>
+    </div>
+    <button class="btn" onclick="calculateVolume()" style="margin-bottom:1.25rem;">
+      Calculate Volume
+    </button>
+
+    <!-- RESULTS CARDS -->
+    <div class="results-grid hidden" id="results-display">
+      <div class="result-card">
+        <div class="label">Surface Area</div>
+        <div class="value" id="out-area">--</div>
+        <div class="unit">square metres</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Average Depth</div>
+        <div class="value" id="out-depth">--</div>
+        <div class="unit">metres</div>
+      </div>
+      <div class="result-card">
+        <div class="label">Total Volume</div>
+        <div class="value" id="out-volume">--</div>
+        <div class="unit">litres</div>
+      </div>
+    </div>
+
+    <!-- CHEMICAL DOSAGE -->
+    <div class="chem-section hidden" id="chem-section">
+      <h3>Chemical Dosage <span>Recommendations</span></h3>
+      <p class="desc" style="margin-bottom:0.75rem;">Based on your pool volume of <strong id="chem-vol-label">--</strong> litres. These are general guidelines for a standard chlorine pool.</p>
+      <table class="chem-table">
+        <thead>
+          <tr><th>Chemical</th><th>Purpose</th><th>Dosage</th><th>Ideal Range</th></tr>
+        </thead>
+        <tbody id="chem-tbody"></tbody>
+      </table>
+      <div class="chem-note">
+        <strong>&#9888; Important:</strong> These are estimates only. Always test your pool water before adding chemicals. Never mix chemicals together. Run your pump for at least 4 hours after dosing.
+      </div>
+    </div>
+
+    <button class="btn btn-outline btn-sm" onclick="goBackToMap()" style="margin-top:1rem;">&#8592; Re-trace Pool</button>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Need Help With <span>Your Pool?</span></h2>
+    <p>Whether you need regular cleaning, leak detection, heating, or chemical balancing, our Melbourne team is ready to help.</p>
+    <a href="tel:0342317665" class="cta-phone">03 4231 POOL</a>
+    <div class="cta-buttons">
+      <a href="https://palatialpools.com.au/contact-palatial-pool-services" class="btn btn-gold">Get a Free Quote</a>
+      <a href="https://palatialpools.com.au/melbourne-pool-services" class="btn btn-outline">View Services</a>
+    </div>
+  </div>
+
+</div>
+
+<footer style="background:linear-gradient(180deg,#0d0118,#1a0533);border-top:1px solid rgba(0,196,204,0.2);padding:2rem 1.5rem;position:relative;z-index:1;">
+  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:2rem;margin-bottom:1.5rem">
+    <div>
+      <h4 style="color:#00C4CC;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem">Services</h4>
+      <a href="/melbourne-pool-services" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Pool Maintenance</a>
+      <a href="/melbourne-pool-spa-leak-detection" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Leak Detection</a>
+      <a href="/melbourne-pool-heating" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Pool Heating</a>
+    </div>
+    <div>
+      <h4 style="color:#00C4CC;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem">Calculators</h4>
+      <a href="/tools/pool-cost-calculator" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Running Cost Calc</a>
+      <a href="/tools/chemical-dosage-calculator" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Chemical Dosage</a>
+      <a href="/tools/heating-cost-calculator" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Heating Cost Calc</a>
+      <a href="/tools/salt-chlorinator-calculator" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Chlorinator Sizing</a>
+    </div>
+    <div>
+      <h4 style="color:#00C4CC;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:0.8rem">Resources</h4>
+      <a href="/blog" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Blog</a>
+      <a href="/guides/" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Guides</a>
+      <a href="/faq" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">FAQ</a>
+      <a href="/testimonials" style="display:block;color:rgba(222,245,249,0.6);text-decoration:none;font-size:0.82rem;padding:0.2rem 0">Reviews</a>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(0,196,204,0.1);padding-top:1rem;text-align:center;font-size:0.72rem;color:rgba(222,245,249,0.4)">
+    &copy; 2026 Palatial Pool Services. <a href="/privacy-policy" style="color:rgba(222,245,249,0.4)">Privacy</a> | <a href="/sitemap.xml" style="color:rgba(222,245,249,0.4)">Sitemap</a>
+  </div>
+</footer>
+
+<script>
+document.querySelector('.pp-nav-toggle').addEventListener('click', function() {
+  document.querySelector('.pp-nav-links').classList.toggle('open');
+});
+</script>
+
+<!-- GOOGLE MAPS API -->
+<script>
+(function(){
+  var script = document.createElement('script');
+  script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBwOSKpyNW4bOSnq3yTnW8Dd44dUd6Xckg&libraries=geometry,drawing&callback=initMap';
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+  script.onerror = function() {
+    document.getElementById('map-container').innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;padding:1.5rem;text-align:center;color:var(--gray);">Google Maps API unavailable. Please try again later.</div>';
+  };
+})();
+</script>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   PALATIAL POOLS - Satellite Pool Volume Calculator + Auto-Detect
+   ═══════════════════════════════════════════════════════════════ */
+
+var map, geocoder, marker;
+var drawingPoints = [];
+var polyline = null;
+var polygon = null;
+var pointMarkers = [];
+var isCompleted = false;
+var autoDetectPolygon = null;
+var currentLatLng = null;
+
+/* INIT MAP */
+function initMap() {
+  var melb = { lat: -37.8136, lng: 144.9631 };
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: melb, zoom: 19, mapTypeId: 'satellite', tilt: 0,
+    disableDefaultUI: false, zoomControl: true, mapTypeControl: false,
+    streetViewControl: false, fullscreenControl: true, gestureHandling: 'greedy'
+  });
+  geocoder = new google.maps.Geocoder();
+  var input = document.getElementById('address-input');
+  map.addListener('click', function(e) {
+    if (!isCompleted) addPoint(e.latLng);
+  });
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); findAddress(); }
+  });
+}
+
+/* FIND ADDRESS */
+function findAddress() {
+  var addr = document.getElementById('address-input').value.trim();
+  if (!addr) { alert('Please enter an address.'); return; }
+  document.getElementById('btn-find').disabled = true;
+  document.getElementById('btn-find').textContent = 'Searching...';
+  geocoder.geocode({ address: addr + ', Australia' }, function(results, status) {
+    document.getElementById('btn-find').disabled = false;
+    document.getElementById('btn-find').innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg> Find My Pool';
+    if (status === 'OK' && results[0]) {
+      loadMapLocation(results[0].geometry.location);
+    } else {
+      alert('Address not found. Please try a more specific address.');
+    }
+  });
+}
+
+/* LOAD MAP LOCATION */
+function loadMapLocation(latLng) {
+  currentLatLng = latLng;
+  document.getElementById('card-address').classList.add('hidden');
+  document.getElementById('card-map').classList.remove('hidden');
+  document.getElementById('card-results').classList.add('hidden');
+  setStep(2);
+  document.getElementById('map-loading').classList.remove('hidden');
+  map.setCenter(latLng);
+  map.setZoom(20);
+  if (marker) marker.setMap(null);
+  marker = new google.maps.Marker({
+    position: latLng, map: map, title: 'Your property',
+    icon: { path: google.maps.SymbolPath.CIRCLE, scale: 6, fillColor: '#00C4CC', fillOpacity: 0.9, strokeColor: '#fff', strokeWeight: 2 }
+  });
+  clearDrawing();
+  google.maps.event.addListenerOnce(map, 'tilesloaded', function() {
+    document.getElementById('map-loading').classList.add('hidden');
+    // Trigger auto-detection
+    triggerAutoDetect(latLng);
+  });
+  setTimeout(function() {
+    google.maps.event.trigger(map, 'resize');
+    map.setCenter(latLng);
+  }, 100);
+}
+
+/* AUTO-DETECT POOL */
+function triggerAutoDetect(latLng) {
+  var detectStatus = document.getElementById('detectingStatus');
+  detectStatus.classList.add('active');
+
+  // Capture static map image
+  var lat = latLng.lat();
+  var lng = latLng.lng();
+  var staticUrl = 'https://maps.googleapis.com/maps/api/staticmap?center=' + lat + ',' + lng + '&zoom=20&size=640x640&maptype=satellite&key=AIzaSyBwOSKpyNW4bOSnq3yTnW8Dd44dUd6Xckg';
+
+  // Load image and convert to base64
+  var img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = function() {
+    var canvas = document.createElement('canvas');
+    canvas.width = 640;
+    canvas.height = 640;
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    var base64 = canvas.toDataURL('image/png');
+
+    // Send to detection API
+    fetch('/api/detect-pool', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: base64, lat: lat, lng: lng, zoom: 20 })
+    })
+    .then(function(resp) { return resp.json(); })
+    .then(function(data) {
+      detectStatus.classList.remove('active');
+      if (data.detected && data.confidence > 40) {
+        showAutoDetectResult(data, latLng);
+      }
+    })
+    .catch(function(err) {
+      detectStatus.classList.remove('active');
+      console.log('Auto-detect unavailable:', err);
+    });
+  };
+  img.onerror = function() {
+    detectStatus.classList.remove('active');
+  };
+  img.src = staticUrl;
+}
+
+/* SHOW AUTO-DETECT RESULT */
+function showAutoDetectResult(data, centerLatLng) {
+  var banner = document.getElementById('autoDetectBanner');
+  banner.classList.add('active');
+  document.getElementById('detectConfidence').textContent = 'Confidence: ' + data.confidence + '%';
+
+  // Convert percentage polygon to lat/lng coordinates
+  // The static map is 640x640 at zoom 20 centered on the property
+  var lat = centerLatLng.lat();
+  var lng = centerLatLng.lng();
+
+  // At zoom 20, approximately 0.00005 degrees per pixel for lat, varies for lng
+  var metersPerPixel = 156543.03392 * Math.cos(lat * Math.PI / 180) / Math.pow(2, 20);
+  var degreesPerPixelLng = metersPerPixel / 111320;
+  var degreesPerPixelLat = metersPerPixel / 110574;
+
+  var halfSize = 320; // half of 640px
+  var poolLatLngs = [];
+
+  if (data.polygon && data.polygon.length >= 3) {
+    for (var i = 0; i < data.polygon.length; i++) {
+      var px = data.polygon[i][0] * 6.4; // convert from 0-100 to 0-640
+      var py = data.polygon[i][1] * 6.4;
+      var offsetX = px - halfSize;
+      var offsetY = py - halfSize;
+      var ptLat = lat - (offsetY * degreesPerPixelLat);
+      var ptLng = lng + (offsetX * degreesPerPixelLng);
+      poolLatLngs.push(new google.maps.LatLng(ptLat, ptLng));
+    }
+
+    // Draw the detected polygon with fluorescent glow
+    if (autoDetectPolygon) autoDetectPolygon.setMap(null);
+    autoDetectPolygon = new google.maps.Polygon({
+      paths: poolLatLngs,
+      strokeColor: '#00FFFF',
+      strokeOpacity: 1,
+      strokeWeight: 3,
+      fillColor: '#00FFFF',
+      fillOpacity: 0.15,
+      map: map
+    });
+
+    // Calculate area
+    var areaM2 = google.maps.geometry.spherical.computeArea(poolLatLngs);
+    var estVolume = Math.round(areaM2 * 1.5 * 1000); // assume 1.5m avg depth
+
+    document.getElementById('detectMessage').textContent =
+      'We have detected what we believe is your pool (approx. ' + areaM2.toFixed(1) + ' m\u00B2). ' +
+      'Estimated volume: ' + formatNum(estVolume, 0) + ' litres (assuming 1.5m depth). ' +
+      "If this doesn't sound right, plot the surface of your pool below to fine-tune.";
+
+    // Store detected points for acceptance
+    window._autoDetectedPoints = poolLatLngs;
+    window._autoDetectedArea = areaM2;
+  }
+}
+
+/* ACCEPT AUTO-DETECT */
+function acceptAutoDetect() {
+  if (!window._autoDetectedPoints) return;
+  drawingPoints = window._autoDetectedPoints.slice();
+  isCompleted = true;
+  if (autoDetectPolygon) autoDetectPolygon.setMap(null);
+
+  polygon = new google.maps.Polygon({
+    paths: drawingPoints,
+    strokeColor: '#00FFFF',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    fillColor: '#00FFFF',
+    fillOpacity: 0.2,
+    map: map
+  });
+
+  var areaM2 = window._autoDetectedArea | google.maps.geometry.spherical.computeArea(drawingPoints);
+  document.getElementById('card-results').classList.remove('hidden');
+  document.getElementById('res-area').value = areaM2.toFixed(1);
+  setStep(3);
+  document.getElementById('autoDetectBanner').classList.remove('active');
+  document.getElementById('card-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* CLEAR AUTO-DETECT */
+function clearAutoDetect() {
+  if (autoDetectPolygon) { autoDetectPolygon.setMap(null); autoDetectPolygon = null; }
+  document.getElementById('autoDetectBanner').classList.remove('active');
+  window._autoDetectedPoints = null;
+  window._autoDetectedArea = null;
+}
+
+/* ADD POINT */
+function addPoint(latLng) {
+  // If auto-detect is showing, clear it first
+  if (autoDetectPolygon) clearAutoDetect();
+
+  drawingPoints.push(latLng);
+  var pm = new google.maps.Marker({
+    position: latLng, map: map,
+    icon: { path: google.maps.SymbolPath.CIRCLE, scale: 4, fillColor: '#00FFFF', fillOpacity: 1, strokeColor: '#fff', strokeWeight: 2 },
+    zIndex: 100
+  });
+  pointMarkers.push(pm);
+  updatePolyline();
+  document.getElementById('btn-complete').disabled = drawingPoints.length < 3;
+  if (drawingPoints.length >= 3) {
+    var area = google.maps.geometry.spherical.computeArea(drawingPoints);
+    document.getElementById('live-area').textContent = area.toFixed(1);
+    document.getElementById('area-live').classList.remove('hidden');
+  }
+}
+
+/* UPDATE POLYLINE */
+function updatePolyline() {
+  if (polyline) polyline.setMap(null);
+  if (drawingPoints.length < 2) return;
+  polyline = new google.maps.Polyline({
+    path: drawingPoints, strokeColor: '#00FFFF', strokeOpacity: 0.9, strokeWeight: 2, map: map
+  });
+}
+
+/* COMPLETE POLYGON */
+function completePolygon() {
+  if (drawingPoints.length < 3) return;
+  isCompleted = true;
+  if (polyline) polyline.setMap(null);
+  polygon = new google.maps.Polygon({
+    paths: drawingPoints, strokeColor: '#00FFFF', strokeOpacity: 1, strokeWeight: 3,
+    fillColor: '#00FFFF', fillOpacity: 0.2, map: map
+  });
+  var areaM2 = google.maps.geometry.spherical.computeArea(drawingPoints);
+  document.getElementById('card-results').classList.remove('hidden');
+  document.getElementById('res-area').value = areaM2.toFixed(1);
+  setStep(3);
+  document.getElementById('card-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* UNDO LAST POINT */
+function undoLastPoint() {
+  if (drawingPoints.length === 0 | isCompleted) return;
+  drawingPoints.pop();
+  var pm = pointMarkers.pop();
+  if (pm) pm.setMap(null);
+  updatePolyline();
+  document.getElementById('btn-complete').disabled = drawingPoints.length < 3;
+  if (drawingPoints.length >= 3) {
+    var area = google.maps.geometry.spherical.computeArea(drawingPoints);
+    document.getElementById('live-area').textContent = area.toFixed(1);
+  } else {
+    document.getElementById('area-live').classList.add('hidden');
+  }
+}
+
+/* CLEAR DRAWING */
+function clearDrawing() {
+  drawingPoints = [];
+  if (polyline) { polyline.setMap(null); polyline = null; }
+  if (polygon) { polygon.setMap(null); polygon = null; }
+  if (autoDetectPolygon) { autoDetectPolygon.setMap(null); autoDetectPolygon = null; }
+  pointMarkers.forEach(function(m) { m.setMap(null); });
+  pointMarkers = [];
+  isCompleted = false;
+  document.getElementById('btn-complete').disabled = true;
+  document.getElementById('area-live').classList.add('hidden');
+  document.getElementById('card-results').classList.add('hidden');
+  document.getElementById('results-display').classList.add('hidden');
+  document.getElementById('chem-section').classList.add('hidden');
+  document.getElementById('autoDetectBanner').classList.remove('active');
+  setStep(2);
+}
+
+/* CALCULATE VOLUME */
+function calculateVolume() {
+  var areaM2 = parseFloat(document.getElementById('res-area').value);
+  var depth = parseFloat(document.getElementById('input-depth').value);
+  if (!areaM2 | areaM2 <= 0) { alert('Please trace your pool first.'); return; }
+  if (!depth | depth <= 0 | depth > 5) { alert('Please enter a valid average depth (0.3m - 5m).'); return; }
+  var volumeM3 = areaM2 * depth;
+  var volumeL = volumeM3 * 1000;
+  document.getElementById('out-area').textContent = formatNum(areaM2, 1);
+  document.getElementById('out-depth').textContent = depth.toFixed(1);
+  document.getElementById('out-volume').textContent = formatNum(volumeL, 0);
+  document.getElementById('results-display').classList.remove('hidden');
+  buildChemTable(volumeL);
+  document.getElementById('chem-vol-label').textContent = formatNum(volumeL, 0);
+  document.getElementById('chem-section').classList.remove('hidden');
+  document.getElementById('results-display').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* CHEMICAL DOSAGE TABLE */
+function buildChemTable(litres) {
+  var vol = litres / 1000;
+  var chemicals = [
+    { name: 'Liquid Chlorine (12.5%)', purpose: 'Raise free chlorine by 1 ppm', dosage: formatNum(vol * 80, 0) + ' mL', range: '1 - 3 ppm' },
+    { name: 'Granular Chlorine (65%)', purpose: 'Raise free chlorine by 1 ppm', dosage: formatNum(vol * 15, 0) + ' g', range: '1 - 3 ppm' },
+    { name: 'Stabiliser (Cyanuric Acid)', purpose: 'Raise CYA by 10 ppm', dosage: formatNum(vol * 10, 0) + ' g', range: '30 - 50 ppm' },
+    { name: 'Soda Ash (pH Increaser)', purpose: 'Raise pH by 0.1', dosage: formatNum(vol * 7, 0) + ' g', range: '7.2 - 7.6' },
+    { name: 'Hydrochloric Acid (33%)', purpose: 'Lower pH by 0.1', dosage: formatNum(vol * 50, 0) + ' mL', range: '7.2 - 7.6' },
+    { name: 'Buffer (Sodium Bicarbonate)', purpose: 'Raise TA by 10 ppm', dosage: formatNum(vol * 17, 0) + ' g', range: '80 - 120 ppm' },
+    { name: 'Calcium Chloride', purpose: 'Raise CH by 10 ppm', dosage: formatNum(vol * 14, 0) + ' g', range: '200 - 300 ppm' },
+    { name: 'Pool Salt', purpose: 'Raise salt by 1000 ppm', dosage: formatNum(vol * 1, 1) + ' kg', range: '3000 - 5000 ppm' },
+    { name: 'Algaecide (Quaternary)', purpose: 'Weekly preventative', dosage: formatNum(vol * 5, 0) + ' mL', range: 'Weekly' },
+    { name: 'Phosphate Remover', purpose: 'Remove 1000 ppb phosphates', dosage: formatNum(vol * 30, 0) + ' mL', range: '< 100 ppb' }
+  ];
+  var tbody = document.getElementById('chem-tbody');
+  tbody.innerHTML = '';
+  chemicals.forEach(function(c) {
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td style="color:var(--white);font-weight:600;">' + c.name + '</td><td>' + c.purpose + '</td><td style="color:var(--teal);font-weight:700;">' + c.dosage + '</td><td>' + c.range + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+/* NAVIGATION */
+function goBackToAddress() {
+  document.getElementById('card-address').classList.remove('hidden');
+  document.getElementById('card-map').classList.add('hidden');
+  document.getElementById('card-results').classList.add('hidden');
+  setStep(1);
+  clearDrawing();
+}
+function goBackToMap() {
+  document.getElementById('card-results').classList.add('hidden');
+  document.getElementById('results-display').classList.add('hidden');
+  document.getElementById('chem-section').classList.add('hidden');
+  clearDrawing();
+  setStep(2);
+}
+
+/* STEP INDICATOR */
+function setStep(n) {
+  for (var i = 1; i <= 3; i++) {
+    var el = document.getElementById('step-' + i);
+    el.classList.remove('active', 'completed');
+    if (i < n) el.classList.add('completed');
+    if (i === n) el.classList.add('active');
+  }
+}
+
+/* HELPERS */
+function formatNum(n, dec) {
+  if (dec === 0) return Math.round(n).toLocaleString('en-AU');
+  return n.toFixed(dec).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+</script>
+
+<script src="/assets/palatial-scroll-reveal.js"></script>
+<script src="/assets/palatial-chatbox.js"></script>
+</body>
+</html>

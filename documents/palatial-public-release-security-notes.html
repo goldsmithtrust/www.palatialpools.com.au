@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Public Release Security Notes | Palatial Pools</title>
+  <meta name="description" content="Public security, privacy and publishing controls for the Palatial Pools website and online store.">
+  <style>
+    :root {
+      --ink: #102033;
+      --muted: #617084;
+      --aqua: #00a9b2;
+      --navy: #0d0118;
+      --paper: #f8fbfc;
+      --line: #dce8ec;
+      --gold: #c9a84c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(135deg, #f8fbfc 0%, #eef7f9 48%, #fff8df 100%);
+      font: 16px/1.55 "Outfit", "Segoe UI", Arial, sans-serif;
+    }
+    .page { max-width: 980px; margin: 0 auto; padding: 48px 28px 64px; }
+    .hero {
+      color: #fff;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(201,168,76,.34), transparent 32%),
+        linear-gradient(135deg, #0d0118 0%, #24364e 100%);
+      border-radius: 28px;
+      padding: 44px;
+      box-shadow: 0 26px 70px rgba(13,1,24,.20);
+    }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; }
+    h1 { font-size: clamp(2.1rem, 6vw, 4rem); line-height: .98; margin: 12px 0 16px; }
+    h2 { font-size: 1.35rem; margin: 0 0 12px; }
+    h3 { margin: 0 0 6px; }
+    p { margin: 0 0 14px; }
+    .hero p { color: rgba(255,255,255,.78); max-width: 720px; font-size: 1.06rem; }
+    .matrix { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; margin-top: 24px; }
+    .card, .wide {
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 34px rgba(16,32,51,.08);
+    }
+    .wide { margin-top: 20px; }
+    .card p, .wide p, li { color: var(--muted); }
+    .status {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: #066b70;
+      background: rgba(0,169,178,.09);
+      border: 1px solid rgba(0,169,178,.25);
+      font-weight: 800;
+      font-size: .84rem;
+      margin-bottom: 12px;
+    }
+    .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--aqua); }
+    .checklist { columns: 2; padding-left: 18px; }
+    .checklist li { break-inside: avoid; margin-bottom: 8px; }
+    .footer { margin-top: 30px; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 780px) {
+      .hero { padding: 30px; border-radius: 22px; }
+      .matrix { grid-template-columns: 1fr; }
+      .checklist { columns: 1; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { padding: 0; }
+      .hero, .card, .wide { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Public release notes</div>
+      <h1 id="title">Security and privacy controls for a public store launch.</h1>
+      <p>This brief explains the public-facing controls applied to the Palatial Pools website. It is deliberately high-level so visitors can understand the posture without exposing implementation details that would help an attacker.</p>
+    </section>
+
+    <section class="matrix" aria-label="Security controls">
+      <article class="card"><span class="status">Enabled</span><h2>No live AI chatbot</h2><p>The floating support widget no longer sends public chat messages to an AI endpoint. Visitors are routed to fixed tools, phone, email or Palatial Link.</p></article>
+      <article class="card"><span class="status">Enabled</span><h2>Security headers</h2><p>Static deployment headers define a privacy-oriented content security policy, frame protections, MIME sniffing protection and conservative referrer policy.</p></article>
+      <article class="card"><span class="status">Enabled</span><h2>Public-safe sync</h2><p>The asset sync manifest includes catalogue, document and seasonal service metadata only. It excludes customer records and staff-only operational data.</p></article>
+      <article class="card"><span class="status">Enabled</span><h2>Human-reviewed checkout</h2><p>Store checkout sends a request for review. Payment is not taken in-browser, and stock, fitment and delivery are confirmed before money changes hands.</p></article>
+    </section>
+
+    <section class="wide">
+      <h2>Publishing checklist</h2>
+      <ul class="checklist">
+        <li>Public pages preserve stable URLs and sitemap entries.</li>
+        <li>Private paths remain blocked from indexing.</li>
+        <li>Node modules are ignored and not published.</li>
+        <li>Generated store pages remain static and crawlable.</li>
+        <li>PDF and HTML transparency documents are optional, not intrusive.</li>
+        <li>Photo and chemistry intelligence tools disclose privacy limits.</li>
+        <li>Predictive preloading respects reduced data modes and capped fetches.</li>
+        <li>No credentials, staff records or supplier secrets are stored in public files.</li>
+      </ul>
+    </section>
+
+    <section class="wide">
+      <h2>What a public visitor can expect</h2>
+      <p>Pages should feel fast because likely next pages are warmed cautiously, product data is static, and large media remains lazy-loaded. Visitors are not tracked for behavioural profiling by this feature; browsing assistance is limited to current-page intent and anonymous seasonal context.</p>
+      <p>When an interaction could affect safety, money or property outcomes, the site nudges toward a human-reviewed path: water testing, fitment confirmation, service booking or quote approval.</p>
+    </section>
+
+    <p class="footer">Published by Palatial Pool Services Pty Ltd. Detailed penetration-test output, infrastructure diagrams and operational procedures are intentionally not public documents.</p>
+  </main>
+</body>
+</html>

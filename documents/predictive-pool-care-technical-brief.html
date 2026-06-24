@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Predictive Pool Care Technical Brief | Palatial Pools</title>
+  <meta name="description" content="A public, privacy-safe overview of how Palatial Pools uses seasonal signals, service history and customer-approved analysis to recommend easier pool-care next steps.">
+  <style>
+    :root {
+      --ink: #102033;
+      --muted: #5b6b7e;
+      --aqua: #00a9b2;
+      --navy: #12031f;
+      --paper: #f7fbfc;
+      --line: #d8e6ea;
+      --gold: #c9a84c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: linear-gradient(135deg, #eef8fa 0%, #fff 38%, #f7f2df 100%);
+      font: 16px/1.55 "Outfit", "Segoe UI", Arial, sans-serif;
+    }
+    .page { max-width: 980px; margin: 0 auto; padding: 48px 28px 64px; }
+    .hero {
+      color: #fff;
+      background:
+        radial-gradient(circle at 82% 10%, rgba(0,196,204,.36), transparent 34%),
+        linear-gradient(135deg, #0d0118 0%, #2d2252 100%);
+      border-radius: 28px;
+      padding: 46px;
+      box-shadow: 0 26px 70px rgba(13,1,24,.22);
+      overflow: hidden;
+      position: relative;
+    }
+    .eyebrow { color: var(--gold); text-transform: uppercase; letter-spacing: .18em; font-size: .78rem; font-weight: 800; }
+    h1 { font-size: clamp(2.1rem, 6vw, 4.2rem); line-height: .96; margin: 12px 0 16px; max-width: 780px; }
+    h2 { font-size: 1.45rem; margin: 0 0 12px; }
+    h3 { margin: 0 0 8px; }
+    p { margin: 0 0 14px; }
+    .hero p { max-width: 680px; color: rgba(255,255,255,.78); font-size: 1.08rem; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 24px; }
+    .card, .wide {
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 12px 34px rgba(16,32,51,.08);
+    }
+    .wide { margin-top: 20px; }
+    .card strong { display: block; color: var(--navy); font-size: 1.06rem; margin-bottom: 6px; }
+    .card p, .wide p, li { color: var(--muted); }
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .step {
+      min-height: 126px;
+      border-radius: 18px;
+      padding: 18px;
+      color: #fff;
+      background: linear-gradient(150deg, #12031f, #20324c);
+      position: relative;
+    }
+    .step span {
+      display: inline-grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(0,196,204,.18);
+      color: #63f3f8;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .note {
+      border-left: 4px solid var(--aqua);
+      padding: 18px 20px;
+      background: #fff;
+      border-radius: 0 18px 18px 0;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-block;
+      border: 1px solid rgba(0,169,178,.26);
+      border-radius: 999px;
+      padding: 7px 12px;
+      margin: 4px 5px 0 0;
+      color: #066b70;
+      background: rgba(0,169,178,.08);
+      font-size: .86rem;
+      font-weight: 700;
+    }
+    .footer { margin-top: 30px; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 780px) {
+      .hero { padding: 30px; border-radius: 22px; }
+      .grid, .flow { grid-template-columns: 1fr; }
+    }
+    @media print {
+      body { background: #fff; }
+      .page { padding: 0; }
+      .hero, .card, .wide { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">Public technical brief</div>
+      <h1 id="title">How predictive pool care helps customers make easier decisions.</h1>
+      <p>Palatial Pools uses public-safe seasonal signals, customer-approved readings and service context to suggest the next helpful step. The system is designed to reduce guesswork, not to replace qualified pool technicians.</p>
+    </section>
+
+    <section class="grid" aria-label="Principles">
+      <article class="card"><strong>Helpful by default</strong><p>Recommendations favour practical next actions: test water, confirm fitment, top up common consumables or book a technician.</p></article>
+      <article class="card"><strong>Private by design</strong><p>Public pages use only aggregated, non-identifying signals. Customer records stay inside Palatial Link and staff systems.</p></article>
+      <article class="card"><strong>Human verified</strong><p>High-risk chemical, leak, electrical, warranty and installation decisions are reviewed by the Palatial team.</p></article>
+    </section>
+
+    <section class="wide">
+      <h2>What the system considers</h2>
+      <p>The public website uses broad signals that are safe to show: season, product category, service type, visible page intent and customer-entered tool values. Account-specific history is only shown after authentication inside Palatial Link.</p>
+      <p><span class="pill">Seasonal calendar</span><span class="pill">Catalogue metadata</span><span class="pill">Fitment records</span><span class="pill">Opt-in water readings</span><span class="pill">Opt-in photo diagnostics</span></p>
+    </section>
+
+    <section class="wide">
+      <h2>Customer-facing flow</h2>
+      <div class="flow">
+        <div class="step"><span>1</span><h3>Understand intent</h3><p>Use the current page and explicit tool inputs to infer the immediate task.</p></div>
+        <div class="step"><span>2</span><h3>Match safe data</h3><p>Use public catalogue, calendar and fitment metadata before considering private records.</p></div>
+        <div class="step"><span>3</span><h3>Suggest next step</h3><p>Offer a product, guide, calculator, diagnostic upload or human service option.</p></div>
+        <div class="step"><span>4</span><h3>Escalate risk</h3><p>Ask for a professional test or technician when the situation is uncertain.</p></div>
+      </div>
+    </section>
+
+    <section class="wide">
+      <h2>What we do not publish</h2>
+      <ul>
+        <li>Customer addresses, names, invoices, photos, service notes or technician comments.</li>
+        <li>Supplier credentials, internal margins, private operating procedures or proprietary scoring details.</li>
+        <li>Live AI chat logs or free-form chatbot conversations on public pages.</li>
+      </ul>
+      <p class="note">OpenAI-class intelligence may be used only for bounded analysis workflows such as photo diagnostics or chemical interpretation. The public site does not run a live AI chatbot.</p>
+    </section>
+
+    <p class="footer">Published by Palatial Pool Services Pty Ltd for public transparency. This document is educational and does not replace a site inspection, water test or licensed technical advice.</p>
+  </main>
+</body>
+</html>

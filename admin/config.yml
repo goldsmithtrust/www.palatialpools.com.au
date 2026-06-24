@@ -1,0 +1,96 @@
+backend:
+  name: proxy
+  proxy_url: https://www.palatialpools.com.au/cms-api
+  branch: main
+
+# Media files stored in uploads directory
+media_folder: /assets/uploads
+public_folder: /assets/uploads
+
+# Site URL
+site_url: https://www.palatialpools.com.au
+display_url: https://www.palatialpools.com.au
+logo_url: /assets/images/palatial-p-logo.png
+
+# Locale
+locale: en
+
+collections:
+  # ─── BLOG POSTS ────────────────────────────────────────────────
+  - name: blog
+    label: Blog Posts
+    label_singular: Blog Post
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish Date, name: date, widget: datetime, format: YYYY-MM-DD }
+      - { label: Author, name: author, widget: string, default: Kieran Goldsmith }
+      - { label: Meta Description, name: description, widget: text, hint: "Keep under 160 characters for SEO" }
+      - { label: Featured Image, name: featured_image, widget: image, required: false }
+      - { label: Featured Image Alt Text, name: featured_image_alt, widget: string, required: false }
+      - { label: Tags, name: tags, widget: list, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  # ─── GALLERY ───────────────────────────────────────────────────
+  - name: gallery
+    label: Project Gallery
+    label_singular: Gallery Item
+    folder: content/gallery
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Photo, name: image, widget: image }
+      - { label: Alt Text, name: alt, widget: string }
+      - { label: Category, name: category, widget: select, options: [Pool, Spa, Renovation, Equipment, Commercial], default: Pool }
+      - { label: Suburb, name: suburb, widget: string, required: false }
+      - { label: Description, name: description, widget: text, required: false }
+      - { label: Sort Order, name: order, widget: number, default: 0 }
+
+  # ─── TESTIMONIALS ──────────────────────────────────────────────
+  - name: testimonials
+    label: Testimonials
+    label_singular: Testimonial
+    folder: content/testimonials
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Customer Name, name: name, widget: string }
+      - { label: Suburb, name: suburb, widget: string }
+      - { label: Rating, name: rating, widget: number, min: 1, max: 5, default: 5 }
+      - { label: Review Text, name: text, widget: text }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, required: false }
+
+  # ─── SITE SETTINGS ─────────────────────────────────────────────
+  - name: settings
+    label: Site Settings
+    files:
+      - name: general
+        label: General Settings
+        file: content/settings/general.json
+        fields:
+          - { label: Business Name, name: business_name, widget: string, default: Palatial Pool Services }
+          - { label: Phone, name: phone, widget: string, default: "03 4231 7665" }
+          - { label: Email, name: email, widget: string, default: service@palatialpools.com.au }
+          - { label: Address, name: address, widget: string, default: Melbourne, VIC }
+          - { label: Facebook URL, name: facebook_url, widget: string, required: false }
+          - { label: Google Business URL, name: google_url, widget: string, required: false }
+          - { label: Hero Headline, name: hero_headline, widget: string, default: "Melbourne's Pool & Spa Specialists" }
+          - { label: Hero Subheadline, name: hero_subheadline, widget: text, required: false }
+
+      - name: services
+        label: Services
+        file: content/settings/services.json
+        fields:
+          - label: Services List
+            name: services
+            widget: list
+            fields:
+              - { label: Service Name, name: name, widget: string }
+              - { label: Slug, name: slug, widget: string }
+              - { label: Short Description, name: description, widget: text }
+              - { label: Icon, name: icon, widget: string, required: false }
+              - { label: Price From, name: price_from, widget: string, required: false }

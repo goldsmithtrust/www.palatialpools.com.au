@@ -1,0 +1,139 @@
+{
+  "schema_version": "2026-05-public-asset-sync",
+  "generated_at": "2026-05-18T14:17:45+00:00",
+  "current_season": "autumn-equipment",
+  "service_calendar": [
+    {
+      "id": "spring-opening",
+      "months": [
+        "September",
+        "October",
+        "November"
+      ],
+      "label": "Spring opening",
+      "public_signal": "Algae, low sanitiser and dormant equipment are most common after winter.",
+      "recommended_paths": [
+        "/store/advisor/",
+        "/tools/photo-diagnostics/",
+        "/guides/green-pool-recovery/"
+      ],
+      "job_types": [
+        "green-pool-recovery",
+        "water-test",
+        "equipment-startup"
+      ]
+    },
+    {
+      "id": "summer-stability",
+      "months": [
+        "December",
+        "January",
+        "February"
+      ],
+      "label": "Summer stability",
+      "public_signal": "Heat, UV and heavy bathing increase sanitiser demand and evaporation.",
+      "recommended_paths": [
+        "/store/chemicals/",
+        "/store/pantry/",
+        "/tools/chemical-dosage-calculator/"
+      ],
+      "job_types": [
+        "monthly-service",
+        "chemical-balance",
+        "pool-pantries"
+      ]
+    },
+    {
+      "id": "autumn-equipment",
+      "months": [
+        "March",
+        "April",
+        "May"
+      ],
+      "label": "Autumn equipment check",
+      "public_signal": "Lower use makes it a good time to review filters, cells and pumps.",
+      "recommended_paths": [
+        "/store/fitment/",
+        "/store/parts/",
+        "/guides/pool-pump-guide/"
+      ],
+      "job_types": [
+        "filter-service",
+        "chlorinator-cell-check",
+        "pump-review"
+      ]
+    },
+    {
+      "id": "winter-efficiency",
+      "months": [
+        "June",
+        "July",
+        "August"
+      ],
+      "label": "Winter efficiency",
+      "public_signal": "Reduced demand shifts attention to heating cost, leaks and circulation.",
+      "recommended_paths": [
+        "/tools/heating-cost-calculator/",
+        "/melbourne-pool-heating/",
+        "/melbourne-pool-spa-leak-detection/"
+      ],
+      "job_types": [
+        "heating-review",
+        "leak-detection",
+        "winter-balance"
+      ]
+    }
+  ],
+  "job_type_signals": [
+    {
+      "id": "monthly-service",
+      "display": "Regular pool servicing",
+      "reflected_in": [
+        "Palatial Link service history",
+        "seasonal care calendar",
+        "Pool Pantry prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "water-test",
+      "display": "Water testing and dosing",
+      "reflected_in": [
+        "Chemistry Advisor",
+        "chemical shopping lists",
+        "predictive care prompts"
+      ],
+      "privacy_level": "customer-specific values stay inside Palatial Link"
+    },
+    {
+      "id": "filter-service",
+      "display": "Filter and media servicing",
+      "reflected_in": [
+        "Fitment Checker",
+        "parts recommendations",
+        "seasonal maintenance prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "equipment-startup",
+      "display": "Equipment startup and commissioning",
+      "reflected_in": [
+        "product fitment",
+        "installation bundles",
+        "calendar prompts"
+      ],
+      "privacy_level": "aggregated-job-type-only"
+    },
+    {
+      "id": "leak-detection",
+      "display": "Leak detection",
+      "reflected_in": [
+        "service pages",
+        "photo diagnostic triage",
+        "winter efficiency prompts"
+      ],
+      "privacy_level": "no property-specific evidence exposed"
+    }
+  ]
+}

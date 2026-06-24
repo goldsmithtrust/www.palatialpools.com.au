@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="hc-bg" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" style="stop-color:#2e0a52"/>
+      <stop offset="100%" style="stop-color:#0d0118"/>
+    </radialGradient>
+    <linearGradient id="hc-drop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffe085"/>
+      <stop offset="50%" style="stop-color:#C5A55A"/>
+      <stop offset="100%" style="stop-color:#7a5520"/>
+    </linearGradient>
+    <filter id="hc-glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="hc-glow-strong">
+      <feGaussianBlur stdDeviation="14" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Deep dark background -->
+  <circle cx="256" cy="256" r="256" fill="url(#hc-bg)"/>
+  <circle cx="256" cy="256" r="248" fill="none" stroke="#C5A55A" stroke-width="8"/>
+
+  <!-- Outer gauge arc — very thick, glowing -->
+  <path d="M 62 398 A 218 218 0 1 1 450 398"
+        fill="none" stroke="#C5A55A" stroke-width="18" stroke-linecap="round"
+        filter="url(#hc-glow)"/>
+
+  <!-- Gauge tick marks — thick, bold -->
+  <!-- Bottom-left -->
+  <line x1="62"  y1="398" x2="80"  y2="378" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Lower-left -->
+  <line x1="46"  y1="316" x2="70"  y2="312" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Left -->
+  <line x1="38"  y1="256" x2="64"  y2="256" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Upper-left -->
+  <line x1="46"  y1="196" x2="70"  y2="200" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Top-left -->
+  <line x1="88"  y1="118" x2="106" y2="138" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Top — largest tick -->
+  <line x1="256" y1="38"  x2="256" y2="66"  stroke="#ffe085" stroke-width="8" stroke-linecap="round"/>
+  <!-- Top-right -->
+  <line x1="424" y1="118" x2="406" y2="138" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Upper-right -->
+  <line x1="466" y1="196" x2="442" y2="200" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Right -->
+  <line x1="474" y1="256" x2="448" y2="256" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Lower-right -->
+  <line x1="466" y1="316" x2="442" y2="312" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+  <!-- Bottom-right -->
+  <line x1="450" y1="398" x2="432" y2="378" stroke="#ffe085" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Gauge end caps -->
+  <circle cx="62"  cy="398" r="11" fill="#C5A55A"/>
+  <circle cx="450" cy="398" r="11" fill="#C5A55A"/>
+
+  <!-- Water drop glow -->
+  <path d="M 256 118 Q 336 204 336 304 Q 336 376 256 376 Q 176 376 176 304 Q 176 204 256 118 Z"
+        fill="rgba(197,165,90,0.25)" filter="url(#hc-glow-strong)"/>
+  <!-- Water drop — vivid gradient fill -->
+  <path d="M 256 118 Q 336 204 336 304 Q 336 376 256 376 Q 176 376 176 304 Q 176 204 256 118 Z"
+        fill="url(#hc-drop)"/>
+
+  <!-- Lightning bolt — dark, bold, high contrast -->
+  <path d="M 272 188 L 238 284 L 264 284 L 240 368 L 298 256 L 270 256 Z"
+        fill="#0d0118" stroke="#0d0118" stroke-width="4" stroke-linejoin="round"/>
+
+  <!-- Drop highlight -->
+  <ellipse cx="222" cy="226" rx="16" ry="26" fill="white" opacity="0.28" transform="rotate(-18 222 226)"/>
+</svg>
