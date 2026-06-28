@@ -1,0 +1,939 @@
+[
+  {
+    "name": "home",
+    "viewport": "desktop",
+    "path": "/",
+    "finalUrl": "http://localhost:3000/",
+    "status": "TIMEOUT/Navigation timeout of 25000 ms exceeded",
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "home",
+    "viewport": "mobile",
+    "path": "/",
+    "finalUrl": "http://localhost:3000/",
+    "status": "TIMEOUT/Navigation timeout of 25000 ms exceeded",
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "contact",
+    "viewport": "desktop",
+    "path": "/contact-palatial-pool-services/",
+    "finalUrl": "http://localhost:3000/contact-palatial-pool-services",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "contact",
+    "viewport": "mobile",
+    "path": "/contact-palatial-pool-services/",
+    "finalUrl": "http://localhost:3000/contact-palatial-pool-services",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "faq",
+    "viewport": "desktop",
+    "path": "/faq/",
+    "finalUrl": "http://localhost:3000/faq",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "faq",
+    "viewport": "mobile",
+    "path": "/faq/",
+    "finalUrl": "http://localhost:3000/faq",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "testimonials",
+    "viewport": "desktop",
+    "path": "/testimonials/",
+    "finalUrl": "http://localhost:3000/testimonials",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "testimonials",
+    "viewport": "mobile",
+    "path": "/testimonials/",
+    "finalUrl": "http://localhost:3000/testimonials",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "privacy",
+    "viewport": "desktop",
+    "path": "/privacy-policy/",
+    "finalUrl": "http://localhost:3000/privacy-policy",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "privacy",
+    "viewport": "mobile",
+    "path": "/privacy-policy/",
+    "finalUrl": "http://localhost:3000/privacy-policy",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "pool-calculators",
+    "viewport": "desktop",
+    "path": "/pool-calculators/",
+    "finalUrl": "http://localhost:3000/pool-calculators",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-calculators",
+    "viewport": "mobile",
+    "path": "/pool-calculators/",
+    "finalUrl": "http://localhost:3000/pool-calculators",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "energy-calculator",
+    "viewport": "desktop",
+    "path": "/tools/energy-calculator/",
+    "finalUrl": "http://localhost:3000/tools/energy-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "energy-calculator",
+    "viewport": "mobile",
+    "path": "/tools/energy-calculator/",
+    "finalUrl": "http://localhost:3000/tools/energy-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-cost-calculator",
+    "viewport": "desktop",
+    "path": "/tools/pool-cost-calculator/",
+    "finalUrl": "http://localhost:3000/tools/pool-cost-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-cost-calculator",
+    "viewport": "mobile",
+    "path": "/tools/pool-cost-calculator/",
+    "finalUrl": "http://localhost:3000/tools/pool-cost-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "blog-index",
+    "viewport": "desktop",
+    "path": "/blog/",
+    "finalUrl": "http://localhost:3000/blog",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "blog-index",
+    "viewport": "mobile",
+    "path": "/blog/",
+    "finalUrl": "http://localhost:3000/blog",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "suburb-kew",
+    "viewport": "desktop",
+    "path": "/kew-pool-service/",
+    "finalUrl": "http://localhost:3000/kew-pool-service",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "suburb-kew",
+    "viewport": "mobile",
+    "path": "/kew-pool-service/",
+    "finalUrl": "http://localhost:3000/kew-pool-service",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "suburb-hawthorn",
+    "viewport": "desktop",
+    "path": "/hawthorn-pool-servicing/",
+    "finalUrl": "http://localhost:3000/hawthorn-pool-servicing",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "suburb-hawthorn",
+    "viewport": "mobile",
+    "path": "/hawthorn-pool-servicing/",
+    "finalUrl": "http://localhost:3000/hawthorn-pool-servicing",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "melbourne-services",
+    "viewport": "desktop",
+    "path": "/melbourne-pool-services/",
+    "finalUrl": "http://localhost:3000/melbourne-pool-services",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "melbourne-services",
+    "viewport": "mobile",
+    "path": "/melbourne-pool-services/",
+    "finalUrl": "http://localhost:3000/melbourne-pool-services",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "cartridge-finder",
+    "viewport": "desktop",
+    "path": "/cartridge-finder/",
+    "finalUrl": "http://localhost:3000/",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "cartridge-finder",
+    "viewport": "mobile",
+    "path": "/cartridge-finder/",
+    "finalUrl": "http://localhost:3000/",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "pool-volume-calculator",
+    "viewport": "desktop",
+    "path": "/pool-volume-calculator/",
+    "finalUrl": "http://localhost:3000/pool-volume-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-volume-calculator",
+    "viewport": "mobile",
+    "path": "/pool-volume-calculator/",
+    "finalUrl": "http://localhost:3000/pool-volume-calculator",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "palatial-link",
+    "viewport": "desktop",
+    "path": "/palatial-link/",
+    "finalUrl": "http://localhost:3000/palatial-link",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "palatial-link",
+    "viewport": "mobile",
+    "path": "/palatial-link/",
+    "finalUrl": "http://localhost:3000/palatial-link",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "palatial-project-gallery",
+    "viewport": "desktop",
+    "path": "/palatial-project-gallery/",
+    "finalUrl": "http://localhost:3000/palatial-project-gallery",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "palatial-project-gallery",
+    "viewport": "mobile",
+    "path": "/palatial-project-gallery/",
+    "finalUrl": "http://localhost:3000/palatial-project-gallery",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: net::ERR_NAME_NOT_RESOLVED"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track",
+      "net::ERR_NAME_NOT_RESOLVED https://pulse.palatialpools.com.au/api/public/track"
+    ]
+  },
+  {
+    "name": "pool-area-shield",
+    "viewport": "desktop",
+    "path": "/pool-area-shield/",
+    "finalUrl": "http://localhost:3000/pool-area-shield",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-area-shield",
+    "viewport": "mobile",
+    "path": "/pool-area-shield/",
+    "finalUrl": "http://localhost:3000/pool-area-shield",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-diagnostics",
+    "viewport": "desktop",
+    "path": "/pool-diagnostics/",
+    "finalUrl": "http://localhost:3000/pool-diagnostics",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "pool-diagnostics",
+    "viewport": "mobile",
+    "path": "/pool-diagnostics/",
+    "finalUrl": "http://localhost:3000/pool-diagnostics",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "portal",
+    "viewport": "desktop",
+    "path": "/portal/",
+    "finalUrl": "http://localhost:3000/portal",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "portal",
+    "viewport": "mobile",
+    "path": "/portal/",
+    "finalUrl": "http://localhost:3000/portal",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "sitemap-visual",
+    "viewport": "desktop",
+    "path": "/sitemap-visual/",
+    "finalUrl": "http://localhost:3000/system-map",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "sitemap-visual",
+    "viewport": "mobile",
+    "path": "/sitemap-visual/",
+    "finalUrl": "http://localhost:3000/system-map",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "guides-index",
+    "viewport": "desktop",
+    "path": "/guides/",
+    "finalUrl": "http://localhost:3000/guides",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "guides-index",
+    "viewport": "mobile",
+    "path": "/guides/",
+    "finalUrl": "http://localhost:3000/guides",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-mobile.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/pp-nav.js"
+    ]
+  },
+  {
+    "name": "synapse",
+    "viewport": "desktop",
+    "path": "/synapse/",
+    "finalUrl": "http://localhost:3000/synapse",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "synapse",
+    "viewport": "mobile",
+    "path": "/synapse/",
+    "finalUrl": "http://localhost:3000/synapse",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)",
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": [
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-animations.css",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-scroll-reveal.js",
+      "net::ERR_ABORTED http://localhost:3000/assets/palatial-chatbox.js"
+    ]
+  },
+  {
+    "name": "404",
+    "viewport": "desktop",
+    "path": "/__missing_path_for_audit__/",
+    "finalUrl": "http://localhost:3000/__missing_path_for_audit__",
+    "status": 404,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": []
+  },
+  {
+    "name": "404",
+    "viewport": "mobile",
+    "path": "/__missing_path_for_audit__/",
+    "finalUrl": "http://localhost:3000/__missing_path_for_audit__",
+    "status": 404,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 (Not Found)"
+    ],
+    "failedRequests": []
+  },
+  {
+    "name": "shop-redirect",
+    "viewport": "desktop",
+    "path": "/shop",
+    "finalUrl": "https://palatial.store/shop",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "failedRequests": []
+  },
+  {
+    "name": "shop-redirect",
+    "viewport": "mobile",
+    "path": "/shop",
+    "finalUrl": "https://palatial.store/shop",
+    "status": 200,
+    "consoleErrors": [
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()",
+      "Failed to load resource: the server responded with a status of 404 ()"
+    ],
+    "failedRequests": []
+  }
+]
