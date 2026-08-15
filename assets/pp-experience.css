@@ -1,0 +1,179 @@
+/* Palatial Pools: compact visual experience layer
+   Loaded after the SPA and legacy style layers. Local source only. */
+:root {
+  --ppx-ink: #07324a;
+  --ppx-ink-soft: #38596a;
+  --ppx-surface: #f2fbfc;
+  --ppx-surface-strong: #e3f7f9;
+  --ppx-card: #ffffff;
+  --ppx-border: #c9e8ec;
+  --ppx-teal: #00afc1;
+  --ppx-teal-deep: #007a8c;
+  --ppx-amber: #f4b63d;
+  --ppx-navy: #062e46;
+  --ppx-shadow: 0 14px 32px rgba(7, 50, 74, 0.12);
+}
+
+/* Density: shorter, more purposeful sections without compressing tap targets. */
+#root .min-h-screen > section,
+#root main > section,
+#root section.pp-next-density {
+  min-height: auto !important;
+  padding-top: clamp(2.5rem, 5vw, 4.75rem) !important;
+  padding-bottom: clamp(2.5rem, 5vw, 4.75rem) !important;
+}
+#root section.pp-next-density--tight {
+  padding-top: clamp(1.8rem, 3vw, 2.75rem) !important;
+  padding-bottom: clamp(1.8rem, 3vw, 2.75rem) !important;
+}
+#root .pp-copy-limit { max-width: 68ch !important; }
+#root .pp-copy-limit p,
+#root .pp-copy-limit li { line-height: 1.62 !important; }
+#root .pp-visual-compact { gap: clamp(0.85rem, 1.7vw, 1.4rem) !important; }
+
+/* Action hierarchy. Primary is booking, secondary is immediate call, utility is a tool. */
+.pp-action {
+  min-height: 48px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  padding: 0.72rem 1.1rem !important;
+  border-radius: 12px !important;
+  border: 1px solid transparent !important;
+  font-family: "DM Sans", system-ui, sans-serif !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease !important;
+}
+.pp-action::after { content: "→"; font-size: 1rem; transition: transform 160ms ease; }
+.pp-action:hover { transform: translateY(-2px); }
+.pp-action:hover::after { transform: translateX(3px); }
+.pp-action:focus-visible,
+.pp-decision-choice:focus-visible,
+.pp-quick-dock a:focus-visible {
+  outline: 3px solid rgba(0, 175, 193, 0.38) !important;
+  outline-offset: 3px !important;
+}
+.pp-action--book,
+.pp-action--primary {
+  background: var(--ppx-amber) !important;
+  color: var(--ppx-ink) !important;
+  box-shadow: 0 8px 18px rgba(244, 182, 61, 0.28) !important;
+}
+.pp-action--book:hover,
+.pp-action--primary:hover { background: #f8c95e !important; box-shadow: 0 12px 24px rgba(244, 182, 61, 0.38) !important; }
+.pp-action--call {
+  background: rgba(255,255,255,0.08) !important;
+  color: #ffffff !important;
+  border-color: rgba(255,255,255,0.60) !important;
+}
+.pp-action--call::after { content: "↗"; }
+.pp-action--call:hover { background: rgba(255,255,255,0.18) !important; }
+.pp-action--tool {
+  background: #dff8fa !important;
+  color: var(--ppx-teal-deep) !important;
+  border-color: #aee5ea !important;
+}
+.pp-action--tool:hover { background: #c4f2f5 !important; }
+.pp-action--service {
+  background: var(--ppx-teal) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 18px rgba(0, 175, 193, 0.22) !important;
+}
+.pp-action--service:hover { background: #0096a8 !important; }
+
+/* Visual decision board, only injected on the homepage. */
+.pp-decision-board {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #effbfc 0%, #ffffff 48%, #e4f7f9 100%);
+  border-top: 1px solid var(--ppx-border);
+  border-bottom: 1px solid var(--ppx-border);
+  color: var(--ppx-ink);
+}
+.pp-decision-board::before {
+  content: "";
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  right: -150px;
+  top: -265px;
+  border: 54px solid rgba(0, 175, 193, 0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.pp-decision-board__inner { width: min(1180px, calc(100% - 2.4rem)); margin: 0 auto; position: relative; }
+.pp-decision-board__intro { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: clamp(1.4rem, 4vw, 4rem); align-items: end; margin-bottom: 1.6rem; }
+.pp-eyebrow { color: var(--ppx-teal-deep); font: 700 0.73rem/1 "DM Sans", system-ui, sans-serif; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 0.7rem; }
+.pp-decision-board h2 { color: var(--ppx-ink); font-family: "Playfair Display", Georgia, serif; font-size: clamp(2rem, 4vw, 3.65rem); line-height: 1.05; letter-spacing: -0.025em; margin: 0; }
+.pp-decision-board__intro p:last-child { color: var(--ppx-ink-soft); font: 500 1rem/1.6 "DM Sans", system-ui, sans-serif; max-width: 58ch; margin: 0; }
+.pp-decision-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.72rem; }
+.pp-decision-choice {
+  appearance: none;
+  min-height: 136px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.8rem;
+  padding: 1rem;
+  border: 1px solid var(--ppx-border);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.9);
+  color: var(--ppx-ink);
+  font: 700 0.88rem/1.25 "DM Sans", system-ui, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(7,50,74,0.035);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease;
+}
+.pp-decision-choice:hover,
+.pp-decision-choice[aria-pressed="true"] { transform: translateY(-3px); border-color: var(--ppx-teal); box-shadow: var(--ppx-shadow); background: #ffffff; }
+.pp-decision-choice__icon { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px; background: #dff8fa; color: var(--ppx-teal-deep); }
+.pp-decision-choice__icon svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.85; }
+.pp-decision-choice small { color: #577582; font-weight: 600; }
+.pp-decision-result { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: center; min-height: 96px; margin-top: 1rem; padding: 1rem 1.15rem; background: var(--ppx-navy); border-radius: 14px; color: #ffffff; box-shadow: 0 12px 28px rgba(6,46,70,0.16); }
+.pp-decision-result__copy { display: flex; gap: 0.85rem; align-items: flex-start; }
+.pp-decision-result__mark { display: grid; place-items: center; width: 32px; height: 32px; flex: 0 0 auto; border-radius: 50%; background: rgba(84,217,229,0.18); color: #7be9ef; font-weight: 800; }
+.pp-decision-result strong { display: block; font: 700 0.93rem/1.25 "DM Sans", system-ui, sans-serif; color: #ffffff; }
+.pp-decision-result p { margin: 0.24rem 0 0; color: rgba(242,252,253,0.78); font: 400 0.88rem/1.5 "DM Sans", system-ui, sans-serif; max-width: 75ch; }
+.pp-decision-result .pp-action { min-height: 44px !important; white-space: nowrap; }
+
+/* Infographic-style service pathway. */
+.pp-service-path { margin-top: 1.3rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+.pp-path-step { position: relative; padding: 0.35rem 1.25rem 0.35rem 0; }
+.pp-path-step:not(:last-child)::after { content: ""; position: absolute; height: 1px; background: linear-gradient(90deg, var(--ppx-teal), rgba(0,175,193,0.15)); right: 0; left: 44px; top: 21px; }
+.pp-path-step__number { position: relative; z-index: 1; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--ppx-teal); color: #ffffff; font: 700 0.86rem "DM Sans", system-ui, sans-serif; box-shadow: 0 0 0 8px #effbfc; }
+.pp-path-step h3 { margin: 0.8rem 0 0.32rem; color: var(--ppx-ink); font: 700 0.98rem/1.25 "DM Sans", system-ui, sans-serif; }
+.pp-path-step p { margin: 0; color: #4c6a78; font: 400 0.86rem/1.5 "DM Sans", system-ui, sans-serif; max-width: 25ch; }
+
+/* A small visual motion system. No continuous motion if the user requests less motion. */
+.pp-pulse-dot { position: relative; width: 10px; height: 10px; display: inline-block; border-radius: 50%; background: var(--ppx-teal); box-shadow: 0 0 0 0 rgba(0,175,193,0.48); animation: ppPulse 2.2s infinite; }
+@keyframes ppPulse { 0% { box-shadow: 0 0 0 0 rgba(0,175,193,0.45); } 68% { box-shadow: 0 0 0 10px rgba(0,175,193,0); } 100% { box-shadow: 0 0 0 0 rgba(0,175,193,0); } }
+@media (prefers-reduced-motion: reduce) { .pp-action, .pp-decision-choice, .pp-pulse-dot { transition: none !important; animation: none !important; } }
+
+/* Mobile quick action dock. It reinforces clear next actions without hiding site navigation. */
+.pp-quick-dock { display: none; }
+@media (max-width: 720px) {
+  body { padding-bottom: 78px; }
+  .pp-decision-board__inner { width: min(100% - 1.6rem, 1180px); }
+  .pp-decision-board__intro { grid-template-columns: 1fr; gap: 0.85rem; }
+  .pp-decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pp-decision-choice { min-height: 118px; }
+  .pp-decision-result { grid-template-columns: 1fr; }
+  .pp-decision-result .pp-action { width: 100%; }
+  .pp-service-path { grid-template-columns: 1fr; gap: 1rem; }
+  .pp-path-step { padding: 0 0 0 3.6rem; }
+  .pp-path-step__number { position: absolute; left: 0; top: 0; }
+  .pp-path-step:not(:last-child)::after { width: 1px; height: calc(100% - 38px); left: 20px; top: 40px; right: auto; background: linear-gradient(180deg, var(--ppx-teal), rgba(0,175,193,0.12)); }
+  .pp-quick-dock { position: fixed; z-index: 3000; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; bottom: 0; left: 0; right: 0; padding: 0.65rem max(0.8rem, env(safe-area-inset-right)) calc(0.65rem + env(safe-area-inset-bottom)) max(0.8rem, env(safe-area-inset-left)); background: rgba(6,46,70,0.97); border-top: 1px solid rgba(123,233,239,0.26); backdrop-filter: blur(12px); }
+  .pp-quick-dock a { min-height: 48px; display: flex; justify-content: center; align-items: center; gap: 0.4rem; border-radius: 10px; color: #ffffff; font: 700 0.86rem "DM Sans", system-ui, sans-serif; text-decoration: none; }
+  .pp-quick-dock a:first-child { background: var(--ppx-amber); color: var(--ppx-ink); }
+  .pp-quick-dock a:last-child { border: 1px solid rgba(255,255,255,0.40); }
+}
+
+@media (max-width: 420px) { .pp-decision-grid { gap: 0.55rem; } .pp-decision-choice { padding: 0.8rem; font-size: 0.82rem; } }

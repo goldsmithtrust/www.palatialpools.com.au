@@ -571,13 +571,18 @@
     <div class="upload-zone" id="uploadZone">
       <div class="icon">📸</div>
       <h3>Drop your pool photos here</h3>
-      <p>or click to browse. Upload up to 10 images (JPG, PNG, HEIC, max 10MB each).</p>
-      <input type="file" id="fileInput" accept="image/*" multiple>
+      <p>or click to browse. Upload up to 4 JPEG, PNG or WebP images, maximum 2MB each.</p>
+      <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple>
       <div class="upload-counter" id="uploadCounter" style="display:none;"></div>
       <div class="image-thumbs" id="imageThumbs"></div>
       <div class="description-box" id="descriptionBox" style="display:none;">
         <label for="problemDescription">Describe what you think the problem is (optional)</label>
         <textarea id="problemDescription" placeholder="e.g. Water has been green for 3 days, pump making noise, noticed cracks near the skimmer..."></textarea>
+        <label style="display:flex;gap:9px;align-items:flex-start;margin-top:14px;color:var(--pp-muted);font-size:0.86rem;line-height:1.5;cursor:pointer;">
+          <input type="checkbox" id="aiConsent" style="width:17px;height:17px;flex:0 0 auto;margin-top:2px;accent-color:var(--pp-teal);">
+          <span>I consent to the selected images and description being sent to Palatial's AI assessment service to generate this response. I will not upload people, personal paperwork or private information.</span>
+        </label>
+        <p style="margin:10px 0 0;color:var(--pp-muted);font-size:0.82rem;line-height:1.5;">This is a photo triage tool, not a compliance, electrical, gas, barrier or water-chemistry certificate. A measured water test and on-site assessment may still be required.</p>
       </div>
     </div>
 
@@ -680,7 +685,7 @@
   </footer>
 
   <script>
-    const MAX_IMAGES = 10;
+    const MAX_IMAGES = 4;
     const uploadZone = document.getElementById('uploadZone');
     const fileInput = document.getElementById('fileInput');
     const previewArea = document.getElementById('previewArea');
@@ -720,11 +725,12 @@
           alert('Maximum ' + MAX_IMAGES + ' images allowed.');
           break;
         }
-        if (!file.type.startsWith('image/') && !file.name.toLowerCase().endsWith('.heic')) {
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+          alert(file.name + ' is not supported. Use JPEG, PNG or WebP.');
           continue;
         }
-        if (file.size > 10 * 1024 * 1024) {
-          alert(file.name + ' is too large. Maximum size is 10MB per image.');
+        if (file.size > 2 * 1024 * 1024) {
+          alert(file.name + ' is too large. Maximum size is 2MB per image.');
           continue;
         }
         uploadedFiles.push(file);
@@ -783,6 +789,8 @@
       descriptionBox.style.display = 'none';
       imageThumbs.innerHTML = '';
       problemDescription.value = '';
+      const consent = document.getElementById('aiConsent');
+      if (consent) consent.checked = false;
       uploadZone.style.display = '';
       previewArea.classList.remove('active');
       loadingOverlay.classList.remove('active');
@@ -796,6 +804,11 @@
 
     async function analysePhotos() {
       if (uploadedFiles.length === 0) return;
+      const consent = document.getElementById('aiConsent');
+      if (!consent || !consent.checked) {
+        alert('Please confirm the image-processing notice before analysing photos.');
+        return;
+      }
       const btn = document.getElementById('analyseBtn');
       btn.disabled = true;
       previewArea.classList.remove('active');
