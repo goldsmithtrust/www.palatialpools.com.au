@@ -1,0 +1,36 @@
+# Include in the verified canonical marketing HTTPS server{}.
+# Do not add a URI/trailing slash to proxy_pass: native /shop must be preserved.
+location = /shop { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location ^~ /shop/ { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location ^~ /shop-static/ { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location ^~ /shop-assets/ { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /store { return 307 /shop$is_args$args; }
+location ~ ^/store/(.*)$ { return 307 /shop/$1$is_args$args; }
+# Never expose staff consoles/import endpoints through the marketing host.
+location = /shop/admin { return 404; }
+location ^~ /shop/admin/ { return 404; }
+location = /api/shop/admin { return 404; }
+location ^~ /api/shop/admin/ { return 404; }
+location ^~ /api/shop/pooltrackr/ { return 404; }
+# Public catalogue is read-only even for a signed-in staff user on this host.
+location = /api/shop/products {
+    limit_except GET { deny all; }
+    include /etc/nginx/snippets/palatial-shop-proxy.conf;
+}
+location ^~ /api/shop/products/ {
+    limit_except GET { deny all; }
+    include /etc/nginx/snippets/palatial-shop-proxy.conf;
+}
+location ^~ /api/shop/ { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+# Exact paths only. Main /api/login, /api/health, /api/contact, /cms-api and
+# /api/analyse-pool remain owned by their existing services.
+location = /api/auth/google { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /api/auth/callback/google { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /api/auth/callback { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /api/auth/logout { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /api/auth/me { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+location = /api/analytics/collect { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+# Stripe URL alias may still receive in-flight events. Do not redirect POSTs.
+location = /api/stripe/webhook { include /etc/nginx/snippets/palatial-shop-proxy.conf; }
+# Deliberately no /api/checkout/session: embedded Payment Element is the
+# customer flow; the competing hosted flow needs separate reconciliation.

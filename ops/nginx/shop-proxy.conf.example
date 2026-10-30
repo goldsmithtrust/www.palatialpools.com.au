@@ -1,0 +1,19 @@
+# Install as /etc/nginx/snippets/palatial-shop-proxy.conf after review.
+proxy_pass http://palatial_shop;
+proxy_http_version 1.1;
+proxy_set_header Host $host;
+proxy_set_header X-Forwarded-Host $host;
+proxy_set_header X-Forwarded-Proto $scheme;
+proxy_set_header X-Forwarded-For $remote_addr;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header Connection "";
+proxy_redirect off;
+proxy_buffering off;
+proxy_connect_timeout 5s;
+proxy_read_timeout 60s;
+# No shared cache for RSC, accounts, cookies, cart, order or payment responses.
+proxy_cache off;
+proxy_hide_header Cache-Control;
+add_header Cache-Control "private, no-store" always;
+add_header X-Robots-Tag $palatial_shop_robots always;
+# Never append a second edge/marketing CSP here; the store owns its CSP.
