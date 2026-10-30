@@ -1,0 +1,8 @@
+# HTTP context, NOT inside server{}. No changes to the marketing upstream.
+# 3101 must be a verified local runtime OR local end of a private authenticated
+# tunnel to the store droplet. This is not evidence that such a tunnel exists.
+upstream palatial_shop { server 127.0.0.1:3101; keepalive 16; }
+map $uri $palatial_shop_robots {
+    default "";
+    ~^/shop/(account|checkout|order-confirmation|cart-bridge|admin)(/|$) "noindex, nofollow";
+}

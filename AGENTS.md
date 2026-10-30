@@ -1,3 +1,11 @@
+# Authorised architecture revision: 30 October 2026
+
+The owner has requested same-domain shopping. This instruction supersedes older rules in this file that prohibit shared routing or require all canonicals to use palatial.store. Keep marketing and commerce in separate repositories and applications. The verified edge may route /shop and the explicit shop dependencies to the store runtime. Never copy catalogue, cart, order or payment logic into the marketing app.
+
+Use SHOP_SAME_DOMAIN=1 only for the staged public shop and matching marketing build after validation. Existing standalone staff runtime retains its own origin and cookies. Read docs/same-domain-shop-integration.md before enabling. This is preparation only; do not merge or deploy until release gates are satisfied.
+
+---
+
 # Palatial Pools Website — Agent Instructions
 
 See `.cursorrules` for project overview, naming conventions, and critical rules.
