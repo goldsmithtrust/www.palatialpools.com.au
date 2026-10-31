@@ -106,7 +106,11 @@ If production is a CDN/static host with no programmable edge, these Nginx snippe
 
 ## Runtime configuration
 
-Build and runtime values must agree. `NEXT_PUBLIC_*`, asset prefixes and prerendered metadata are baked into the build. Rebuild rather than changing only environment files.
+The marketing application's `SHOP_SAME_DOMAIN` is a build-time release setting. `next.config.mjs` derives redirects and inlines the same normalised value through `env`, so navigation injection and robots sitemap selection cannot change when the runtime variable is missing or different. Only the exact value `1` enables it; unset, `0` and other values retain external redirects. This is a public routing flag, not a secret. Keep direct `process.env.SHOP_SAME_DOMAIN` references so Next can substitute them at compile time.
+
+Build marketing with `SHOP_SAME_DOMAIN=1 NEXT_PUBLIC_SITE_URL=<verified canonical marketing origin>` only for the staged proxy arrangement. `NEXT_PUBLIC_SITE_URL` is also embedded in the robots route at build time. Changing either variable on a running marketing release does not switch its routing or sitemap: rebuild, or roll back to the previous disabled build. The enabled edge must forward native `/shop` paths to the store before the marketing fallback; this correction does not add an in-app proxy or alter checkout, auth, cookies or payment routes.
+
+The table below also describes the separate store application's requirements; this marketing fix does not change how that application reads its environment. Its build and runtime values must still agree. `NEXT_PUBLIC_*`, asset prefixes and prerendered metadata are baked into the build.
 
 | Variable | Public integrated build/runtime | Existing standalone staff runtime |
 | --- | --- | --- |
@@ -243,7 +247,11 @@ Prepared checks:
 
 ```bash
 # marketing repository
-node --test tests/*.test.mjs
+# Fast redirect/navigation checks:
+node --test tests/shop-zone.test.mjs tests/shop-navigation.test.mjs
+# Builds both modes; starts each with unset/0/1 runtime flag and no runtime
+# NEXT_PUBLIC_SITE_URL; verifies actual redirects, HTML and sitemap output:
+node --test tests/shop-build.test.mjs
 npm run typecheck
 SHOP_SAME_DOMAIN=1 NEXT_PUBLIC_SITE_URL=https://palatialpools.com.au npm run build
 
