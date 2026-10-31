@@ -1,8 +1,12 @@
 // Build-time switch. Enable only with the matching edge proxy configuration.
+// `env` inlines the same value into route handlers so they cannot diverge from redirects.
 const sameDomainShop = process.env.SHOP_SAME_DOMAIN === '1';
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  env: {
+    SHOP_SAME_DOMAIN: sameDomainShop ? '1' : '',
+  },
   async redirects() {
     if (sameDomainShop) return [
       { source: '/store', destination: '/shop', permanent: false },
